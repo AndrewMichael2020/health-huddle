@@ -2,6 +2,10 @@ name: Generate six standard-voice trials
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - demo/run-voice-trials.json
 
 permissions:
   contents: read
