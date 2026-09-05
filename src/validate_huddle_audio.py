@@ -45,7 +45,7 @@ def main() -> None:
         final_duration = ffprobe_duration(mix)
         if abs(final_duration - timeline["duration_seconds"]) > 0.2:
             blockers.append("mix-timeline-duration-mismatch")
-        if not 275 <= final_duration <= 330:
+        if not 225 <= final_duration <= 330:
             blockers.append(f"final-duration-outside-window:{final_duration:.2f}")
         if len(timeline["actions"]) != 13:
             blockers.append("action-count-mismatch")

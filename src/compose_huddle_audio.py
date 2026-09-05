@@ -84,7 +84,10 @@ def main() -> None:
         filters.append(f"[{input_index}:a]aresample=48000,adelay={delay}|{delay},volume=0.92[a{index}]")
     filters.append("[0:a]aresample=48000[amb]")
     mix_inputs = "[amb]" + "".join(f"[a{index}]" for index in range(len(timeline)))
-    filters.append(f"{mix_inputs}amix=inputs={len(timeline) + 1}:duration=longest:normalize=0,alimiter=limit=0.92[mix]")
+    filters.append(
+        f"{mix_inputs}amix=inputs={len(timeline) + 1}:duration=longest:normalize=0,"
+        "alimiter=limit=0.92,apad=pad_dur=1.0[mix]"
+    )
     output_audio = args.output / "huddle-mix.wav"
     subprocess.run(
         ["ffmpeg", "-y", *inputs, "-filter_complex", ";".join(filters), "-map", "[mix]", "-t", f"{total_duration:.3f}", "-c:a", "pcm_s16le", str(output_audio)],

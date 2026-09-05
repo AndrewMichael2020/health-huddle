@@ -2,7 +2,7 @@
   "title": "Skagit Health LTC Data Modernization Agent Huddle",
   "setting": "Monday morning, fictional Skagit Health Authority",
   "target_duration_seconds": 300,
-  "speaking_rate_wpm": 114,
+  "speaking_rate_wpm": 141,
   "agents": [
     {"id": "maya", "name": "Maya Singh", "role": "Lead BI Analyst Agent", "voice_gender": "female", "huddle_lead": true},
     {"id": "daniel", "name": "Daniel Cho", "role": "Analytics Director Agent", "voice_gender": "male", "huddle_lead": false},
@@ -70,7 +70,7 @@
     },
     {
       "id": "T15", "speaker": "owen", "phase": "collaboration", "delivery": "smiling",
-      "text": "I’ll map rules to owners and gates. More red on this board is reassuring today."
+      "text": "I’ll map rules to owners and gates. Oh—more red on this board is reassuring today."
     },
     {
       "id": "T16", "speaker": "maya", "phase": "rollup",

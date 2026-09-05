@@ -1,8 +1,9 @@
 {
-  "requested_at": "2026-09-05T19:18:00Z",
-  "script_commit": "785d55a1484671355999ec1decbabbacfd9b3d21",
-  "purpose": "Generate the locked six-agent huddle after semantic and voice-trial gates.",
-  "script_character_count": 4054,
-  "voice_trial_character_count": 767,
-  "conservative_project_ceiling": 15000
+  "requested_at": "2026-09-05T19:23:00Z",
+  "script_revision": "owen-oh-reaction",
+  "purpose": "Controlled rerun after actual-duration calibration and exact-tail padding.",
+  "script_character_count": 4057,
+  "previous_run_id": 33986592501,
+  "estimated_total_elevenlabs_usage_after_run": 8878,
+  "approved_credit_ceiling": 15000
 }

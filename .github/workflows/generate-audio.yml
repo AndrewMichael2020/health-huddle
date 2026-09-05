@@ -28,6 +28,7 @@ jobs:
       - run: python -m src.compose_huddle_audio --audio-root .artifacts/huddle-audio --output .artifacts/composed
       - run: python -m src.validate_huddle_audio --audio-root .artifacts/huddle-audio --composed-root .artifacts/composed --output .artifacts/audio-validation.json
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: huddle-audio
           path: .artifacts/

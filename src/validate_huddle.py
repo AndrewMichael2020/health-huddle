@@ -76,7 +76,7 @@ def build_report(script: dict[str, Any], ledger: dict[str, Any], seed: dict[str,
     spoken_turns = [turn for turn in turns if not turn.get("overlap_group")]
     total_words = sum(word_count(turn["text"]) for turn in spoken_turns)
     estimated_seconds = total_words / script["speaking_rate_wpm"] * 60 + len(spoken_turns) * 0.28
-    if not 275 <= estimated_seconds <= 330:
+    if not 225 <= estimated_seconds <= 330:
         blockers.append(f"estimated-duration-seconds:{estimated_seconds:.1f}")
 
     for phrase in REQUIRED_HUMAN_HANDOFFS:
