@@ -27,4 +27,5 @@ jobs:
         with:
           name: voice-preflight
           path: .artifacts/
+          include-hidden-files: true
           retention-days: 7
