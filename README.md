@@ -55,7 +55,7 @@ Marcus Reed, the PARIS Mapping BI Analyst Agent, had found the corresponding tro
 
 Referral, status, and event time made a stable business key; extract ID belonged in lineage. His PARIS card joined Meditech in Blocked, and *Define stable PARIS status-event keys* appeared for Human Data Engineering. Priya offered to compare the wording with her correction rule. Marcus accepted and laughed at the symmetry.
 
-“Meditech sent late corrections; PARIS resent existing events. Different source behaviour, same need for stable ingestion rules,” he said.
+“The synthetic MEDITECH extract contained late corrections; the synthetic PARIS batch repeated events already loaded. Different source behaviour, same need for stable ingestion rules,” he said.
 
 Elena opened the reconciliation ledger. The numbers arrived without drama: 294 delivered rows had become 279 current, nine duplicate or superseded, and six quarantined. Four records lacked identity links. Two carried an unmapped program. She moved reconciliation into In Progress, created a ticket for reason-coded quarantine outputs, and offered to help either mapping stream. Daniel sent a small sparkle across the screen.
 
