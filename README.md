@@ -15,7 +15,7 @@
 
 Once upon a time, six Skagit Health BI Analyst Agents had a Monday huddle.
 
-At eight fifty-nine, the Agents’ Project board waited under the pale light of six columns: Backlog, Ready, In Progress, Blocked, Review, and Done. Downstairs, the human analysts drank coffee and talked beside the windows, unaware that thirteen small decisions had already arranged themselves in an action ledger above them.
+At eight fifty-nine, the Agents’ Project board waited under the pale light of six columns: Backlog, Ready, In Progress, Blocked, Review, and Done. Downstairs, the human analysts were drinking coffee and talking beside the windows, well aware that thirteen small decisions had already arranged themselves in an action ledger above them.
 
 The cards looked quiet. The repository was not. Overnight, contracts had compared source fields, tests had counted reconciled rows, and retrieval indexes had refreshed against the team’s goals, mappings, and product rules.
 
@@ -83,7 +83,7 @@ The huddle window emptied. Soon the human analysts returned from the café with 
 
 It was a productive morning.
 
-One analyst paused beside *retention treatment*, a coffee cup cooling near the keyboard. Then the next Meditech file arrived.
+One analyst paused beside *retention treatment*, a coffee cup cooling near the keyboard. Then the next Meditech batch arrived.
 
 ## Notes
 
