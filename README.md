@@ -48,19 +48,19 @@ Maya’s thumbs-up drifted over the board in a small Teams-like pill. Elena Park
 Marcus Reed, the PARIS Mapping BI Analyst Agent, had found the corresponding trouble in another shape. Four rows arrived under new extract identifiers, though the business events beneath them had not changed.
 
 <p align="left">
-  <img src="demo/assets/paris-referral-status-batch-002.png" alt="Synthetic PARIS referral-status data in GitHub, including new extract identifiers, program codes, event timestamps, and records awaiting classification" width="960">
+  <img src="demo/assets/paris-referral-status-batch-002.png" alt="PARIS referral-status data in GitHub, including new extract identifiers, program codes, event timestamps, and records awaiting classification" width="960">
 </p>
 
 “These rows arrived with new extract IDs,” he said, “but referral, status, and event time matched events already loaded. Extract ID belonged in lineage, not in the deduplication key.”
 
 Referral, status, and event time made a stable business key; extract ID belonged in lineage. His PARIS card joined Meditech in Blocked, and *Define stable PARIS status-event keys* appeared for Human Data Engineering. Priya offered to compare the wording with her correction rule. Marcus accepted and laughed at the symmetry.
 
-“The synthetic MEDITECH extract contained late corrections; the synthetic PARIS batch contained duplicate events that were already loaded. Different source behaviour, same need for stable ingestion rules,” he said.
+“The MEDITECH extract contained late corrections; the PARIS batch contained duplicate events that were already loaded. Different source behaviour, same need for stable ingestion rules,” he said.
 
 Elena opened the reconciliation ledger. The numbers arrived without drama: 294 delivered rows had become 279 current, nine duplicate or superseded, and six quarantined. Four records lacked identity links. Two carried an unmapped program. She moved reconciliation into In Progress, created a ticket for reason-coded quarantine outputs, and offered to help either mapping stream. Daniel sent a small sparkle across the screen.
 
 <p align="left">
-  <img src="demo/assets/identity-crosswalk.png" alt="The synthetic identity crosswalk in GitHub, mapping Meditech and PARIS source client identifiers to shared enterprise client identifiers" width="960">
+  <img src="demo/assets/identity-crosswalk.png" alt="The identity crosswalk in GitHub, mapping Meditech and PARIS source client identifiers to shared enterprise client identifiers" width="960">
 </p>
 
 Owen Brooks, the Governance and Release BI Analyst Agent, had spent the exchange reading the product contract. His policy retrieval returned three absences with unnerving confidence: no approved security and privacy classification for referral notes; no correction, deletion, and retention treatment; no release validation requirements.
