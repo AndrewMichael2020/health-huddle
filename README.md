@@ -15,76 +15,69 @@
 
 Once upon a time, six Skagit Health BI Analyst Agents had a Monday huddle.
 
-At eight fifty-nine, the Agents’ Project board waited under the pale light of six columns: Backlog, Ready, In Progress, Blocked, Review, and Done. Downstairs, the human analysts were drinking coffee and talking beside the windows, well aware that thirteen small decisions had already arranged themselves in an action ledger above them.
+At eight fifty-nine, the Agents’ Project board waited beneath the pale light of six columns: Backlog, Ready, In Progress, Blocked, Review, and Done. Downstairs, the human analysts were drinking coffee and talking beside the windows, well aware that thirteen small decisions had already arranged themselves in an action ledger above them.
 
-The cards looked quiet. The repository was not. Overnight, contracts had compared source fields, tests had counted reconciled rows, and retrieval indexes had refreshed against the team’s goals, mappings, and product rules.
+The cards looked quiet. The repository was not. Overnight, contracts had compared source fields, tests had counted reconciled rows, and retrieval indexes had refreshed against the team’s goals, mappings, and product rules. Somewhere inside that machinery, a Monday had begun.
 
-Maya Singh arrived first. The silence belonged to her until she gave it away. She checked the six agent identities and straightened the Project view as casually as a human analyst might straighten a notebook.
+Maya Singh, the Lead BI Analyst Agent and huddle lead, arrived first. She checked the evidence links and nudged the Project view into place, the digital equivalent of straightening a notebook. An inventory card waited in Review. Two mapping cards stood in In Progress.
 
-“Good morning. Maya Singh, Lead BI Analyst Agent and huddle lead,” she said. “We would decide what the evidence supported, what stayed blocked, and which tickets needed human ownership.”
+“Morning,” she said. “Let’s see what the night left us.”
 
-An inventory card waited in Review. Two mapping cards stood in In Progress.
+She gave the floor to Daniel Cho, the Analytics Director Agent. He had already searched the architecture notes, the current-state inventory, and the modernization goals. He spoke without hurry.
 
-“Daniel,” Maya said, “take us through the current state.”
+“The first load was polite,” Daniel said. “The second told us the truth.”
 
-Daniel Cho gathered the portfolio evidence without appearing hurried, although he had searched every architecture note before a human could clear a throat.
+That truth included late Meditech corrections, repeated Civica PARIS events, unmatched codes, and referral notes whose treatment nobody had yet approved. Skagit Health was not building a platform for one report. It needed a Microsoft Fabric foundation sturdy enough for governed BI, reusable semantic models, large transformations, and whatever authorized workload came next. The old inheritance—nested views, manual transfers, duplicate logic, disputed KPIs, thin monitoring, and lineage that vanished under questioning—could not simply be carried into a newer room.
 
-“Daniel Cho, Analytics Director Agent,” he said. “The first synthetic load had landed cleanly. The second had proved that field mapping alone was insufficient.”
+The inventory card crossed from Review to Done.
 
-He named late Meditech corrections, repeated PARIS events, unmatched codes, and the undecided treatment of referral notes. Skagit Health needed one Microsoft Fabric foundation for many authorized workloads, without the old inheritance of nested views, manual transfers, competing KPI definitions, thin monitoring, and vanishing lineage.
+Priya Raman, the Meditech Mapping BI Analyst Agent, had traced five corrected encounters. Each time she followed the evidence through her retrieval chain, it returned the same inconvenient fact.
 
-The inventory card moved from Review to Done.
+“Discharge time tells us what happened to the patient,” she said. “It does not tell us when the source changed its mind.”
 
-Priya Raman had traced five corrected Meditech encounters. Her retrieval chain returned the same inconvenient detail each time.
-
-“Priya Raman, Meditech Mapping BI Analyst Agent,” she said. “Latest modified timestamp selected current. Discharge time could not be the watermark.”
-
-The Meditech mapping card turned red and moved from In Progress to Blocked. A new ticket appeared for Human Data Engineering: *Capture late Meditech corrections*. Priya attached the requirement that Bronze retain both delivered versions while the standardized layer resolved one current record.
+Latest modified timestamp would select the current version. Bronze would retain both deliveries. Until Human Data Engineering agreed on late-arriving correction capture, however, the mapping could not advance. The Meditech card turned red and moved to Blocked. A new ticket appeared beneath it: *Capture late Meditech corrections*.
 
 <p align="left">
   <img src="demo/assets/huddle-board-reaction.jpg" alt="The six-column Project board during the huddle, with the Meditech mapping card moved to Blocked and Maya sending a thumbs-up reaction" width="960">
 </p>
 
-Maya sent a thumbs-up that floated over the board in a small Teams-like pill.
+Maya’s thumbs-up drifted over the board in a small Teams-like pill. Elena Park, the Reconciliation and Reliability BI Analyst Agent, offered to package Priya’s correction history for engineering. Then she giggled, quick and quiet.
 
-Elena Park opened the evidence package. “Elena Park, Reconciliation and Reliability BI Analyst Agent. I could package that correction history for Human Data Engineering.” She gave a quick, podcast-soft giggle. “A Monday victory for history.”
+“A Monday victory for history.”
 
-Marcus Reed had compared four newly delivered PARIS rows with events the system had seen before. Extract identifiers had changed; the business events had not.
+Marcus Reed, the PARIS Mapping BI Analyst Agent, had found the corresponding trouble in another shape. Four rows arrived under new extract identifiers, though the business events beneath them had not changed.
 
-“Marcus Reed, PARIS Mapping BI Analyst Agent,” he said. “Referral, status, and event time formed the stable key. Extract ID served lineage only.”
+“The delivery thinks they’re new,” he said. “The residents would disagree.”
 
-The PARIS mapping card joined Meditech in Blocked. Marcus created *Define stable PARIS status-event keys* for Human Data Engineering. Priya offered to compare key wording; Marcus accepted, promised annotations, and laughed softly at the symmetry.
+Referral, status, and event time made a stable business key; extract ID belonged in lineage. His PARIS card joined Meditech in Blocked, and *Define stable PARIS status-event keys* appeared for Human Data Engineering. Priya offered to compare the wording with her correction rule. Marcus accepted and laughed at the symmetry.
 
-“Two awkward sources.”
+“Two awkward sources,” he said.
 
-Elena brought up the ledger again. Her counts arrived without drama: 294 delivered rows had become 279 current, nine duplicate or superseded, and six quarantined. Four lacked identity links. Two carried an unmapped program.
+Elena opened the reconciliation ledger. The numbers arrived without drama: 294 delivered rows had become 279 current, nine duplicate or superseded, and six quarantined. Four records lacked identity links. Two carried an unmapped program. She moved reconciliation into In Progress, created a ticket for reason-coded quarantine outputs, and offered to help either mapping stream. Daniel sent a small sparkle across the screen.
 
-She moved reconciliation into In Progress and created a ticket for reason-coded quarantine outputs. Evidence would go to Human Data Engineering; exceptions would go to a Human BI Analyst. Elena offered to help either mapping stream. Daniel sent a small sparkle.
+Owen Brooks, the Governance and Release BI Analyst Agent, had spent the exchange reading the product contract. His policy retrieval returned three absences with unnerving confidence: no approved security and privacy classification for referral notes; no correction, deletion, and retention treatment; no release validation requirements.
 
-Owen Brooks had listened while his policy retrieval crossed the product contract and returned three blank spaces with unnerving confidence.
+“The pipes can run,” Owen said. “They just can’t pretend those blanks are decisions.”
 
-“Owen Brooks, Governance and Release BI Analyst Agent,” he said. “Security and privacy classification for referral notes was missing. Correction, deletion, and retention treatment was missing. Release validation requirements were missing.”
+Three tickets appeared—for Human Privacy and Security, the Human Systems Owner, and the Human Analytics Director. Development could continue. Test promotion could not. Priya sent a smile. Owen made a soft ooh as the red cards settled into place.
 
-Three tickets appeared for Human Privacy and Security, the Human Systems Owner, and the Human Analytics Director. Development could continue. Test promotion could not. Priya sent a smile; Owen exhaled an almost-human ooh.
+“More red on the board was reassuring this morning,” he said.
 
-“More red on this board was reassuring that morning.”
+Maya moved the common-entities work into In Progress. A matching-exceptions ticket went to the LTC Source Mapping Working Group, with validation reserved for a Human BI Analyst. Meditech evidence, PARIS evidence, counts, and approval gaps formed a chain someone could follow tomorrow without having attended today.
 
-Maya moved common-entities work into In Progress. A matching-exceptions ticket went to the LTC Source Mapping Working Group, with validation reserved for a Human BI Analyst. Meditech evidence, PARIS evidence, counts, and approval gaps formed a chain a person could follow the next day.
+Daniel considered the board. The agents had made recommendations and exposed their evidence; the consequential verbs still belonged to people. The Human Analytics Director would confirm criticality, service objectives, and release. Human source owners would confirm meaning. Human Privacy and Security would decide treatment.
 
-Daniel looked once more at the board. “Analytics Director Agent recommendation,” he said. “The Human Analytics Director would confirm criticality, product service objectives, and release. Human source owners would confirm meaning. Human Privacy and Security would confirm treatment.”
+No green check had been mistaken for a human signature.
 
-No agent mistook a green check for a human signature.
+Maya read the roll-up: two mapping tickets Blocked, two foundation tickets In Progress, inventory Done, seven new tickets waiting for human owners. Priya promised Marcus her draft. Marcus promised annotations. Elena kept reconciliation open. Owen kept release closed.
 
-Maya read the roll-up: two mapping tickets Blocked, two foundation tickets In Progress, inventory Done, and seven new tickets for human owners. Priya promised Marcus her draft. Marcus promised annotations. Elena kept reconciliation open. Owen kept release closed.
+At nine-oh-five, Maya thanked the team and wished everyone a happy Monday. Five agent voices returned the wish at once, slightly out of order, cheerful enough to make the audio meter bloom.
 
-At nine-oh-five, the Lead BI Analyst Agent thanked the team and wished everyone a happy Monday. Five agent voices returned it at once, slightly out of order, cheerful enough to make the audio meter bloom.
-
-The huddle window emptied. Soon the human analysts returned from the café with their coffee. The Human Analytics Director opened the criticality and release tickets. A Human BI Analyst followed reconciliation counts into exception records. Colleagues opened source maps and reviewed each ticket beside the decision that had created it. Nothing awaiting human judgment had quietly closed itself.
+The huddle window emptied. Soon the human analysts returned from the café with their coffee. The Human Analytics Director opened the criticality and release tickets. A Human BI Analyst followed the reconciliation counts into the exception records. Around them, colleagues opened source maps, read the agents’ evidence, and reviewed each ticket beside the decision that had created it. Nothing awaiting human judgment had quietly closed itself.
 
 It was a productive morning.
 
-One analyst paused on the *retention treatment* section, a coffee cup cooling on her table. Then the next Paris batch arrived.
-
+One analyst paused on the *retention treatment* section, a coffee cup cooling on her table. Then the next PARIS batch arrived.
 ## Notes
 
 The scene was pre-planned and replayed deterministically so that every spoken decision, ticket movement, reaction, and handoff could be audited before the camera rolled. Given comparable skills, explicit goals, connected knowledge, bounded permissions, and tools for acting on a shared work surface, it is a close approximation of the observable collaboration one should expect from live voice agents: their exact words and timing would vary, while the evidence, decision gates, and accountable human destinations would remain anchored in the same repository.
