@@ -1,0 +1,14 @@
+{
+  "title": "Skagit Health LTC Data Modernization Huddle",
+  "description": "Synthetic work board for the LTC modernization demonstration.",
+  "statuses": ["Backlog", "Ready", "In Progress", "Blocked", "Review", "Done"],
+  "fields": [
+    {"name": "Owning Team", "type": "single_select", "options": ["BI Analytics", "Data Engineering", "Systems", "Privacy/Security"]},
+    {"name": "Portfolio", "type": "single_select", "options": ["LTC"]},
+    {"name": "Source System", "type": "single_select", "options": ["Meditech", "Civica PARIS", "Cross-system", "Platform"]},
+    {"name": "Work Type", "type": "single_select", "options": ["Mapping", "Data Quality", "Governance", "Reliability", "Release"]},
+    {"name": "Priority", "type": "single_select", "options": ["High", "Medium", "Low"]},
+    {"name": "Release Gate", "type": "single_select", "options": ["Not a gate", "Required for Test", "Required for Production"]},
+    {"name": "Target Week", "type": "text"}
+  ]
+}

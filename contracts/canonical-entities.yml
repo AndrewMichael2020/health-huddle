@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "entities": [
+    {"name": "ltc_client", "grain": "one enterprise client"},
+    {"name": "ltc_encounter", "grain": "one acute encounter"},
+    {"name": "ltc_referral", "grain": "one LTC referral"},
+    {"name": "ltc_status_event", "grain": "one referral status at one event time"},
+    {"name": "care_location", "grain": "one governed location code"},
+    {"name": "care_program", "grain": "one governed program code"}
+  ]
+}

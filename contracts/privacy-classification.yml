@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "fields": [
+    {"field": "meditech.source_client_id", "classification": "restricted-identifier", "status": "approved", "owner": "Privacy/Security"},
+    {"field": "paris.source_client_id", "classification": "restricted-identifier", "status": "approved", "owner": "Privacy/Security"},
+    {"field": "paris.referral_note", "classification": "TBD", "status": "missing", "owner": "Privacy/Security"}
+  ]
+}

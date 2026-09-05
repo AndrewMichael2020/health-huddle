@@ -1,0 +1,16 @@
+{
+  "bronze_source_rows": 294,
+  "duplicate_or_superseded_rows": 9,
+  "meditech_current_rows": 80,
+  "meditech_source_rows": 85,
+  "meditech_superseded_rows": 5,
+  "missing_identity_current_rows": 4,
+  "paris_current_accepted_rows": 199,
+  "paris_duplicate_or_superseded_rows": 4,
+  "paris_quarantined_rows": 6,
+  "paris_source_rows": 209,
+  "quarantined_rows": 6,
+  "seed": 20260905,
+  "silver_current_rows": 279,
+  "unmapped_program_current_rows": 2
+}

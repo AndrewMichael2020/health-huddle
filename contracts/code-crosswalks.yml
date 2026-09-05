@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "crosswalks": [
+    {"name": "enterprise_client", "file": "data/reference/identity_crosswalk.csv", "unmatched": "quarantine"},
+    {"name": "facility", "file": "data/reference/facility_crosswalk.csv", "unmatched": "quarantine"},
+    {"name": "program", "file": "data/reference/program_crosswalk.csv", "unmatched": "quarantine"}
+  ]
+}

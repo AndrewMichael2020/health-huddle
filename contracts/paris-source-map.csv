@@ -1,0 +1,9 @@
+source_system,source_table,source_field,target_entity,target_field,data_type,grain,source_key_role,timestamp_role,transformation,crosswalk,classification_ref,lifecycle_ref,validation,status,owner
+paris,referral_status,paris_row_id,ltc_status_event,source_row_id,string,one extracted status row,unstable,,copy,,internal,paris.referral_status,not-null,review-required,BI Analytics
+paris,referral_status,referral_id,ltc_status_event,referral_id,string,one referral status at event time,compound,,copy,,internal,paris.referral_status,not-null,complete,BI Analytics
+paris,referral_status,source_client_id,ltc_status_event,enterprise_client_id,string,one referral status at event time,foreign,,crosswalk,enterprise_client,paris.source_client_id,paris.referral_status,crosswalk-required,complete,BI Analytics
+paris,referral_status,program_code,ltc_status_event,program_id,string,one referral status at event time,foreign,,crosswalk,program,internal,paris.referral_status,crosswalk-required,complete,BI Analytics
+paris,referral_status,status_code,ltc_status_event,status_code,string,one referral status at event time,compound,,normalize-upper,,sensitive-clinical,paris.referral_status,allowed-code,complete,BI Analytics
+paris,referral_status,event_at,ltc_status_event,event_at,datetime,one referral status at event time,compound,clinical-event,normalize-utc,,sensitive-clinical,paris.referral_status,valid-datetime,complete,BI Analytics
+paris,referral_status,modified_at,ltc_status_event,source_modified_at,datetime,one referral status at event time,,last-modified,normalize-utc,,internal,paris.referral_status,monotonic-per-key,review-required,BI Analytics
+paris,referral_status,referral_note,ltc_status_event,referral_note,string,one referral status at event time,,,restricted-pass-through,,paris.referral_note,paris.referral_status,classification-required,blocked,Privacy/Security

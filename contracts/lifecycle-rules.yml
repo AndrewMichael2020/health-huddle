@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "record": "meditech.encounter",
+      "correction_strategy": "TBD",
+      "deletion_strategy": "retain-source-event",
+      "retention_status": "pending",
+      "owner": "Systems"
+    },
+    {
+      "record": "paris.referral_status",
+      "correction_strategy": "TBD",
+      "deletion_strategy": "TBD",
+      "retention_status": "pending",
+      "owner": "Systems"
+    }
+  ]
+}

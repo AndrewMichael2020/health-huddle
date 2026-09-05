@@ -1,0 +1,22 @@
+name: Validate synthetic modernization foundation
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e ".[test]"
+      - run: python -m src.generate_synthetic_data --output .artifacts/data
+      - run: python -m src.run_pipeline --data-root .artifacts/data --output .artifacts/pipeline
+      - run: python -m src.validate_release --contracts contracts --output .artifacts/release-status.json
+      - run: python -m pytest

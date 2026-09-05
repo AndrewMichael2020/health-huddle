@@ -1,0 +1,58 @@
+{
+  "tickets": [
+    {
+      "title": "Inventory Meditech and PARIS extracts",
+      "status": "Review",
+      "owning_team": "BI Analytics",
+      "source_system": "Cross-system",
+      "work_type": "Mapping",
+      "priority": "High",
+      "release_gate": "Required for Test"
+    },
+    {
+      "title": "Map Meditech record grain and fields",
+      "status": "In Progress",
+      "owning_team": "BI Analytics",
+      "source_system": "Meditech",
+      "work_type": "Mapping",
+      "priority": "High",
+      "release_gate": "Required for Test"
+    },
+    {
+      "title": "Map PARIS record grain and fields",
+      "status": "In Progress",
+      "owning_team": "BI Analytics",
+      "source_system": "Civica PARIS",
+      "work_type": "Mapping",
+      "priority": "High",
+      "release_gate": "Required for Test"
+    },
+    {
+      "title": "Define common LTC entities",
+      "status": "Ready",
+      "owning_team": "BI Analytics",
+      "source_system": "Cross-system",
+      "work_type": "Mapping",
+      "priority": "Medium",
+      "release_gate": "Required for Test"
+    },
+    {
+      "title": "Draft source-to-target reconciliation",
+      "status": "Ready",
+      "owning_team": "BI Analytics",
+      "source_system": "Cross-system",
+      "work_type": "Data Quality",
+      "priority": "High",
+      "release_gate": "Required for Test"
+    }
+  ],
+  "huddle_created_tickets": [
+    {"title": "Capture late Meditech corrections", "owning_team": "Data Engineering"},
+    {"title": "Define stable PARIS status-event keys", "owning_team": "Data Engineering"},
+    {"title": "Complete field classification and access rules", "owning_team": "Privacy/Security"},
+    {"title": "Define record correction, deletion and retention treatment", "owning_team": "Systems"},
+    {"title": "Add reconciliation and quarantine outputs", "owning_team": "Data Engineering"},
+    {"title": "Document cross-system matching exceptions", "owning_team": "BI Analytics"},
+    {"title": "Define release validation requirements", "owning_team": "BI Analytics"}
+  ]
+}

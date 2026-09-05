@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "gates": [
+    {"name": "mapping-meaning-complete", "status": "pending", "owner": "BI Analytics"},
+    {"name": "privacy-classification-complete", "status": "blocked", "owner": "Privacy/Security"},
+    {"name": "lifecycle-rules-approved", "status": "blocked", "owner": "Systems"},
+    {"name": "reconciliation-tests-approved", "status": "pending", "owner": "BI Analytics"},
+    {"name": "test-release-authorized", "status": "blocked", "owner": "BI Analytics"}
+  ]
+}

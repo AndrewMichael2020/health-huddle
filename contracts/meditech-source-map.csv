@@ -1,0 +1,7 @@
+source_system,source_table,source_field,target_entity,target_field,data_type,grain,source_key_role,timestamp_role,transformation,crosswalk,classification_ref,lifecycle_ref,validation,status,owner
+meditech,encounter,encounter_id,ltc_encounter,source_encounter_id,string,one acute encounter,primary,,copy,,internal,meditech.encounter,not-null,complete,BI Analytics
+meditech,encounter,source_client_id,ltc_encounter,enterprise_client_id,string,one acute encounter,foreign,,crosswalk,enterprise_client,meditech.source_client_id,meditech.encounter,crosswalk-required,complete,BI Analytics
+meditech,encounter,facility_code,ltc_encounter,location_id,string,one acute encounter,foreign,,crosswalk,facility,internal,meditech.encounter,crosswalk-required,complete,BI Analytics
+meditech,encounter,admit_at,ltc_encounter,admit_at,datetime,one acute encounter,,clinical-event,normalize-utc,,sensitive-clinical,meditech.encounter,valid-datetime,complete,BI Analytics
+meditech,encounter,discharge_at,ltc_encounter,discharge_at,datetime,one acute encounter,,clinical-event,normalize-utc,,sensitive-clinical,meditech.encounter,after-admit,complete,BI Analytics
+meditech,encounter,modified_at,ltc_encounter,source_modified_at,datetime,one acute encounter,,last-modified,normalize-utc,,internal,meditech.encounter,monotonic-per-key,review-required,BI Analytics
