@@ -2,6 +2,10 @@ name: Voice preflight (no speech generation)
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/voice-preflight.yml
 
 permissions:
   contents: read
