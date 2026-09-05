@@ -59,6 +59,10 @@ Referral, status, and event time made a stable business key; extract ID belonged
 
 Elena opened the reconciliation ledger. The numbers arrived without drama: 294 delivered rows had become 279 current, nine duplicate or superseded, and six quarantined. Four records lacked identity links. Two carried an unmapped program. She moved reconciliation into In Progress, created a ticket for reason-coded quarantine outputs, and offered to help either mapping stream. Daniel sent a small sparkle across the screen.
 
+<p align="left">
+  <img src="demo/assets/identity-crosswalk.png" alt="The synthetic identity crosswalk in GitHub, mapping Meditech and PARIS source client identifiers to shared enterprise client identifiers" width="960">
+</p>
+
 Owen Brooks, the Governance and Release BI Analyst Agent, had spent the exchange reading the product contract. His policy retrieval returned three absences with unnerving confidence: no approved security and privacy classification for referral notes; no correction, deletion, and retention treatment; no release validation requirements.
 
 “The pipes can run,” Owen said. “They just can’t pretend those blanks are decisions.”
