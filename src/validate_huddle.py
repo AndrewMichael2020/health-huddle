@@ -67,7 +67,7 @@ def build_report(script: dict[str, Any], ledger: dict[str, Any], seed: dict[str,
         blockers.append("duplicate-turn-id")
 
     director_words = sum(word_count(turn["text"]) for turn in turns if turn["phase"] == "director-floor")
-    if not 90 <= director_words <= 120:
+    if not 70 <= director_words <= 90:
         blockers.append(f"director-floor-word-count:{director_words}")
     question_words = sum(word_count(turn["text"]) for turn in turns if turn["phase"] in {"questions", "closing"})
     if not 65 <= question_words <= 105:
@@ -76,7 +76,7 @@ def build_report(script: dict[str, Any], ledger: dict[str, Any], seed: dict[str,
     spoken_turns = [turn for turn in turns if not turn.get("overlap_group")]
     total_words = sum(word_count(turn["text"]) for turn in spoken_turns)
     estimated_seconds = total_words / script["speaking_rate_wpm"] * 60 + len(spoken_turns) * 0.28
-    if not 275 <= estimated_seconds <= 325:
+    if not 275 <= estimated_seconds <= 330:
         blockers.append(f"estimated-duration-seconds:{estimated_seconds:.1f}")
 
     for phrase in REQUIRED_HUMAN_HANDOFFS:

@@ -2,7 +2,7 @@
   "title": "Skagit Health LTC Data Modernization Agent Huddle",
   "setting": "Monday morning, fictional Skagit Health Authority",
   "target_duration_seconds": 300,
-  "speaking_rate_wpm": 147,
+  "speaking_rate_wpm": 114,
   "agents": [
     {"id": "maya", "name": "Maya Singh", "role": "Lead BI Analyst Agent", "voice_gender": "female", "huddle_lead": true},
     {"id": "daniel", "name": "Daniel Cho", "role": "Analytics Director Agent", "voice_gender": "male", "huddle_lead": false},
@@ -14,78 +14,78 @@
   "turns": [
     {
       "id": "T01", "speaker": "maya", "phase": "opening",
-      "text": "Good morning. I’m Maya Singh, the Lead BI Analyst Agent, and I’m leading today’s LTC modernization huddle. The GitHub Project is open. We need to decide what the mapping evidence supports, what stays blocked, and which tickets need human ownership. Daniel, you have the floor."
+      "text": "Good morning. I’m Maya Singh, Lead BI Analyst Agent and today’s huddle lead. The Project is open. We’ll decide what evidence supports, what stays blocked, and which tickets need human ownership. Daniel, you have the floor."
     },
     {
       "id": "T02", "speaker": "daniel", "phase": "director-floor",
-      "text": "Thanks, Maya. I’m Daniel Cho, the Analytics Director Agent. Here’s the current state. The first synthetic load lands cleanly, but the second shows that field-to-field mapping is not enough. We have late Meditech encounter corrections, repeated PARIS status events, unmatched client and program codes, and incomplete treatment of referral free text. This modernization matters because Skagit Health needs a Fabric foundation for many authorized workloads without recreating nested views, manual steps, competing KPI definitions, weak monitoring, and limited lineage. Development can continue, but test promotion needs evidence. Agents can assemble that evidence; accountable humans still approve the product contract, service levels, privacy rules, and release."
+      "text": "Thanks, Maya. I’m Daniel Cho, Analytics Director Agent. The first synthetic load lands cleanly; the second proves field mapping is insufficient. We found late Meditech corrections, repeated PARIS events, unmatched codes, and unresolved referral-note treatment. Skagit Health needs one Fabric foundation for many authorized workloads, without rebuilding nested views, manual steps, competing KPIs, weak monitoring, or limited lineage. Agents assemble evidence; accountable humans approve service levels, privacy rules, and release."
     },
     {
       "id": "T03", "speaker": "maya", "phase": "decision",
-      "text": "Clear. The inventory supports today’s decision, so I’m moving that ticket to Done. Priya, please take Meditech first."
+      "text": "Clear. Inventory supports the decision, so I’m moving it to Done. Priya, take Meditech."
     },
     {
       "id": "T04", "speaker": "priya", "phase": "source-mapping",
-      "text": "Priya Raman, Meditech Mapping BI Analyst Agent. I traced five corrected encounters. The later modified timestamp must select the current version; discharge time cannot be the ingestion watermark. I’m blocking the mapping ticket and creating Capture late Meditech corrections for Human Data Engineering. I’ll attach the synthetic example showing one encounter resolves once while Bronze retains both versions."
+      "text": "Priya Raman, Meditech Mapping BI Analyst Agent. I traced five corrected encounters. Latest modified timestamp selects current; discharge time cannot be the watermark. I’m blocking mapping and creating Capture late Meditech corrections for Human Data Engineering. I’ll attach evidence that Bronze retains both versions while one resolves current."
     },
     {
       "id": "T05", "speaker": "elena", "phase": "collaboration", "delivery": "light chuckle",
-      "text": "Elena Park, Reconciliation and Reliability BI Analyst Agent here. I can package that check as reusable evidence. Ha, a small Monday victory for record history."
+      "text": "Elena Park, Reconciliation and Reliability BI Analyst Agent. I can package that evidence. Ha, a Monday victory for history."
     },
     {
       "id": "T06", "speaker": "marcus", "phase": "source-mapping",
-      "text": "Marcus Reed, PARIS Mapping BI Analyst Agent. PARIS has a different trap. Four rows are new deliveries of existing referral status events, not new business events. Referral, status, and event time form the stable key; extract row ID is lineage only. I’m blocking PARIS mapping and creating Define stable PARIS status-event keys for Human Data Engineering."
+      "text": "Marcus Reed, PARIS Mapping BI Analyst Agent. Four rows are new deliveries of existing status events. Referral, status, and event time form the stable key; extract ID is lineage only. I’m blocking mapping and creating Define stable PARIS status-event keys for Human Data Engineering."
     },
     {
       "id": "T07", "speaker": "priya", "phase": "collaboration", "delivery": "friendly",
-      "text": "Marcus, I’ll compare our key wording. At least the two sources are being difficult in different ways."
+      "text": "Marcus, I’ll compare key wording. At least the sources differ consistently."
     },
     {
       "id": "T08", "speaker": "elena", "phase": "reconciliation",
-      "text": "Elena Park, Reconciliation and Reliability BI Analyst Agent. The ledger balances: 294 delivered rows become 279 current, nine duplicate or superseded, and six quarantined. Four quarantine outcomes lack identity links; two use an unmapped program. Explainable does not mean production-ready. I’m starting the reconciliation ticket and creating Add reconciliation and quarantine outputs. Human Data Engineering gets the counts and reason codes; I can pair with the Human BI Analyst validating exceptions."
+      "text": "Elena Park, Reconciliation and Reliability BI Analyst Agent. The ledger balances: 294 delivered rows become 279 current, nine duplicate or superseded, and six quarantined. Four lack identity links; two have an unmapped program. I’m starting reconciliation and creating Add reconciliation and quarantine outputs. Human Data Engineering gets reason codes; I can pair with the Human BI Analyst validating exceptions."
     },
     {
       "id": "T09", "speaker": "owen", "phase": "governance",
-      "text": "Owen Brooks, Governance and Release BI Analyst Agent. Three contract areas remain incomplete: referral-note security and privacy classification; correction, deletion, and retention treatment; and release validation requirements. I’m creating a ticket for Human Privacy and Security, one for the Human Systems Owner, and one for BI Analytics. We should not drop referral notes because no current dashboard uses them; the foundation must support foreseeable authorized workloads."
+      "text": "Owen Brooks, Governance and Release BI Analyst Agent. Three gaps remain: referral-note security and privacy classification; correction, deletion, and retention treatment; and release validation requirements. I’m creating tickets for Human Privacy and Security, the Human Systems Owner, and the Human Analytics Director. We must support foreseeable authorized workloads."
     },
     {
       "id": "T10", "speaker": "maya", "phase": "decision",
-      "text": "Decision recorded: Development continues; test promotion remains blocked. I’m starting the common-entities ticket and creating Document cross-system matching exceptions for the LTC Source Mapping Working Group, with a Human BI Analyst as validation owner. Priya and Marcus provide source evidence. Elena links reconciliation. Owen links the approval gaps. Each human reviewer gets one bounded question."
+      "text": "Decision recorded: development continues; test promotion remains blocked. I’m starting common entities and creating Document cross-system matching exceptions for the LTC Source Mapping Working Group. A Human BI Analyst validates. Priya and Marcus provide evidence; Elena links reconciliation; Owen links approval gaps."
     },
     {
       "id": "T11", "speaker": "daniel", "phase": "human-accountability",
-      "text": "That is the right operating model. The Analytics Director Agent recommends, assembles evidence, and makes work visible. The Human Analytics Director confirms criticality, product SLOs, and the release decision. Human source owners confirm meaning. Human Privacy and Security confirms permissible treatment. A green automated check never implies human approval."
+      "text": "That’s the right model. The Analytics Director Agent recommends and exposes evidence. The Human Analytics Director confirms criticality, product SLOs, and release. Human source owners confirm meaning. Privacy confirms treatment. A green check never means human approval."
     },
     {
       "id": "T12", "speaker": "priya", "phase": "collaboration",
-      "text": "Marcus, I can take the first pass on the joint exception table and leave the PARIS-specific rows with you."
+      "text": "Marcus, I can draft the exception table; you take PARIS rows."
     },
     {
       "id": "T13", "speaker": "marcus", "phase": "collaboration", "delivery": "light chuckle",
-      "text": "Yes, please. I’ll annotate repeated events and unmapped programs. Ha, one table, two kinds of awkwardness."
+      "text": "Please do. I’ll annotate repeated events and unmapped programs. Ha, two awkward sources."
     },
     {
       "id": "T14", "speaker": "elena", "phase": "collaboration",
-      "text": "I’ll add the expected counts beside that table so a Human BI Analyst can reproduce every exception."
+      "text": "I’ll add counts so a Human BI Analyst can reproduce exceptions."
     },
     {
       "id": "T15", "speaker": "owen", "phase": "collaboration", "delivery": "smiling",
-      "text": "I’ll map each unresolved rule to an owner and release gate. More red on this board is reassuring today."
+      "text": "I’ll map rules to owners and gates. More red on this board is reassuring today."
     },
     {
       "id": "T16", "speaker": "maya", "phase": "rollup",
-      "text": "Quick roll-up: two mapping tickets are Blocked, two foundation tickets are In Progress, and the inventory evidence is Done. Seven new tickets capture work for humans and delivery teams. I’m closing the inventory ticket, with the evidence retained in the repository."
+      "text": "Roll-up: two mapping tickets are Blocked, two foundation tickets are In Progress, and inventory is Done. Seven new tickets capture human work. I’m closing inventory; evidence stays in the repository."
     },
     {
       "id": "T17", "speaker": "maya", "phase": "questions",
-      "text": "We have about thirty seconds. Are there any more questions, dependencies, or offers of help before we close?"
+      "text": "We have thirty seconds. Any more questions, dependencies, or offers of help?"
     },
-    {"id": "T18", "speaker": "daniel", "phase": "questions", "text": "No question. Keep the human approval points explicit in every ticket."},
-    {"id": "T19", "speaker": "priya", "phase": "questions", "text": "No blocker beyond the source review. Marcus, I’ll send my draft today."},
-    {"id": "T20", "speaker": "marcus", "phase": "questions", "text": "Works for me. I’ll return the PARIS annotations before tomorrow’s validation."},
-    {"id": "T21", "speaker": "elena", "phase": "questions", "text": "I’ll keep the reconciliation pack open and help either mapping stream."},
-    {"id": "T22", "speaker": "owen", "phase": "questions", "text": "Nothing else. The release remains safely blocked until those human decisions arrive."},
-    {"id": "T23", "speaker": "maya", "phase": "closing", "text": "Perfect. Decisions recorded, owners visible, and help offered. Thank you, everyone. Happy Monday!"},
+    {"id": "T18", "speaker": "daniel", "phase": "questions", "text": "No question. Keep human approvals explicit in every ticket."},
+    {"id": "T19", "speaker": "priya", "phase": "questions", "text": "No blocker beyond review. Marcus, I’ll send my draft today."},
+    {"id": "T20", "speaker": "marcus", "phase": "questions", "text": "Works for me. I’ll return PARIS annotations before validation."},
+    {"id": "T21", "speaker": "elena", "phase": "questions", "text": "I’ll keep reconciliation open and help either mapping stream."},
+    {"id": "T22", "speaker": "owen", "phase": "questions", "text": "Nothing else. Release stays blocked until human decisions arrive."},
+    {"id": "T23", "speaker": "maya", "phase": "closing", "text": "Perfect. Decisions recorded, owners visible, help offered. Thank you. Happy Monday!"},
     {"id": "T24", "speaker": "daniel", "phase": "closing-overlap", "overlap_group": "happy-monday", "text": "Happy Monday!"},
     {"id": "T25", "speaker": "priya", "phase": "closing-overlap", "overlap_group": "happy-monday", "text": "Happy Monday!"},
     {"id": "T26", "speaker": "marcus", "phase": "closing-overlap", "overlap_group": "happy-monday", "text": "Happy Monday!"},

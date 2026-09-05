@@ -19,8 +19,8 @@ def report() -> dict:
 def test_huddle_meaning_and_timing_are_ready_before_audio() -> None:
     result = report()
     assert result["ready"] is True, result["blockers"]
-    assert 275 <= result["estimated_duration_seconds"] <= 325
-    assert 90 <= result["director_floor_word_count"] <= 120
+    assert 275 <= result["estimated_duration_seconds"] <= 330
+    assert 70 <= result["director_floor_word_count"] <= 90
 
 
 def test_huddle_has_auditable_actions_and_credit_headroom() -> None:

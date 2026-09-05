@@ -12,5 +12,5 @@
     "elena": {"preferred_name": "Alice", "voice_id": "Xb7hH8MSUJpSbSDYk0k2", "gender": "female"},
     "owen": {"preferred_name": "Liam", "voice_id": "TX3LPaxmHKxFdv7VOQHJ", "gender": "male"}
   },
-  "voice_settings": {"stability": 0.56, "similarity_boost": 0.76, "style": 0.22, "use_speaker_boost": true, "speed": 1.03}
+  "voice_settings": {"stability": 0.56, "similarity_boost": 0.76, "style": 0.22, "use_speaker_boost": true, "speed": 1.12}
 }
