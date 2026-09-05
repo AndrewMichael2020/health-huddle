@@ -97,7 +97,7 @@ The scene was pre-planned and replayed deterministically so that every spoken de
 | `.codex/skills/produce-agent-huddle-demo/` | The Codex skill for understanding, validating, producing, or selectively revising this demonstration. |
 | `.github/workflows/` | Automated gates for the synthetic environment, semantic checks, voice preflight, voice trials, modular speech generation, and selective reaction tuning. |
 | `contracts/` | The lightweight operating contracts: canonical entities, Meditech and PARIS source maps, code crosswalks, privacy classification, lifecycle rules, and release gates. |
-| `data/generated/` | Two deterministic synthetic delivery batches. The second batch introduces late corrections, repeated events, and values that require quarantine or governed crosswalks. |
+| `data/generated/` | Two deterministic synthetic delivery batches. The second batch introduces late corrections, duplicate events, and values that require quarantine or governed crosswalks. |
 | `data/reference/` | Synthetic facility, identity, and program crosswalks used to standardize the two source perspectives. |
 | `data/expected-results/` | The scenario truth used to verify counts and prevent a polished demonstration from drifting away from its own evidence. |
 | `docs/` | Portfolio context, current and target states, service objectives, architecture decisions, the huddle scenario, and demonstration provenance. |
