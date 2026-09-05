@@ -1,0 +1,8 @@
+{
+  "requested_at": "2026-09-05T19:18:00Z",
+  "script_commit": "785d55a1484671355999ec1decbabbacfd9b3d21",
+  "purpose": "Generate the locked six-agent huddle after semantic and voice-trial gates.",
+  "script_character_count": 4054,
+  "voice_trial_character_count": 767,
+  "conservative_project_ceiling": 15000
+}
