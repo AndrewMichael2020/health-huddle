@@ -1,0 +1,28 @@
+{
+  "owner": "AndrewMichael2020",
+  "repository": "AndrewMichael2020/health-huddle",
+  "project_number": 13,
+  "project_url": "https://github.com/users/AndrewMichael2020/projects/13",
+  "board_url": "https://github.com/users/AndrewMichael2020/projects/13/views/1",
+  "view_number": 1,
+  "field_database_ids": {
+    "Owning Team": 408664695,
+    "Portfolio": 408664739,
+    "Source System": 408664802,
+    "Work Type": 408664817,
+    "Priority": 408664818,
+    "Release Gate": 408664848,
+    "Target Week": 408664849
+  },
+  "seed_issue_numbers": {
+    "Inventory Meditech and PARIS extracts": 1,
+    "Map Meditech record grain and fields": 2,
+    "Map PARIS record grain and fields": 3,
+    "Define common LTC entities": 4,
+    "Draft source-to-target reconciliation": 5,
+    "Confirm Fabric workspace and deployment separation": 6,
+    "Inventory nested SQL view dependencies": 7,
+    "Catalogue duplicated LTC KPI logic": 8,
+    "Define LTC product SLO classes": 9
+  }
+}

@@ -4,8 +4,10 @@
 board. `seed-tickets.yml` separates tickets that exist before the huddle from
 tickets the analysts will create during the recorded replay.
 
-The live Project is an execution surface, not the source of truth. Tier 2 will
-capture its Project and field identifiers in a runtime manifest, reset all
+The live Project is an execution surface, not the source of truth.
+`runtime-manifest.json` captures its stable URL, Project number, field database
+identifiers and seed Issue numbers. Tier 2 will resolve GraphQL node identifiers,
+reset all
 demonstration items to this specification before each rehearsal, and replay a
 validated action ledger against the board.
 

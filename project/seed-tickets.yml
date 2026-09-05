@@ -44,6 +44,42 @@
       "work_type": "Data Quality",
       "priority": "High",
       "release_gate": "Required for Test"
+    },
+    {
+      "title": "Confirm Fabric workspace and deployment separation",
+      "status": "Backlog",
+      "owning_team": "Systems",
+      "source_system": "Platform",
+      "work_type": "Release",
+      "priority": "Medium",
+      "release_gate": "Required for Production"
+    },
+    {
+      "title": "Inventory nested SQL view dependencies",
+      "status": "Backlog",
+      "owning_team": "BI Analytics",
+      "source_system": "Cross-system",
+      "work_type": "Mapping",
+      "priority": "Medium",
+      "release_gate": "Not a gate"
+    },
+    {
+      "title": "Catalogue duplicated LTC KPI logic",
+      "status": "Backlog",
+      "owning_team": "BI Analytics",
+      "source_system": "Cross-system",
+      "work_type": "Governance",
+      "priority": "Medium",
+      "release_gate": "Required for Production"
+    },
+    {
+      "title": "Define LTC product SLO classes",
+      "status": "Backlog",
+      "owning_team": "BI Analytics",
+      "source_system": "Platform",
+      "work_type": "Reliability",
+      "priority": "Low",
+      "release_gate": "Required for Production"
     }
   ],
   "huddle_created_tickets": [

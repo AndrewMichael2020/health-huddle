@@ -19,7 +19,7 @@ def test_seed_tickets_use_ticket_language_and_valid_teams() -> None:
     seed = read_json(ROOT / "project" / "seed-tickets.yml")
     teams = set(next(field for field in project["fields"] if field["name"] == "Owning Team")["options"])
 
-    assert len(seed["tickets"]) == 5
+    assert len(seed["tickets"]) == 9
     assert len(seed["huddle_created_tickets"]) == 7
     assert all("devops" not in ticket["title"].lower() for ticket in seed["tickets"] + seed["huddle_created_tickets"])
     assert all(ticket["owning_team"] in teams for ticket in seed["tickets"] + seed["huddle_created_tickets"])
