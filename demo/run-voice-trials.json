@@ -1,0 +1,6 @@
+{
+  "requested_at": "2026-09-05T19:12:00Z",
+  "purpose": "Generate and validate one short sample for each of the six selected standard ElevenLabs voices before full production.",
+  "expected_character_count": 767,
+  "approved_credit_ceiling": 15000
+}
