@@ -81,13 +81,11 @@ Maya read the roll-up: two mapping tickets Blocked, two foundation tickets In Pr
 
 At nine-oh-five, Maya thanked the team and wished everyone a happy Monday. Five agent voices returned the wish at once, slightly out of order, cheerful enough to make the audio meter bloom.
 
-The huddle window emptied. Soon the human analysts returned from the café.
+The huddle window emptied. Soon the human analysts returned from the café with the last of their coffee and settled at their desks. One followed the reconciliation counts into the exception records. Another checked the identity crosswalk. They exchanged a few quiet observations.
 
-Back at their desks, they opened the agents’ evidence with the last of their coffee. One followed the reconciliation counts into the exception records. Another checked the identity crosswalk. The Human Analytics Director read the release tickets without rushing.
+It was a productive morning.
 
-They exchanged a few quiet observations and left the evidence open between them. It was a productive morning.
-
-On one screen, the cursor rested beside *retention treatment*. A PARIS batch arrived.
+The Human Analytics Director read the release tickets without a rush. On one screen, the cursor rested on *retention treatment*. A PARIS batch arrived.
 ## Notes
 
 The scene was pre-planned and replayed deterministically so that every spoken decision, ticket movement, reaction, and handoff could be audited before the camera rolled. Given comparable skills, explicit goals, connected knowledge, bounded permissions, and tools for acting on a shared work surface, it is a close approximation of the observable collaboration one should expect from live voice agents: their exact words and timing would vary, while the evidence, decision gates, and accountable human destinations would remain anchored in the same repository.
