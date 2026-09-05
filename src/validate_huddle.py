@@ -91,7 +91,8 @@ def build_report(script: dict[str, Any], ledger: dict[str, Any], seed: dict[str,
     for term in ("privacy classification", "retention treatment", "release validation requirements", "test promotion remains blocked"):
         if term.lower() not in all_text.lower():
             blockers.append(f"missing-release-meaning:{term}")
-    if sum("Ha," in turn["text"] or "red on this board" in turn["text"] for turn in turns) < 3:
+    light_deliveries = {"natural giggle", "warm ooh reaction"}
+    if sum(turn.get("delivery") in light_deliveries for turn in turns) < 3:
         blockers.append("fewer-than-three-light-moments")
     if sum("I can" in turn["text"] or "I’ll" in turn["text"] for turn in turns) < 4:
         blockers.append("insufficient-help-offers")

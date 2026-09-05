@@ -1,0 +1,6 @@
+{
+  "purpose": "Regenerate only T05, T13, and T15 with Eleven v3 expressive delivery",
+  "source_audio_run_id": 33986818945,
+  "maximum_new_characters": 500,
+  "requested_turns": ["T05", "T13", "T15"]
+}

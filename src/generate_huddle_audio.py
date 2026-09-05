@@ -131,7 +131,7 @@ def main() -> None:
     else:
         items = script["turns"]
 
-    projected = sum(len(item["text"]) for item in items)
+    projected = sum(len(item.get("synthesis_text", item["text"])) for item in items)
     if projected > voice_plan["credit_ceiling"]:
         raise SystemExit(f"This run would submit {projected} characters, above the hard ceiling")
 
@@ -139,9 +139,11 @@ def main() -> None:
         voice = selected[item["speaker"]]
         file_name = f"{index:02d}_{item['id']}_{item['speaker']}.mp3"
         output_path = args.output / file_name
+        synthesis_text = item.get("synthesis_text", item["text"])
+        model_id = "eleven_v3" if item.get("synthesis_text") else voice_plan["model_id"]
         payload = {
-            "text": item["text"],
-            "model_id": voice_plan["model_id"],
+            "text": synthesis_text,
+            "model_id": model_id,
             "voice_settings": voice_plan["voice_settings"],
         }
         audio = api_request(
@@ -156,12 +158,13 @@ def main() -> None:
                 "id": item["id"],
                 "speaker": item["speaker"],
                 "file": file_name,
-                "characters": len(item["text"]),
+                "characters": len(synthesis_text),
                 "words": word_count(item["text"]),
                 "duration_seconds": round(seconds, 3),
+                "model_id": model_id,
             }
         )
-        manifest["generated_character_count"] += len(item["text"])
+        manifest["generated_character_count"] += len(synthesis_text)
         print(f"Generated {file_name}: {seconds:.2f}s")
 
     write_json(args.output / "voice-manifest.json", manifest)

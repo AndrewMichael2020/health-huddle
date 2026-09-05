@@ -34,11 +34,12 @@
     {"at_turn": "T23", "offset_seconds": 1.5, "from": "owen", "badge": "OB", "emoticon": "☕"}
   ],
   "capture_states": [
-    {"after_action": null, "file": "00-project-start.jpg"},
-    {"after_action": "A02", "file": "01-meditech-blocked.jpg"},
-    {"after_action": "A04", "file": "02-paris-blocked.jpg"},
-    {"after_action": "A06", "file": "03-reconciliation-started.jpg"},
-    {"after_action": "A12", "file": "04-work-created-and-started.jpg"},
-    {"after_action": "A13", "file": "07-project-final.jpg"}
+    {"after_action": null, "file": "00-project-start.jpg", "right_file": "05-review-and-done-columns.jpg"},
+    {"after_action": "A01", "file": "00-project-start.jpg", "right_file": "08-project-final-right.jpg"},
+    {"after_action": "A02", "file": "01-meditech-blocked.jpg", "right_file": "08-project-final-right.jpg"},
+    {"after_action": "A04", "file": "02-paris-blocked.jpg", "right_file": "08-project-final-right.jpg"},
+    {"after_action": "A06", "file": "03-reconciliation-started.jpg", "right_file": "08-project-final-right.jpg"},
+    {"after_action": "A12", "file": "04-work-created-and-started.jpg", "right_file": "08-project-final-right.jpg"},
+    {"after_action": "A13", "file": "08-project-final-left.jpg", "right_file": "08-project-final-right.jpg"}
   ]
 }

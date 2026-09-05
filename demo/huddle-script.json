@@ -29,8 +29,9 @@
       "text": "Priya Raman, Meditech Mapping BI Analyst Agent. I traced five corrected encounters. Latest modified timestamp selects current; discharge time cannot be the watermark. I’m blocking mapping and creating Capture late Meditech corrections for Human Data Engineering. I’ll attach evidence that Bronze retains both versions while one resolves current."
     },
     {
-      "id": "T05", "speaker": "elena", "phase": "collaboration", "delivery": "light chuckle",
-      "text": "Elena Park, Reconciliation and Reliability BI Analyst Agent. I can package that evidence. Ha, a Monday victory for history."
+      "id": "T05", "speaker": "elena", "phase": "collaboration", "delivery": "natural giggle",
+      "text": "Elena Park, Reconciliation and Reliability BI Analyst Agent. I can package that evidence. A Monday victory for history.",
+      "synthesis_text": "Elena Park, Reconciliation and Reliability BI Analyst Agent. I can package that evidence. [laughs] A Monday victory for history."
     },
     {
       "id": "T06", "speaker": "marcus", "phase": "source-mapping",
@@ -61,16 +62,18 @@
       "text": "Marcus, I can draft the exception table; you take PARIS rows."
     },
     {
-      "id": "T13", "speaker": "marcus", "phase": "collaboration", "delivery": "light chuckle",
-      "text": "Please do. I’ll annotate repeated events and unmapped programs. Ha, two awkward sources."
+      "id": "T13", "speaker": "marcus", "phase": "collaboration", "delivery": "natural giggle",
+      "text": "Please do. I’ll annotate repeated events and unmapped programs. Two awkward sources.",
+      "synthesis_text": "Please do. I’ll annotate repeated events and unmapped programs. [laughs] Two awkward sources."
     },
     {
       "id": "T14", "speaker": "elena", "phase": "collaboration",
       "text": "I’ll add counts so a Human BI Analyst can reproduce exceptions."
     },
     {
-      "id": "T15", "speaker": "owen", "phase": "collaboration", "delivery": "smiling",
-      "text": "I’ll map rules to owners and gates. Oh—more red on this board is reassuring today."
+      "id": "T15", "speaker": "owen", "phase": "collaboration", "delivery": "warm ooh reaction",
+      "text": "I’ll map rules to owners and gates. More red on this board is reassuring today.",
+      "synthesis_text": "I’ll map rules to owners and gates. [exhales] Ooh... more red on this board is reassuring today."
     },
     {
       "id": "T16", "speaker": "maya", "phase": "rollup",

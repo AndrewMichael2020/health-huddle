@@ -23,6 +23,9 @@ AGENT_COLOURS = {
     "owen": "#A5D6FF",
 }
 REACTION_GLYPHS = {"👍": "+1", "🙂": ":)", "✨": "✦", "☕": "c[_]"}
+COLUMN_WIDTH = 350
+BOARD_SOURCE_TOP = 212
+BOARD_SOURCE_BOTTOM = 936
 
 
 def font(path: Path, size: int) -> ImageFont.FreeTypeFont:
@@ -37,11 +40,43 @@ def cover(image: Image.Image, size: tuple[int, int]) -> Image.Image:
     return resized.crop((left, top, left + size[0], top + size[1]))
 
 
-def board_crop(path: Path) -> Image.Image:
-    source = Image.open(path).convert("RGB")
-    scale = 1920 / source.width
-    resized = source.resize((1920, round(source.height * scale)), Image.Resampling.LANCZOS)
-    return resized.crop((0, 0, 1920, 690))
+def _column(image: Image.Image, left: int, *, partial: bool = False) -> Image.Image:
+    right = min(image.width, left + COLUMN_WIDTH)
+    crop = image.crop((left, BOARD_SOURCE_TOP, right, BOARD_SOURCE_BOTTOM))
+    if not partial and crop.width == COLUMN_WIDTH:
+        return crop
+    padded = Image.new("RGB", (COLUMN_WIDTH, crop.height), "#F6F8FA")
+    padded.paste(crop, (0, 0))
+    return padded
+
+
+def board_panorama(left_path: Path, right_path: Path) -> Image.Image:
+    """Build one authentic, full six-column Project view from two live captures."""
+    left = Image.open(left_path).convert("RGB")
+    right = Image.open(right_path).convert("RGB")
+    columns = [
+        _column(left, 16),
+        _column(left, 374),
+        _column(left, 731),
+        _column(left, 1089, partial=True),
+        _column(right, 597),
+        _column(right, 955),
+    ]
+    height = BOARD_SOURCE_BOTTOM - BOARD_SOURCE_TOP
+    panorama = Image.new("RGB", (COLUMN_WIDTH * 6, height + 176), "#F6F8FA")
+    for index, column in enumerate(columns):
+        panorama.paste(column, (index * COLUMN_WIDTH, 0))
+    return panorama.resize((1920, 823), Image.Resampling.LANCZOS)
+
+
+def transcript_window(turn: dict[str, Any], at: float) -> list[str]:
+    lines = textwrap.wrap(turn["text"], width=111, break_long_words=False, break_on_hyphens=False)
+    if len(lines) <= 3:
+        return lines
+    duration = max(float(turn["duration_seconds"]), 0.01)
+    progress = max(0.0, min(1.0, (at - float(turn["start_seconds"])) / duration))
+    first = min(len(lines) - 3, int(progress * (len(lines) - 2)))
+    return lines[first : first + 3]
 
 
 def action_label(action: dict[str, Any]) -> str:
@@ -85,20 +120,27 @@ def make_opening(source: Path, output: Path) -> None:
 
 def draw_scene(
     capture: Path,
+    right_capture: Path,
     output: Path,
     turn: dict[str, Any] | None,
     agents: dict[str, dict[str, Any]],
     action: dict[str, Any] | None,
     reaction: dict[str, Any] | None,
+    at: float,
 ) -> None:
-    canvas = Image.new("RGB", (1920, 1080), "#0B1526")
-    canvas.paste(board_crop(capture), (0, 70))
+    canvas = Image.new("RGB", (1920, 1080), "#F6F8FA")
+    canvas.paste(board_panorama(capture, right_capture), (0, 70))
     draw = ImageDraw.Draw(canvas)
     draw.rectangle((0, 0, 1920, 70), fill="#0B1526")
     draw.text((42, 18), "SKAGIT HEALTH AUTHORITY  ·  LTC DATA MODERNIZATION", font=font(BOLD, 28), fill="#FFFFFF")
     draw.text((1452, 22), "AGENT HUDDLE", font=font(BOLD, 24), fill="#79C0FF")
-    draw.rectangle((0, 760, 1920, 1080), fill="#101D32")
-    draw.line((0, 760, 1920, 760), fill="#2D425F", width=3)
+    glass = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+    glass_draw = ImageDraw.Draw(glass)
+    # Sixty percent opacity leaves the board perceptible while prioritizing readability.
+    glass_draw.rectangle((0, 830, 1920, 1080), fill=(16, 29, 50, 153))
+    glass_draw.line((0, 830, 1920, 830), fill=(93, 130, 174, 205), width=3)
+    canvas = Image.alpha_composite(canvas.convert("RGBA"), glass).convert("RGB")
+    draw = ImageDraw.Draw(canvas)
 
     if turn:
         speaker = turn["speaker"]
@@ -107,15 +149,14 @@ def draw_scene(
         else:
             agent = agents[speaker]
             name, role, colour = agent["name"], agent["role"], AGENT_COLOURS[speaker]
-        draw.rounded_rectangle((42, 793, 117, 868), radius=18, fill=colour)
+        draw.rounded_rectangle((42, 850, 100, 908), radius=15, fill=colour)
         initials = "".join(part[0] for part in name.split()[:2])
-        draw.text((58, 810), initials, font=font(BOLD, 27), fill="#07111F")
-        draw.text((142, 789), name, font=font(BOLD, 36), fill="#FFFFFF")
-        draw.text((142, 838), role, font=font(FONT, 25), fill=colour)
-        lines = textwrap.wrap(turn["text"], width=89, break_long_words=False, break_on_hyphens=False)
-        subtitle = "\n".join(lines[:4])
-        draw.multiline_text((42, 900), subtitle, font=font(FONT, 30), fill="#F0F6FC", spacing=11)
-        draw.text((1660, 809), turn.get("phase", "").replace("-", " ").upper(), font=font(BOLD, 18), fill="#8B9EB7")
+        draw.text((54, 863), initials, font=font(BOLD, 22), fill="#07111F")
+        draw.text((120, 844), name, font=font(BOLD, 30), fill="#FFFFFF")
+        draw.text((120, 881), role, font=font(FONT, 21), fill=colour)
+        subtitle = "\n".join(transcript_window(turn, at))
+        draw.multiline_text((42, 924), subtitle, font=font(FONT, 27), fill="#F0F6FC", spacing=7)
+        draw.text((1600, 856), turn.get("phase", "").replace("-", " ").upper(), font=font(BOLD, 17), fill="#A9BED8")
 
     if action:
         draw.rounded_rectangle((42, 102, 1410, 180), radius=20, fill="#07111F", outline="#2F81F7", width=3)
@@ -124,13 +165,15 @@ def draw_scene(
             draw.text((1440, 124), f"→ {action['handoff']}", font=font(BOLD, 21), fill="#7EE787")
 
     if reaction:
-        draw.rounded_rectangle((1650, 108, 1867, 220), radius=45, fill="#FFFFFF", outline="#D0D7DE", width=2)
+        # A visible Teams-style pop: avatar, sender, and emoticon all travel together.
+        draw.rounded_rectangle((1430, 196, 1872, 284), radius=42, fill="#FFFFFF", outline="#6E87A8", width=3)
         glyph = REACTION_GLYPHS.get(reaction["emoticon"], reaction["emoticon"])
-        draw.text((1674, 136), glyph, font=font(BOLD, 36), fill="#172B4D")
-        draw.rounded_rectangle((1780, 135, 1845, 200), radius=30, fill="#2F81F7")
-        draw.text((1793, 155), reaction["badge"], font=font(BOLD, 20), fill="#FFFFFF")
+        draw.rounded_rectangle((1448, 211, 1509, 272), radius=29, fill="#2F81F7")
+        draw.text((1461, 229), reaction["badge"], font=font(BOLD, 19), fill="#FFFFFF")
+        draw.text((1530, 211), f"{reaction['from'].title()} reacted", font=font(BOLD, 20), fill="#172B4D")
+        draw.text((1778, 213), glyph, font=font(BOLD, 34), fill="#172B4D")
 
-    draw.text((42, 1051), "SYNTHETIC DATA  ·  AGENT-GENERATED RECOMMENDATIONS  ·  HUMAN APPROVAL REQUIRED", font=font(BOLD, 16), fill="#8B9EB7")
+    draw.text((42, 1051), "SYNTHETIC DATA  ·  AGENT-GENERATED RECOMMENDATIONS  ·  HUMAN APPROVAL REQUIRED", font=font(BOLD, 15), fill="#A9BED8")
     canvas.save(output, quality=91)
 
 
@@ -174,10 +217,13 @@ def main() -> None:
     boundaries = {0.0, 7.0, total}
     for turn in timeline["turns"]:
         boundaries.update((float(turn["start_seconds"]), float(turn["end_seconds"])))
+        lines = textwrap.wrap(turn["text"], width=111, break_long_words=False, break_on_hyphens=False)
+        for line_index in range(1, max(1, len(lines) - 2)):
+            boundaries.add(float(turn["start_seconds"]) + float(turn["duration_seconds"]) * line_index / (len(lines) - 2))
     for action in timeline["actions"]:
         boundaries.update((float(action["scheduled_seconds"]), min(total, float(action["scheduled_seconds"]) + 3.0)))
     for reaction in reaction_events:
-        boundaries.update((float(reaction["scheduled_seconds"]), min(total, float(reaction["scheduled_seconds"]) + 1.6)))
+        boundaries.update((float(reaction["scheduled_seconds"]), min(total, float(reaction["scheduled_seconds"]) + 2.6)))
     points = sorted(value for value in boundaries if 0 <= value <= total)
 
     concat_lines: list[str] = []
@@ -188,12 +234,13 @@ def main() -> None:
         at = (start + end) / 2
         capture_state = max((item for item in capture_events if item["scheduled_seconds"] <= at), key=lambda item: item["scheduled_seconds"])
         action = next((item for item in timeline["actions"] if item["scheduled_seconds"] <= at < item["scheduled_seconds"] + 3.0), None)
-        reaction = next((item for item in reaction_events if item["scheduled_seconds"] <= at < item["scheduled_seconds"] + 1.6), None)
+        reaction = next((item for item in reaction_events if item["scheduled_seconds"] <= at < item["scheduled_seconds"] + 2.6), None)
         turn = active_turn(timeline["turns"], at)
         frame = frames / f"segment-{index:03d}.jpg"
-        draw_scene(args.captures_root / capture_state["file"], frame, turn, agents, action, reaction)
+        right_file = capture_state.get("right_file", "08-project-final-right.jpg")
+        draw_scene(args.captures_root / capture_state["file"], args.captures_root / right_file, frame, turn, agents, action, reaction, at)
         concat_lines.extend((f"file '{quote_concat(frame)}'", f"duration {end - start:.3f}"))
-        audit_segments.append({"start": round(start, 3), "end": round(end, 3), "turn": None if not turn else turn.get("id", turn.get("speaker")), "capture": capture_state["file"], "action": None if not action else action["id"], "reaction": None if not reaction else reaction["badge"] + reaction["emoticon"]})
+        audit_segments.append({"start": round(start, 3), "end": round(end, 3), "turn": None if not turn else turn.get("id", turn.get("speaker")), "capture": capture_state["file"], "right_capture": right_file, "action": None if not action else action["id"], "reaction": None if not reaction else reaction["badge"] + reaction["emoticon"]})
     concat_lines.append(f"file '{quote_concat(frame)}'")
     concat_file = args.output / "scenes.ffconcat"
     concat_file.write_text("ffconcat version 1.0\n" + "\n".join(concat_lines) + "\n", encoding="utf-8")
