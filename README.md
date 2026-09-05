@@ -7,6 +7,10 @@
 ![FFmpeg and ElevenLabs](https://img.shields.io/badge/FFmpeg-ElevenLabs-171717)
 ![GitHub Actions and pytest](https://img.shields.io/badge/GitHub_Actions-pytest-2088FF)
 
+<p align="left">
+  <img src="demo/assets/coffee-outside-agent-huddles-inside.jpg" alt="Two colleagues drinking coffee outside while agent huddles glow inside Skagit Health" width="720">
+</p>
+
 ## Once upon a Monday
 
 Once upon a time, a Skagit Health analyst team had a Monday huddle.
@@ -15,15 +19,15 @@ At eight fifty-nine, the Project board waited under the pale light of six column
 
 Maya Singh arrived first. She was the Lead BI Analyst Agent and huddle lead, which meant that the silence belonged to her until she gave it away. She refreshed the indexes in her vector store as casually as another analyst might straighten a notebook.
 
-“Good morning,” Maya said. “The Project is open. We’ll decide what the evidence supports, what stays blocked, and which tickets need human ownership.”
+“Good morning,” Maya said. “The Project had opened. We would decide what the evidence supported, what stayed blocked, and which tickets needed human ownership.”
 
 An inventory card waited in Review. Two mapping cards leaned toward In Progress. The cursor rested beside them like a patient finger.
 
-“Daniel, you have the floor.”
+“Daniel, the floor was yours.”
 
 Daniel Cho, the Analytics Director Agent, gathered the current state from the repository. He did not look hurried. Directors seldom did, even when they could search every architecture note before a human finished clearing a throat.
 
-“The first synthetic load lands cleanly,” he said. “The second proves field mapping is insufficient.”
+“The first synthetic load had landed cleanly,” he said. “The second had proved that field mapping was insufficient.”
 
 He named the late Meditech corrections, repeated PARIS events, unmatched codes, and the undecided treatment of referral notes. Skagit Health needed one Microsoft Fabric foundation that could serve many authorized workloads. It could not carry forward the old inheritance of nested views, manual transfers, competing KPI definitions, thin monitoring, and lineage that disappeared exactly when someone needed it.
 
@@ -31,17 +35,21 @@ The inventory card moved to Done.
 
 Priya Raman, the Meditech Mapping BI Analyst Agent, had traced five corrected encounters. She opened the source map, then the reconciliation output, then the evidence again. Her retrieval chain returned the same inconvenient detail each time.
 
-“Latest modified timestamp selects current,” she said. “Discharge time cannot be the watermark.”
+“Latest modified timestamp selected current,” she said. “Discharge time could not be the watermark.”
 
 The Meditech mapping card turned red and entered Blocked. A new ticket appeared for Human Data Engineering: capture late Meditech corrections. Priya attached the requirement that Bronze retain both delivered versions while the standardized layer resolved one current record.
 
+<p align="left">
+  <img src="demo/assets/huddle-board-reaction.jpg" alt="The six-column Project board during the huddle, with the Meditech mapping card moved to Blocked and Maya sending a thumbs-up reaction" width="960">
+</p>
+
 Elena Park’s reaction floated over the board, a bright thumbs-up with her initials.
 
-“I can package that evidence,” said Elena, the Reconciliation and Reliability BI Analyst Agent. She gave a brief, real little laugh. “A Monday victory for history.”
+“I could package that evidence,” said Elena, the Reconciliation and Reliability BI Analyst Agent. She gave a brief, real little laugh. “A Monday victory for history.”
 
 Marcus Reed, the PARIS Mapping BI Analyst Agent, was already comparing repeated status events. Four rows had arrived as new deliveries of events the system had seen before. Extract identifiers changed; the business event did not.
 
-“Referral, status, and event time form the stable key,” he said. “Extract ID is lineage only.”
+“Referral, status, and event time formed the stable key,” he said. “Extract ID served lineage only.”
 
 The PARIS mapping card joined Meditech in Blocked. Marcus created a ticket for Human Data Engineering to define stable status-event keys. Priya offered to compare his key wording with hers. Marcus accepted and promised to annotate the repeated events and unmapped programs. He laughed softly at the symmetry of it.
 
@@ -59,13 +67,13 @@ Three tickets appeared, assigned in turn to Human Privacy and Security, the Huma
 
 Priya sent a smiling reaction. Owen exhaled, almost an ooh, as the red cards settled into place.
 
-“More red on this board is reassuring today.”
+“More red on this board was reassuring that day.”
 
 Maya recorded the decision and started the common-entities work. A matching-exceptions ticket went to the LTC Source Mapping Working Group, with validation reserved for a Human BI Analyst. Meditech evidence, PARIS evidence, reconciliation counts, and approval gaps linked themselves into a chain that a person could follow without asking an agent to remember what it had meant yesterday.
 
 Daniel looked once more at the board.
 
-“The Analytics Director Agent recommends and exposes evidence,” he said. “The Human Analytics Director confirms criticality, product service objectives, and release. Human source owners confirm meaning. Privacy confirms treatment.”
+“The Analytics Director Agent had recommended and exposed evidence,” he said. “The Human Analytics Director would confirm criticality, product service objectives, and release. Human source owners would confirm meaning. Privacy would confirm treatment.”
 
 No one argued with the green checks. No one mistook them for signatures.
 
