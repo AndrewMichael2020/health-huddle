@@ -83,7 +83,7 @@ The huddle window emptied. Soon the human analysts returned from the café with 
 
 It was a productive morning.
 
-One analyst paused beside *retention treatment*, a coffee cup cooling near the keyboard. Then the next Paris batch arrived.
+One analyst paused on the *retention treatment* section, a coffee cup cooling on her table. Then the next Paris batch arrived.
 
 ## Notes
 
