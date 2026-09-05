@@ -22,7 +22,6 @@ AGENT_COLOURS = {
     "elena": "#FF7B72",
     "owen": "#A5D6FF",
 }
-REACTION_GLYPHS = {"👍": "+1", "🙂": ":)", "✨": "✦", "☕": "c[_]"}
 COLUMN_WIDTH = 350
 BOARD_SOURCE_TOP = 212
 BOARD_SOURCE_BOTTOM = 936
@@ -30,6 +29,26 @@ BOARD_SOURCE_BOTTOM = 936
 
 def font(path: Path, size: int) -> ImageFont.FreeTypeFont:
     return ImageFont.truetype(str(path), size)
+
+
+def draw_reaction_icon(draw: ImageDraw.ImageDraw, emoticon: str, x: int, y: int) -> None:
+    """Draw crisp, font-independent reaction icons in a Teams-like pill."""
+    if emoticon == "🙂":
+        draw.ellipse((x, y, x + 48, y + 48), fill="#FFD45A", outline="#C18C00", width=2)
+        draw.ellipse((x + 13, y + 15, x + 18, y + 20), fill="#5B4300")
+        draw.ellipse((x + 30, y + 15, x + 35, y + 20), fill="#5B4300")
+        draw.arc((x + 12, y + 16, x + 36, y + 38), 25, 155, fill="#5B4300", width=3)
+    elif emoticon == "✨":
+        draw.polygon([(x + 24, y), (x + 30, y + 18), (x + 48, y + 24), (x + 30, y + 30), (x + 24, y + 48), (x + 18, y + 30), (x, y + 24), (x + 18, y + 18)], fill="#F2B705")
+        draw.polygon([(x + 42, y + 2), (x + 45, y + 10), (x + 53, y + 13), (x + 45, y + 16), (x + 42, y + 24), (x + 39, y + 16), (x + 31, y + 13), (x + 39, y + 10)], fill="#FFE792")
+    elif emoticon == "☕":
+        draw.rounded_rectangle((x + 3, y + 13, x + 39, y + 42), radius=7, fill="#D8955B", outline="#704425", width=2)
+        draw.arc((x + 31, y + 17, x + 52, y + 38), 265, 95, fill="#704425", width=4)
+        draw.arc((x + 10, y - 2, x + 22, y + 19), 65, 120, fill="#6E87A8", width=2)
+        draw.arc((x + 22, y - 5, x + 34, y + 17), 65, 120, fill="#6E87A8", width=2)
+    else:
+        draw.rounded_rectangle((x + 12, y + 18, x + 47, y + 42), radius=6, fill="#2F81F7")
+        draw.polygon([(x + 12, y + 22), (x + 4, y + 20), (x + 3, y + 42), (x + 14, y + 40), (x + 27, y + 39), (x + 31, y + 30), (x + 23, y + 27), (x + 27, y + 7), (x + 18, y + 5)], fill="#2F81F7")
 
 
 def cover(image: Image.Image, size: tuple[int, int]) -> Image.Image:
@@ -167,11 +186,10 @@ def draw_scene(
     if reaction:
         # A visible Teams-style pop: avatar, sender, and emoticon all travel together.
         draw.rounded_rectangle((1430, 196, 1872, 284), radius=42, fill="#FFFFFF", outline="#6E87A8", width=3)
-        glyph = REACTION_GLYPHS.get(reaction["emoticon"], reaction["emoticon"])
         draw.rounded_rectangle((1448, 211, 1509, 272), radius=29, fill="#2F81F7")
         draw.text((1461, 229), reaction["badge"], font=font(BOLD, 19), fill="#FFFFFF")
         draw.text((1530, 211), f"{reaction['from'].title()} reacted", font=font(BOLD, 20), fill="#172B4D")
-        draw.text((1778, 213), glyph, font=font(BOLD, 34), fill="#172B4D")
+        draw_reaction_icon(draw, reaction["emoticon"], 1789, 216)
 
     draw.text((42, 1051), "SYNTHETIC DATA  ·  AGENT-GENERATED RECOMMENDATIONS  ·  HUMAN APPROVAL REQUIRED", font=font(BOLD, 15), fill="#A9BED8")
     canvas.save(output, quality=91)
