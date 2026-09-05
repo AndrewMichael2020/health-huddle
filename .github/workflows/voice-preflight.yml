@@ -1,0 +1,26 @@
+name: Voice preflight (no speech generation)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e ".[test]"
+      - run: python -m src.validate_huddle --output .artifacts/huddle-preflight.json --require-ready
+      - run: python -m src.generate_huddle_audio --mode preflight --output .artifacts/voice-preflight
+        env:
+          ELEVENLABS_KEY: ${{ secrets.ELEVENLABS_KEY }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: voice-preflight
+          path: .artifacts/
+          retention-days: 7

@@ -19,4 +19,5 @@ jobs:
       - run: python -m src.generate_synthetic_data --output .artifacts/data
       - run: python -m src.run_pipeline --data-root .artifacts/data --output .artifacts/pipeline
       - run: python -m src.validate_release --contracts contracts --output .artifacts/release-status.json
+      - run: python -m src.validate_huddle --output .artifacts/huddle-preflight.json --require-ready
       - run: python -m pytest

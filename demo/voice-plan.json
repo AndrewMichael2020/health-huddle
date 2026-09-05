@@ -1,0 +1,16 @@
+{
+  "model_id": "eleven_multilingual_v2",
+  "output_format": "mp3_44100_128",
+  "credit_ceiling": 15000,
+  "trial_text_characters_per_voice": 90,
+  "selective_retry_reserve_characters": 2000,
+  "voices": {
+    "maya": {"preferred_name": "Sarah", "voice_id": "EXAVITQu4vr4xnSDxMaL", "gender": "female"},
+    "daniel": {"preferred_name": "Brian", "voice_id": "nPczCjzI2devNBz1zQrb", "gender": "male"},
+    "priya": {"preferred_name": "Matilda", "voice_id": "XrExE9yKIg1WjnnlVkGX", "gender": "female"},
+    "marcus": {"preferred_name": "George", "voice_id": "JBFqnCBsd6RMkjVDRZzb", "gender": "male"},
+    "elena": {"preferred_name": "Alice", "voice_id": "Xb7hH8MSUJpSbSDYk0k2", "gender": "female"},
+    "owen": {"preferred_name": "Liam", "voice_id": "TX3LPaxmHKxFdv7VOQHJ", "gender": "male"}
+  },
+  "voice_settings": {"stability": 0.56, "similarity_boost": 0.76, "style": 0.22, "use_speaker_boost": true, "speed": 1.03}
+}

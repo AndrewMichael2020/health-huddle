@@ -1,0 +1,18 @@
+{
+  "project_number": 13,
+  "actions": [
+    {"id": "A01", "at_turn": "T03", "offset_seconds": 4, "type": "move_issue", "issue_number": 1, "title": "Inventory Meditech and PARIS extracts", "from": "Review", "to": "Done"},
+    {"id": "A02", "at_turn": "T04", "offset_seconds": 13, "type": "move_issue", "issue_number": 2, "title": "Map Meditech record grain and fields", "from": "In Progress", "to": "Blocked"},
+    {"id": "A03", "at_turn": "T04", "offset_seconds": 22, "type": "create_issue", "title": "Capture late Meditech corrections", "owning_team": "Data Engineering", "handoff": "Human Data Engineering"},
+    {"id": "A04", "at_turn": "T06", "offset_seconds": 20, "type": "move_issue", "issue_number": 3, "title": "Map PARIS record grain and fields", "from": "In Progress", "to": "Blocked"},
+    {"id": "A05", "at_turn": "T06", "offset_seconds": 27, "type": "create_issue", "title": "Define stable PARIS status-event keys", "owning_team": "Data Engineering", "handoff": "Human Data Engineering"},
+    {"id": "A06", "at_turn": "T08", "offset_seconds": 24, "type": "move_issue", "issue_number": 5, "title": "Draft source-to-target reconciliation", "from": "Ready", "to": "In Progress"},
+    {"id": "A07", "at_turn": "T08", "offset_seconds": 31, "type": "create_issue", "title": "Add reconciliation and quarantine outputs", "owning_team": "Data Engineering", "handoff": "Human Data Engineering"},
+    {"id": "A08", "at_turn": "T09", "offset_seconds": 18, "type": "create_issue", "title": "Complete field classification and access rules", "owning_team": "Privacy/Security", "handoff": "Human Privacy and Security"},
+    {"id": "A09", "at_turn": "T09", "offset_seconds": 25, "type": "create_issue", "title": "Define record correction, deletion and retention treatment", "owning_team": "Systems", "handoff": "Human Systems Owner"},
+    {"id": "A10", "at_turn": "T09", "offset_seconds": 32, "type": "create_issue", "title": "Define release validation requirements", "owning_team": "BI Analytics", "handoff": "Human Analytics Director"},
+    {"id": "A11", "at_turn": "T10", "offset_seconds": 12, "type": "move_issue", "issue_number": 4, "title": "Define common LTC entities", "from": "Ready", "to": "In Progress"},
+    {"id": "A12", "at_turn": "T10", "offset_seconds": 20, "type": "create_issue", "title": "Document cross-system matching exceptions", "owning_team": "BI Analytics", "handoff": "LTC Source Mapping Working Group"},
+    {"id": "A13", "at_turn": "T16", "offset_seconds": 12, "type": "close_issue", "issue_number": 1, "title": "Inventory Meditech and PARIS extracts"}
+  ]
+}

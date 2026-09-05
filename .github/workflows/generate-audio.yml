@@ -1,0 +1,30 @@
+name: Generate validated huddle audio
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: python -m pip install -e ".[test]"
+      - run: python -m src.validate_huddle --output .artifacts/huddle-preflight.json --require-ready
+      - run: python -m pytest
+      - run: python -m src.generate_huddle_audio --mode full --output .artifacts/huddle-audio
+        env:
+          ELEVENLABS_KEY: ${{ secrets.ELEVENLABS_KEY }}
+      - run: python -m src.compose_huddle_audio --audio-root .artifacts/huddle-audio --output .artifacts/composed
+      - run: python -m src.validate_huddle_audio --audio-root .artifacts/huddle-audio --composed-root .artifacts/composed --output .artifacts/audio-validation.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: huddle-audio
+          path: .artifacts/
+          retention-days: 14
