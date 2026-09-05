@@ -1,0 +1,27 @@
+{
+  "format": {
+    "width": 1920,
+    "height": 1080,
+    "frames_per_second": 30,
+    "video_codec": "libx264",
+    "audio_codec": "aac"
+  },
+  "opening": {
+    "asset": "demo/assets/coffee-outside-agent-huddles-inside.jpg",
+    "duration_seconds": 7.0,
+    "fade_in_seconds": 2.5,
+    "first_voice_seconds": 1.0,
+    "fade_out_start_seconds": 5.5,
+    "fade_out_seconds": 1.5,
+    "audio_bed": "locally generated distant office ambience",
+    "audio_bed_end_seconds": 8.0
+  },
+  "board": {
+    "project_number": 13,
+    "title": "Skagit Health LTC Data Modernization",
+    "header": "SIX-AGENT HUDDLE · HUMAN DECISIONS REMAIN HUMAN",
+    "show_speaker_identity": true,
+    "show_subtitles": true,
+    "show_action_callouts": true
+  }
+}

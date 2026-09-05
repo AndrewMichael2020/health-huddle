@@ -24,7 +24,9 @@ def main() -> None:
 
     args.output.mkdir(parents=True, exist_ok=True)
     timeline: list[dict[str, Any]] = []
-    cursor = 0.35
+    # The cold-open artwork fades in from black. The first speaker deliberately
+    # starts at 1.0s so the opening feels alive without delaying the huddle.
+    cursor = 1.0
     gap = 0.28
     closing_base = None
     stagger_index = 0
@@ -55,14 +57,34 @@ def main() -> None:
         )
 
     total_duration = max(item["end_seconds"] for item in timeline) + 0.55
-    inputs: list[str] = []
+    # A quiet, locally generated office bed avoids spending ElevenLabs credits
+    # on ambience and keeps the soundtrack reproducible. It is deliberately
+    # filtered and ducked so it reads as distant corporate room tone, not speech.
+    ambient_audio = args.output / "office-ambience.wav"
+    subprocess.run(
+        [
+            "ffmpeg", "-y",
+            "-f", "lavfi", "-i", "anoisesrc=color=pink:amplitude=0.05:duration=8",
+            "-f", "lavfi", "-i", "sine=frequency=135:sample_rate=48000:duration=8",
+            "-filter_complex",
+            "[0:a]highpass=f=180,lowpass=f=1800,volume=0.075,afade=t=in:st=0:d=1.2,afade=t=out:st=5.5:d=2.5[n];"
+            "[1:a]lowpass=f=240,volume=0.006,afade=t=in:st=0:d=1.5,afade=t=out:st=5.5:d=2.5[h];"
+            "[n][h]amix=inputs=2:duration=longest:normalize=0[a]",
+            "-map", "[a]", "-ar", "48000", "-c:a", "pcm_s16le", str(ambient_audio),
+        ],
+        check=True,
+    )
+
+    inputs: list[str] = ["-i", str(ambient_audio)]
     filters: list[str] = []
     for index, item in enumerate(timeline):
         inputs.extend(["-i", str(args.audio_root / item["file"])])
         delay = round(item["start_seconds"] * 1000)
-        filters.append(f"[{index}:a]aresample=48000,adelay={delay}|{delay},volume=0.92[a{index}]")
-    mix_inputs = "".join(f"[a{index}]" for index in range(len(timeline)))
-    filters.append(f"{mix_inputs}amix=inputs={len(timeline)}:duration=longest:normalize=0,alimiter=limit=0.92[mix]")
+        input_index = index + 1
+        filters.append(f"[{input_index}:a]aresample=48000,adelay={delay}|{delay},volume=0.92[a{index}]")
+    filters.append("[0:a]aresample=48000[amb]")
+    mix_inputs = "[amb]" + "".join(f"[a{index}]" for index in range(len(timeline)))
+    filters.append(f"{mix_inputs}amix=inputs={len(timeline) + 1}:duration=longest:normalize=0,alimiter=limit=0.92[mix]")
     output_audio = args.output / "huddle-mix.wav"
     subprocess.run(
         ["ffmpeg", "-y", *inputs, "-filter_complex", ";".join(filters), "-map", "[mix]", "-t", f"{total_duration:.3f}", "-c:a", "pcm_s16le", str(output_audio)],
