@@ -106,12 +106,3 @@ The scene was pre-planned and replayed deterministically so that every spoken de
 | `src/` | Small Python modules that generate the data, simulate Bronze ingestion, standardize source records, reconcile deliveries, validate meaning, compose modular audio, and render the deterministic video. Pillow draws the visual layer; FFmpeg composes and encodes the media. |
 | `tests/` | Tests for scenario truth, privacy-safe repository contents, source mapping, release meaning, Project configuration, agent identities, human handoffs, action timing, and media contracts. |
 | `pyproject.toml` | The minimal Python package and dependency definition for the reproducible environment. |
-
-### High-level workflow
-
-1. The repository generates two fixed synthetic source deliveries and processes them through source-shaped Bronze ingestion, standardization, and reconciliation.
-2. Contracts and tests compare the observed results with scenario truth, then identify which technical work may proceed and which release decisions still require people.
-3. The locked huddle script assigns those findings to six BI Analyst Agents; the action ledger binds spoken decisions to visible GitHub Issue creation, movement, and closure.
-4. Voice preflight and semantic gates run before paid synthesis. Each turn becomes a separate ElevenLabs clip so one delivery can be replaced without regenerating the other twenty-five.
-5. The audio composer places the clips on one timeline, including the friendly overlapping close. The renderer combines that timeline with real Project captures, a rolling transcript, action callouts, and timed collaboration reactions.
-6. Final validators check the video format, duration, action and reaction counts, deterministic scene ledger, audio integrity, and human-accountability language before the MP4 is placed in `demo/final/`.
