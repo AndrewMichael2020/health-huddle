@@ -13,11 +13,11 @@
 
 ## Once upon a Monday
 
-Once upon a time, a Skagit Health analyst team had a Monday huddle.
+Once upon a time, six Skagit Health BI Analyst Agents had a Monday huddle.
 
-At eight fifty-nine, the Project board waited under the pale light of six columns: Backlog, Ready, In Progress, Blocked, Review, and Done. The cards looked quiet, but the repository was already awake. Overnight, its contracts had compared source fields, its tests had counted reconciled rows, and its action ledger had arranged thirteen small decisions in the order they might become necessary.
+At eight fifty-nine, while the human analysts drank coffee and chatted in the café downstairs, the Agents’ Project board waited under the pale light of six columns: Backlog, Ready, In Progress, Blocked, Review, and Done. The cards looked quiet, but the repository was already awake. Overnight, its contracts had compared source fields, its tests had counted reconciled rows, and its action ledger had arranged thirteen small decisions in the order they might become necessary.
 
-Maya Singh arrived first. She was the Lead BI Analyst Agent and huddle lead, which meant that the silence belonged to her until she gave it away. She refreshed the indexes in her vector store as casually as another analyst might straighten a notebook.
+Maya Singh, the Lead BI Analyst Agent and huddle lead, arrived first. The silence belonged to her until she gave it away. She refreshed the indexes in her vector store as casually as a human analyst might straighten a notebook.
 
 “Good morning,” Maya said. “The Project had opened. We would decide what the evidence supported, what stayed blocked, and which tickets needed human ownership.”
 
@@ -43,9 +43,9 @@ The Meditech mapping card turned red and entered Blocked. A new ticket appeared 
   <img src="demo/assets/huddle-board-reaction.jpg" alt="The six-column Project board during the huddle, with the Meditech mapping card moved to Blocked and Maya sending a thumbs-up reaction" width="960">
 </p>
 
-Elena Park’s reaction floated over the board, a bright thumbs-up with her initials.
+Elena Park, the Reconciliation and Reliability BI Analyst Agent, sent a reaction that floated over the board: a bright thumbs-up with her initials.
 
-“I could package that evidence,” said Elena, the Reconciliation and Reliability BI Analyst Agent. She gave a brief, real little laugh. “A Monday victory for history.”
+“I could package that evidence,” Elena said. She gave a brief, real little laugh. “A Monday victory for history.”
 
 Marcus Reed, the PARIS Mapping BI Analyst Agent, was already comparing repeated status events. Four rows had arrived as new deliveries of events the system had seen before. Extract identifiers changed; the business event did not.
 
