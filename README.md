@@ -47,6 +47,10 @@ Maya’s thumbs-up drifted over the board in a small Teams-like pill. Elena Park
 
 Marcus Reed, the PARIS Mapping BI Analyst Agent, had found the corresponding trouble in another shape. Four rows arrived under new extract identifiers, though the business events beneath them had not changed.
 
+<p align="left">
+  <img src="demo/assets/paris-referral-status-batch-002.png" alt="Synthetic PARIS referral-status data in GitHub, including new extract identifiers, program codes, event timestamps, and records awaiting classification" width="960">
+</p>
+
 “The delivery thinks they’re new,” he said. “The residents would disagree.”
 
 Referral, status, and event time made a stable business key; extract ID belonged in lineage. His PARIS card joined Meditech in Blocked, and *Define stable PARIS status-event keys* appeared for Human Data Engineering. Priya offered to compare the wording with her correction rule. Marcus accepted and laughed at the symmetry.
