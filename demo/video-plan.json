@@ -23,5 +23,22 @@
     "show_speaker_identity": true,
     "show_subtitles": true,
     "show_action_callouts": true
-  }
+  },
+  "reactions": [
+    {"at_turn": "T05", "offset_seconds": 2.0, "from": "maya", "badge": "MS", "emoticon": "👍"},
+    {"at_turn": "T07", "offset_seconds": 1.2, "from": "elena", "badge": "EP", "emoticon": "🙂"},
+    {"at_turn": "T08", "offset_seconds": 7.0, "from": "daniel", "badge": "DC", "emoticon": "✨"},
+    {"at_turn": "T12", "offset_seconds": 1.0, "from": "marcus", "badge": "MR", "emoticon": "👍"},
+    {"at_turn": "T13", "offset_seconds": 2.5, "from": "maya", "badge": "MS", "emoticon": "☕"},
+    {"at_turn": "T15", "offset_seconds": 1.5, "from": "priya", "badge": "PR", "emoticon": "🙂"},
+    {"at_turn": "T23", "offset_seconds": 1.5, "from": "owen", "badge": "OB", "emoticon": "☕"}
+  ],
+  "capture_states": [
+    {"after_action": null, "file": "00-project-start.jpg"},
+    {"after_action": "A02", "file": "01-meditech-blocked.jpg"},
+    {"after_action": "A04", "file": "02-paris-blocked.jpg"},
+    {"after_action": "A06", "file": "03-reconciliation-started.jpg"},
+    {"after_action": "A12", "file": "04-work-created-and-started.jpg"},
+    {"after_action": "A13", "file": "07-project-final.jpg"}
+  ]
 }

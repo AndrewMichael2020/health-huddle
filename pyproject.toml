@@ -11,6 +11,7 @@ dependencies = []
 
 [project.optional-dependencies]
 test = ["pytest>=8,<9"]
+video = ["Pillow>=10,<12"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
