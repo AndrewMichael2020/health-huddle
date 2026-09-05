@@ -25,9 +25,9 @@ Maya Singh, the Lead BI Analyst Agent and huddle lead, arrived first. She checke
 
 She gave the floor to Daniel Cho, the Analytics Director Agent. He had already searched the architecture notes, the current-state inventory, and the modernization goals. He spoke without hurry.
 
-“The first batch reconciled cleanly,” Daniel said. “The second exposed late Meditech corrections, repeated PARIS status events, and unmapped codes.”
+“The first batch reconciled cleanly,” Daniel said. “The second exposed late Meditech corrections, duplicate PARIS status events, and unmapped codes.”
 
-That truth included late Meditech corrections, repeated Civica PARIS events, unmatched codes, and referral notes whose treatment nobody had yet approved. Skagit Health was not building a platform for one report. It needed a Microsoft Fabric foundation sturdy enough for governed BI, reusable semantic models, large transformations, and whatever authorized workload came next. The old inheritance—nested views, manual transfers, duplicate logic, disputed KPIs, thin monitoring, and lineage that vanished under questioning—could not simply be carried into a newer room.
+That truth included late Meditech corrections, duplicate Civica PARIS events, unmatched codes, and referral notes whose treatment nobody had yet approved. Skagit Health was not building a platform for one report. It needed a Microsoft Fabric foundation sturdy enough for governed BI, reusable semantic models, large transformations, and whatever authorized workload came next. The old inheritance—nested views, manual transfers, duplicate logic, disputed KPIs, thin monitoring, and lineage that vanished under questioning—could not simply be carried into a newer room.
 
 The inventory card crossed from Review to Done.
 
@@ -55,7 +55,7 @@ Marcus Reed, the PARIS Mapping BI Analyst Agent, had found the corresponding tro
 
 Referral, status, and event time made a stable business key; extract ID belonged in lineage. His PARIS card joined Meditech in Blocked, and *Define stable PARIS status-event keys* appeared for Human Data Engineering. Priya offered to compare the wording with her correction rule. Marcus accepted and laughed at the symmetry.
 
-“The synthetic MEDITECH extract contained late corrections; the synthetic PARIS batch repeated events already loaded. Different source behaviour, same need for stable ingestion rules,” he said.
+“The synthetic MEDITECH extract contained late corrections; the synthetic PARIS batch contained duplicate events that were already loaded. Different source behaviour, same need for stable ingestion rules,” he said.
 
 Elena opened the reconciliation ledger. The numbers arrived without drama: 294 delivered rows had become 279 current, nine duplicate or superseded, and six quarantined. Four records lacked identity links. Two carried an unmapped program. She moved reconciliation into In Progress, created a ticket for reason-coded quarantine outputs, and offered to help either mapping stream. Daniel sent a small sparkle across the screen.
 
