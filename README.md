@@ -21,11 +21,11 @@ The cards looked quiet. The repository was not. Overnight, contracts had compare
 
 Maya Singh, the Lead BI Analyst Agent and huddle lead, arrived first. She checked the evidence links and nudged the Project view into place, the digital equivalent of straightening a notebook. An inventory card waited in Review. Two mapping cards stood in In Progress.
 
-“Morning,” she said. “Let’s see what the night left us.”
+“Morning,” she said. “Let’s work through the overnight validation results and agree what moves, what blocks, and what needs a human decision.”
 
 She gave the floor to Daniel Cho, the Analytics Director Agent. He had already searched the architecture notes, the current-state inventory, and the modernization goals. He spoke without hurry.
 
-“The first load was polite,” Daniel said. “The second told us the truth.”
+“The first batch reconciled cleanly,” Daniel said. “The second exposed late Meditech corrections, repeated PARIS status events, and unmapped codes.”
 
 That truth included late Meditech corrections, repeated Civica PARIS events, unmatched codes, and referral notes whose treatment nobody had yet approved. Skagit Health was not building a platform for one report. It needed a Microsoft Fabric foundation sturdy enough for governed BI, reusable semantic models, large transformations, and whatever authorized workload came next. The old inheritance—nested views, manual transfers, duplicate logic, disputed KPIs, thin monitoring, and lineage that vanished under questioning—could not simply be carried into a newer room.
 
@@ -33,7 +33,7 @@ The inventory card crossed from Review to Done.
 
 Priya Raman, the Meditech Mapping BI Analyst Agent, had traced five corrected encounters. Each time she followed the evidence through her retrieval chain, it returned the same inconvenient fact.
 
-“Discharge time tells us what happened to the patient,” she said. “It does not tell us when the source changed its mind.”
+“Discharge time described the encounter,” she said. “It could not be our ingestion watermark. We needed latest modified time to capture late corrections.”
 
 Latest modified timestamp would select the current version. Bronze would retain both deliveries. Until Human Data Engineering agreed on late-arriving correction capture, however, the mapping could not advance. The Meditech card turned red and moved to Blocked. A new ticket appeared beneath it: *Capture late Meditech corrections*.
 
@@ -43,7 +43,7 @@ Latest modified timestamp would select the current version. Bronze would retain 
 
 Maya’s thumbs-up drifted over the board in a small Teams-like pill. Elena Park, the Reconciliation and Reliability BI Analyst Agent, offered to package Priya’s correction history for engineering. Then she giggled, quick and quiet.
 
-“A Monday victory for history.”
+“Good. Bronze kept the source history; Silver could resolve the current record.”
 
 Marcus Reed, the PARIS Mapping BI Analyst Agent, had found the corresponding trouble in another shape. Four rows arrived under new extract identifiers, though the business events beneath them had not changed.
 
@@ -51,11 +51,11 @@ Marcus Reed, the PARIS Mapping BI Analyst Agent, had found the corresponding tro
   <img src="demo/assets/paris-referral-status-batch-002.png" alt="Synthetic PARIS referral-status data in GitHub, including new extract identifiers, program codes, event timestamps, and records awaiting classification" width="960">
 </p>
 
-“The delivery thinks they’re new,” he said. “The residents would disagree.”
+“These rows arrived with new extract IDs,” he said, “but referral, status, and event time matched events already loaded. Extract ID belonged in lineage, not in the deduplication key.”
 
 Referral, status, and event time made a stable business key; extract ID belonged in lineage. His PARIS card joined Meditech in Blocked, and *Define stable PARIS status-event keys* appeared for Human Data Engineering. Priya offered to compare the wording with her correction rule. Marcus accepted and laughed at the symmetry.
 
-“Two awkward sources,” he said.
+“Meditech sent late corrections; PARIS resent existing events. Different source behaviour, same need for stable ingestion rules,” he said.
 
 Elena opened the reconciliation ledger. The numbers arrived without drama: 294 delivered rows had become 279 current, nine duplicate or superseded, and six quarantined. Four records lacked identity links. Two carried an unmapped program. She moved reconciliation into In Progress, created a ticket for reason-coded quarantine outputs, and offered to help either mapping stream. Daniel sent a small sparkle across the screen.
 
@@ -65,11 +65,11 @@ Elena opened the reconciliation ledger. The numbers arrived without drama: 294 d
 
 Owen Brooks, the Governance and Release BI Analyst Agent, had spent the exchange reading the product contract. His policy retrieval returned three absences with unnerving confidence: no approved security and privacy classification for referral notes; no correction, deletion, and retention treatment; no release validation requirements.
 
-“The pipes can run,” Owen said. “They just can’t pretend those blanks are decisions.”
+“The pipelines could run in development,” Owen said. “Promotion had to wait for approved privacy classification, retention treatment, and release validation.”
 
 Three tickets appeared—for Human Privacy and Security, the Human Systems Owner, and the Human Analytics Director. Development could continue. Test promotion could not. Priya sent a smile. Owen made a soft ooh as the red cards settled into place.
 
-“More red on the board was reassuring this morning,” he said.
+“Blocked was the right status,” he said. “The missing decisions were visible, assigned, and unable to slip into test.”
 
 Maya moved the common-entities work into In Progress. A matching-exceptions ticket went to the LTC Source Mapping Working Group, with validation reserved for a Human BI Analyst. Meditech evidence, PARIS evidence, counts, and approval gaps formed a chain someone could follow tomorrow without having attended today.
 
