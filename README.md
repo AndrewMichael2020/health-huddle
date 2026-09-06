@@ -97,7 +97,7 @@ It was a productive morning.
 
 Mariam, a Human BI Analyst, used the time that opened up to create *skills* for Mental Health and Pediatrics, then began shaping them for the whole enterprise. A message popped up on her screen.
 
-*Hey, since you’re done, do you want to go to dinner now?*
+*Hey, since you’re done, do you want to go to dinner -- now?*
 
 “Thank you, hadn't we just had a breakfadt :-),” she typed, and pressed Enter without correcting the typo.
 
