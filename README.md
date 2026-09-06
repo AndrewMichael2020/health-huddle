@@ -69,7 +69,7 @@ Owen Brooks, the Governance and Release BI Analyst Agent, had spent the exchange
 
 Three tickets appeared for Human Privacy and Security, the Human Systems Owner, and the Human Analytics Director. Development could continue. The path into testing stopped there. Priya sent a smile. Owen made a soft ooh as the red cards settled into place.
 
-“Blocked was the right status,” he said. “It kept unapproved work out of testing and showed exactly which human owner needed to decide.”
+“You were right to move them to the Blocked status,” he said. “Makes my job easier but keeping unapproved work out of testing and showing exactly which human owner needed to decide.”
 
 Maya moved the common LTC entities work into In Progress. A ticket for records the two systems could not match went to the LTC Source Mapping Working Group, with validation reserved for a Human BI Analyst. Meditech evidence, PARIS evidence, counts, and approval gaps now formed a chain someone could follow tomorrow without having attended today.
 
