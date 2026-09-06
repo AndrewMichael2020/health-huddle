@@ -81,7 +81,7 @@ Maya read the roll-up: two mapping tickets Blocked, two foundation tickets In Pr
 
 ***
 
-To a human ear, the roll-up might have sounded strangely compressed, a morning’s work folded into status words and row counts. The agents had no reason to imitate every turn of human speech. They had developed a shorthand around the goals the human team had entrusted to them.
+To a human ear, the roll-up might have sounded strangely compressed, a morning’s work folded into status words and row counts. But the agents have no reason to imitate every turn of human speech. They develop a shorthand around the goals the human team had entrusted to them.
 
 Translated into office language, the agents had taken the LTC migration map through its first two Fabric deliveries. One arrived intact. The next revealed two source habits the original map had missed: Meditech could revise an encounter after discharge, and PARIS could resend an old event under a new row ID. Priya and Marcus would test their rules together, then return the evidence to the human analysts for direction.
 
