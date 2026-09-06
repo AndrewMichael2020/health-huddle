@@ -43,7 +43,7 @@ Fabric’s Bronze layer would keep both delivered versions; Silver would present
 
 Maya’s thumbs-up drifted over the board in a small reaction pill. Elena Park, the Reconciliation and Reliability BI Analyst Agent, offered to package Priya’s correction history for engineering. She giggled, quick and quiet.
 
-“Good. Bronze kept the source history; Silver could present the current record.”
+“Good. Since we keep the source history in Bronze already, I'll just present whatever the current record state is in Silver.”
 
 Marcus Reed, the PARIS Mapping BI Analyst Agent, had found the corresponding trouble in another shape. Four rows had arrived with new extract IDs, although the business events beneath them were already in Fabric.
 
