@@ -85,7 +85,9 @@ The huddle window emptied. Soon the human analysts returned from the café with 
 
 It was a productive morning.
 
-The Human Analytics Director read the release tickets without a rush. On the screen, the cursor now rested on *retention treatment*. A PARIS batch arrived.
+Maya, a Human BI Analyst, reviewed the release tickets in minutes. With the morning still ahead of her, she began adapting the workflow and creating *skills* for other portfolios across the enterprise. A message popped up on her screen.
+
+*Hey, do you want to go to dinner now?*
 ## Notes
 
 The scene was pre-planned and replayed deterministically so that every spoken decision, ticket movement, reaction, and handoff could be audited before the camera rolled. Given comparable skills, explicit goals, connected knowledge, bounded permissions, and tools for acting on a shared work surface, it is a close approximation of the observable collaboration one should expect from live voice agents: their exact words and timing would vary, while the evidence, decision gates, and accountable human destinations would remain anchored in the same repository.
