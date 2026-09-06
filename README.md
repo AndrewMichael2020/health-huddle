@@ -89,7 +89,7 @@ Mariam, a Human BI Analyst, used the time that opened up to create *skills* for 
 
 *Hey, since you’re done, do you want to go to dinner now?*
 
-“Thank you but I just had a breakfadt,” she clacked on the keyboard and slammed Enter without correcting her typo. 
+“Thank you but I just had a breakfadt,” she clacked on the keyboard and slammed Enter without correcting her typos. 
 ## Notes
 
 The scene was pre-planned and replayed deterministically so that every spoken decision, ticket movement, reaction, and handoff could be audited before the camera rolled. Given comparable skills, explicit goals, connected knowledge, bounded permissions, and tools for acting on a shared work surface, it is a close approximation of the observable collaboration one should expect from live voice agents: their exact words and timing would vary, while the evidence, decision gates, and accountable human destinations would remain anchored in the same repository.
