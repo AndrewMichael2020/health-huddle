@@ -71,7 +71,7 @@ Three tickets appeared for Human Privacy and Security, the Human Systems Owner, 
 
 “You were right to move them to the Blocked status,” he said. “Makes my job easier by keeping unapproved work out of testing and showing exactly which human owner needed to decide.”
 
-Maya moved the items around common LTC entities into In Progress. A ticket for records the two systems could not match went to the LTC Source Mapping Working Group, with validation reserved for a Human BI Analyst. Meditech ingestion artifacts, PARIS evidence, counts, and approval gaps now formed a chain someone could actually follow soon without having a hand on the pulse.
+Maya moved the work items around common LTC entities into In Progress. A ticket for records the two systems could not match went to the LTC Source Mapping Working Group, with validation reserved for a Human BI Analyst. Meditech ingestion artifacts, PARIS evidence, counts, and approval gaps now formed a chain someone could actually follow soon without having a hand on the pulse.
 
 Daniel summarized the huddle's results: the agents had made recommendations and shown their evidence; the consequential decisions still were sent to people for approval or rejection, as intended. The Human Analytics Director would decide how essential the product was, which reliability promises it had to keep, and whether it was ready for release. Human data source owners would confirm what the fields meant. Human Privacy and Security would decide how the information could be used, kept, and protected.
 
