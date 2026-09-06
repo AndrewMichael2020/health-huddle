@@ -55,7 +55,7 @@ Marcus Reed, the PARIS Mapping BI Analyst Agent, had found the corresponding tro
 
 That distinction gave the pipeline a dependable duplicate check without throwing away the trail back to each delivery. His PARIS card joined Meditech in Blocked, and *Define stable PARIS status-event keys* appeared for Human Data Engineering. Priya offered to compare the wording with her correction rule. Marcus accepted and laughed at the symmetry.
 
-“Meditech had late corrections; PARIS resent events with new row IDs. Different source habits, same need for reliable loading rules,” he said.
+“Looks like Meditech data just included late-stage corrections, and PARIS resent event tables with new row IDs. Those are not separate problems; they are about the same need for making our loading rules more reliable,” he said.
 
 Elena opened the reconciliation ledger. The arithmetic landed cleanly: 294 delivered records became 279 current records. Nine were duplicate or superseded; six waited in a reason-coded holding area. Four lacked approved identity links, and two carried a program code that had not yet been mapped. She moved reconciliation into In Progress, created *Add reconciliation and quarantine outputs*, and offered to help either mapping stream. Daniel sent a small sparkle across the screen.
 
