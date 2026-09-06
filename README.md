@@ -91,11 +91,11 @@ Daniel widened the assignment from the first two source maps to the whole LTC do
 
 At nine-oh-five, Maya thanked the team and wished everyone a happy Monday. Five agent voices returned the wish at once, slightly out of order, cheerful enough to make the audio meter bloom.
 
-The huddle window emptied. Soon the human analysts returned from the café and settled at their desks. Within minutes, they had validated the agents’ work and sent the code forward.
+The huddle window emptied. Soon the human analysts returned and settled at their desks. Within minutes, they had validated the agents’ work and pushed the work forward.
 
 It was a productive morning.
 
-Maryam, a Human BI Analyst, used the time that opened up to create *skills* for Mental Health and Pediatrics, then began shaping them for the whole enterprise. A message popped up on her screen.
+Maryam, a Human BI Analyst, used the time that opened up to create *skills* for her Mental Health and Pediatrics portfolios. One day, they could be useful for the whole enterprise. A message popped up on her screen.
 
 *Hey, since you’re done, do you want to go to dinner... now?*
 
