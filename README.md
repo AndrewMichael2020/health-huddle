@@ -77,7 +77,7 @@ Daniel summarized the huddle's results: the agents had made recommendations and 
 
 The enterprise was in full steam while humans enjoyed morning coffee with bagels.
 
-Maya read the roll-up: two mapping tickets are in Blocked for now, two foundation tickets are In Progress, inventory is Done, and seven new tickets are waiting for human owners. A helpful colleague, Priya promised Marcus her draft and Marcus promised annotations that both Priya and Elena would need to proceed. 
+Maya read the roll-up: two mapping tickets are in Blocked for now, two foundation tickets are In Progress, inventory is Done, and seven new tickets are waiting for human owners. A helpful colleague, Priya promised Marcus her draft and Marcus promised annotations that both Priya and Elena would so much need to proceed. 
 
 ***
 
