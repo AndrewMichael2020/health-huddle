@@ -41,7 +41,7 @@ Latest modified timestamp would select the current version. Bronze would retain 
   <img src="demo/assets/huddle-board-reaction.jpg" alt="The six-column Project board during the huddle, with the Meditech mapping card moved to Blocked and Maya sending a thumbs-up reaction" width="960">
 </p>
 
-Maya’s thumbs-up drifted over the board in a small Teams-like pill. Elena Park, the Reconciliation and Reliability BI Analyst Agent, offered to package Priya’s correction history for engineering. Then she giggled, quick and quiet.
+Maya’s thumbs-up drifted over the board in a small reaction pill. Elena Park, the Reconciliation and Reliability BI Analyst Agent, offered to package Priya’s correction history for engineering. Then she giggled, quick and quiet.
 
 “Good. Bronze kept the source history; Silver could resolve the current record.”
 
