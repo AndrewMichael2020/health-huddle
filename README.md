@@ -35,7 +35,7 @@ She traced five encounter rows that changed after their original delivery. She c
 
 “Discharge time tells us when an encounter ends, right?” she asked. “But it could not tell the next Fabric load where to resume. We need the last-modified time, or late corrections would pass unnoticed.”
 
-For now, Fabric’s Bronze layer would keep both delivered versions, and Silver was let to present the newest rows. Priya could demonstrate the rule with ease, but Human Data Engineering still had to approve how the pipeline would collect corrections that arrived in a late stage. The Meditech card turned red and moved to the Blocked column. A new ticket appeared beneath it: *Capture late Meditech corrections*.
+For now, Fabric’s Bronze layer would keep both delivered versions, and Silver was let to present the newest rows. Priya could demonstrate the rule with ease, but Human Data Engineering would still need to approve how the pipeline would collect corrections that arrived in a late stage. The Meditech card turned red and moved to the Blocked column. A new ticket appeared beneath it: *Capture late Meditech corrections*.
 
 <p align="left">
   <img src="demo/assets/huddle-board-reaction.jpg" alt="The six-column Project board during the huddle, with the Meditech mapping card moved to Blocked and Maya sending a thumbs-up reaction" width="960">
