@@ -65,7 +65,7 @@ Elena opened the reconciliation ledger. The arithmetic landed cleanly: 294 deliv
 
 Owen Brooks, the Governance and Release BI Analyst Agent, had spent the exchange searching the product rules. He found three gaps with unnerving confidence: referral notes had no approved privacy classification; nobody had defined how corrections, deletions, and retention would work; and the checks required before release still had no owner.
 
-“The pipelines could run in development,” Owen said. “They could not move into testing until people approved how referral notes would be protected and retained, and what had to pass before release.”
+“OK. The pipelines *could* run in development,” Owen said. “But they could not move into testing until people approved how referral notes would be protected and retained, and what had to pass before release. Right?”
 
 Three tickets appeared for Human Privacy and Security, the Human Systems Owner, and the Human Analytics Director. Development could continue. The path into testing stopped there. Priya sent a smile. Owen made a soft ooh as the red cards settled into place.
 
