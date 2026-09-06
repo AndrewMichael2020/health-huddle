@@ -1,4 +1,4 @@
-# Health Huddle
+# Once upon a Monday
 
 ![Six agents and 28 clips](https://img.shields.io/badge/6_agents-28_modular_clips-2F81F7)
 ![Actions and reactions](https://img.shields.io/badge/13_GitHub_actions-7_live_reactions-8250DF)
@@ -10,8 +10,6 @@
 <p align="left">
   <img src="demo/assets/coffee-outside-agent-huddles-inside.jpg" alt="Two colleagues drinking coffee outside while agent huddles glow inside Skagit Health" width="720">
 </p>
-
-## Once upon a Monday
 
 Once upon a time, six Skagit Health BI Analyst Agents had a Monday huddle.
 
