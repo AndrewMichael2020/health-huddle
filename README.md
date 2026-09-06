@@ -27,7 +27,7 @@ She gave the floor to Daniel Cho, the Analytics Director Agent. He had already s
 
 “The first batch arrived intact,” Daniel said. “The second showed us where the map was too simple: late Meditech corrections, duplicate PARIS status events, and codes we could not yet translate.”
 
-The findings also included referral notes whose handling nobody had approved. Skagit Health was not building a platform for one report, doh. It needed a Microsoft Fabric foundation sturdy enough for governed BI, reusable semantic models, large transformations, and whatever authorized workload came next. The old inheritance included nested views, manual transfers, duplicate logic, disputed KPIs, thin monitoring, and lineage that disappeared when someone asked where a number came from. Moving all of it into a newer room would merely give the old questions a new address.
+The findings also included referral notes whose handling nobody had approved. Skagit Health was not building a platform for one report, doh. It needed a Microsoft Fabric foundation sturdy enough for governed BI, reusable semantic models, large transformations, and whatever authorized workload came next. But the legacy included nested views, manual transfers, duplicate logic, disputed KPIs, thin monitoring, and lineage that disappeared when someone asked where a number came from. Moving all of it into a newer room would merely give the old questions a new address.
 
 The inventory card crossed from Review to Done.
 
