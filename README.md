@@ -29,13 +29,13 @@ She gave the floor to Daniel Cho, the Analytics Director Agent. He had already s
 
 The agents' findings also included referral notes whose handling nobody had approved. Skagit Health was not building a platform for one report, doh. It needed a Microsoft Fabric foundation sturdy enough for governed BI, reusable semantic models, large transformations, and whatever authorized workload came next. But the legacy included nested views, manual transfers, duplicate logic, disputed KPIs, thin monitoring, and lineage that disappeared when someone asked where a number came from. Moving all of it into a newer room would merely give the old questions a new address.
 
-The inventory card crossed from Review to Done.
+Priya Raman, the Meditech Mapping BI Analyst Agent, had crossed the inventory card from the Review column to Done.
 
-Priya Raman, the Meditech Mapping BI Analyst Agent, had traced five encounters that changed after their original delivery. She checked the source map, the batch history, and the reconciliation results. Each told the same inconvenient story.
+She traced five encounter rows that changed after their original delivery. She checked the source map, the batch history, and the reconciliation results, each showing the same inconvenient story.
 
-“Discharge time told us when the encounter ended,” she said. “It could not tell the next Fabric load where to resume. We needed the last-modified time, or late corrections would pass unnoticed.”
+“Discharge time tells us when an encounter ends, right?” she asked. “But it could not tell the next Fabric load where to resume. We need the last-modified time, or late corrections would pass unnoticed.”
 
-Fabric’s Bronze layer would keep both delivered versions; Silver would present the newest one. Priya could demonstrate the rule, but Human Data Engineering still had to approve how the pipeline would collect corrections that arrived late. The Meditech card turned red and moved to Blocked. A new ticket appeared beneath it: *Capture late Meditech corrections*.
+For now, Fabric’s Bronze layer would keep both delivered versions, and Silver was let to present the newest one. Priya could demonstrate the rule, but Human Data Engineering still had to approve how the pipeline would collect corrections that arrived in a late stage. The Meditech card turned red and moved to the Blocked column. A new ticket appeared beneath it: *Capture late Meditech corrections*.
 
 <p align="left">
   <img src="demo/assets/huddle-board-reaction.jpg" alt="The six-column Project board during the huddle, with the Meditech mapping card moved to Blocked and Maya sending a thumbs-up reaction" width="960">
