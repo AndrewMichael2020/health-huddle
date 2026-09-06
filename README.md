@@ -49,7 +49,7 @@ Marcus Reed, the PARIS Mapping BI Analyst Agent, had found the corresponding tro
   <img src="demo/assets/paris-referral-status-batch-002.png" alt="PARIS referral-status data in GitHub, including new extract identifiers, program codes, event timestamps, and records awaiting classification" width="960">
 </p>
 
-“These rows came in with new, unfamiliar extract IDs,” he said, “but the same referral, status, and event time were already there. Those three fields tell us it was most likely the same event. Someone will have to trace delivery by extract IDs.”
+“These rows came in with new, unfamiliar extract IDs,” he said, “but the same referral, status, and event time were already there. Those three fields tell us it was most likely the same event. Someone will have to trace that batch.”
 
 That distinction gave the pipeline a dependable duplicate check without throwing away the trail back to each delivery. His PARIS card joined the Meditech one in the Blocked section, and *Define stable PARIS status-event keys* appeared for Human Data Engineering review. 
 
