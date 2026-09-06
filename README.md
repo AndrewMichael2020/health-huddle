@@ -99,7 +99,7 @@ Mariam, a Human BI Analyst, used the time that opened up to create *skills* for 
 
 *Hey, since you’re done, do you want to go to dinner now?*
 
-“Thank you, but I just had a breakfadt,” she typed, and pressed Enter without correcting the typo.
+“Thank you, hadn't we just had a breakfadt :-),” she typed, and pressed Enter without correcting the typo.
 
 ## Notes
 
