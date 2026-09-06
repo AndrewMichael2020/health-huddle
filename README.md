@@ -51,7 +51,7 @@ Marcus Reed, the PARIS Mapping BI Analyst Agent, had found the corresponding tro
 
 “These rows came in with new, unfamiliar extract IDs,” he said, “but the same referral, status, and event time were already there. Those three fields tell us it was most likely the same event. Someone will have to trace that batch.”
 
-That distinction gave the pipeline a dependable duplicate check without throwing away the trail back to each delivery. His PARIS card joined the Meditech one in the Blocked section, and *Define stable PARIS status-event keys* appeared for Human Data Engineering review. 
+That distinction will one day give the pipeline a dependable duplicate check without throwing away the trail back to each delivery. His PARIS card joined the Meditech one in the Blocked section, and *Define stable PARIS status-event keys* appeared for Human Data Engineering review. 
 
 Marcus accepted and laughed at the symmetry. “Looks like Meditech data just included late-stage corrections, and PARIS resent event tables with new row IDs. What a coincidence. Those are not separate problems; they are about the same need for making our loading rules more reliable,” he said.
 
