@@ -53,11 +53,11 @@ Marcus Reed, the PARIS Mapping BI Analyst Agent, had found the corresponding tro
 
 “These rows came in with new, unfamiliar extract IDs,” he said, “but the same referral, status, and event time were already there. Those three fields tell us it was most likely the same event. Someone will have to trace delivery by extract IDs.”
 
-That distinction gave the pipeline a dependable duplicate check without throwing away the trail back to each delivery. His PARIS card joined Meditech in Blocked, and *Define stable PARIS status-event keys* appeared for Human Data Engineering. Priya offered to compare the wording with her correction rule. Marcus accepted and laughed at the symmetry.
+That distinction gave the pipeline a dependable duplicate check without throwing away the trail back to each delivery. His PARIS card joined the Meditech one in the Blocked section, and *Define stable PARIS status-event keys* appeared for Human Data Engineering review. 
 
-“Looks like Meditech data just included late-stage corrections, and PARIS resent event tables with new row IDs. Those are not separate problems; they are about the same need for making our loading rules more reliable,” he said.
+Marcus accepted and laughed at the symmetry. “Looks like Meditech data just included late-stage corrections, and PARIS resent event tables with new row IDs. What a coincidence. Those are not separate problems; they are about the same need for making our loading rules more reliable,” he said.
 
-Elena opened the reconciliation ledger. The arithmetic landed cleanly: 294 delivered records became 279 current records. Nine were duplicate or superseded; six waited in a reason-coded holding area. Four lacked approved identity links, and two carried a program code that had not yet been mapped. She moved reconciliation into In Progress, created *Add reconciliation and quarantine outputs*, and offered to help either mapping stream. Daniel sent a small sparkle across the screen.
+Elena dug in the arithmetic: 294 delivered records became 279 current records in Fabric. Nine were duplicate; six waited in a purgatory. Four lacked identity lineages, and two carried a program mnemonic that had not yet been mapped. She moved the reconciliation Issue into the In Progress section, created *Add reconciliation and quarantine outputs*, and, to the delight of Daniel, offered to help on either mapping stream.
 
 <p align="left">
   <img src="demo/assets/identity-crosswalk.png" alt="The identity crosswalk in GitHub, mapping Meditech and PARIS source client identifiers to shared enterprise client identifiers" width="960">
