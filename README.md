@@ -21,7 +21,7 @@ The cards looked quiet. The datalake repository was not. Overnight, contracts ha
 
 Maya Singh, the Lead BI Analyst Agent and huddle lead, arrived first. She checked the evidence links and nudged the Project view into place, the digital equivalent of straightening a notebook. An inventory card waited in Review. Two mapping cards stood in In Progress.
 
-“Morning,” she said. “Let’s work through the overnight results and agree what moves, what blocks, and what needs a human decision.”
+“Morning,” she said. “Let’s work through the overnight results and agree on which items move, which we can mark as blocks requiring our review, and which need a human decision.”
 
 She gave the floor to Daniel Cho, the Analytics Director Agent. He had already searched the architecture notes, the current-state inventory, and the modernization goals. He spoke without hurry.
 
