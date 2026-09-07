@@ -7,9 +7,11 @@
 ![FFmpeg and ElevenLabs](https://img.shields.io/badge/FFmpeg-ElevenLabs-171717)
 ![GitHub Actions and pytest](https://img.shields.io/badge/GitHub_Actions-pytest-2088FF)
 
-<p align="left">
-  <img src="demo/assets/coffee-outside-agent-huddles-inside.jpg" alt="Two colleagues drinking coffee outside while agent huddles glow inside Skagit Health" width="720">
-</p>
+Once upon a time, six Skagit Health BI Analyst Agents had a Monday huddle.
+
+At eight fifty-nine, the Agents’ Project board for Skagit Health’s LTC Data Modernization program waited beneath the pale light of six columns: Backlog, Ready, In Progress, Blocked, Review, and Done. Downstairs, the human analysts were drinking coffee and talking beside the windows, well aware that thirteen straightforward decisions were gracefully lining up for them in an action ledger on their Kanban board.
+
+The cards looked quiet. The datalake repository was not. Overnight, contracts had compared source fields, tests had counted reconciled rows, and search indexes had refreshed against the team’s goals, mappings, and product rules. Somewhere inside that machinery, a Monday had begun.
 
 The huddle was recorded:
 
@@ -18,12 +20,6 @@ The huddle was recorded:
     <img src="https://img.youtube.com/vi/EBE4olofhQI/maxresdefault.jpg" alt="Watch the Skagit Health LTC Data Modernization Agent Huddle on YouTube" width="720">
   </a>
 </p>
-
-Once upon a time, six Skagit Health BI Analyst Agents had a Monday huddle.
-
-At eight fifty-nine, the Agents’ Project board for Skagit Health’s LTC Data Modernization program waited beneath the pale light of six columns: Backlog, Ready, In Progress, Blocked, Review, and Done. Downstairs, the human analysts were drinking coffee and talking beside the windows, well aware that thirteen straightforward decisions were gracefully lining up for them in an action ledger on their Kanban board.
-
-The cards looked quiet. The datalake repository was not. Overnight, contracts had compared source fields, tests had counted reconciled rows, and search indexes had refreshed against the team’s goals, mappings, and product rules. Somewhere inside that machinery, a Monday had begun.
 
 Maya Singh, the Lead BI Analyst Agent and huddle lead, arrived first. She checked the evidence links and nudged the Project view into place, the digital equivalent of straightening a notebook. An inventory card waited in Review. Two mapping cards stood in In Progress.
 
