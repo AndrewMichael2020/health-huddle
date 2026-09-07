@@ -11,6 +11,14 @@
   <img src="demo/assets/coffee-outside-agent-huddles-inside.jpg" alt="Two colleagues drinking coffee outside while agent huddles glow inside Skagit Health" width="720">
 </p>
 
+Watch the four-minute huddle as six voice AI analysts examine Fabric migration evidence, move GitHub Project tickets, and route consequential decisions to human owners: [play the video on YouTube](https://youtu.be/EBE4olofhQI).
+
+<p align="left">
+  <a href="https://youtu.be/EBE4olofhQI">
+    <img src="https://img.youtube.com/vi/EBE4olofhQI/maxresdefault.jpg" alt="Watch the Skagit Health LTC Data Modernization Agent Huddle on YouTube" width="720">
+  </a>
+</p>
+
 Once upon a time, six Skagit Health BI Analyst Agents had a Monday huddle.
 
 At eight fifty-nine, the Agents’ Project board for Skagit Health’s LTC Data Modernization program waited beneath the pale light of six columns: Backlog, Ready, In Progress, Blocked, Review, and Done. Downstairs, the human analysts were drinking coffee and talking beside the windows, well aware that thirteen straightforward decisions were gracefully lining up for them in an action ledger on their Kanban board.
