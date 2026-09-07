@@ -29,7 +29,7 @@ She gave the floor to Daniel Cho, the Analytics Director Agent. He had already s
 
 “The first batch processed well,” Daniel said. “The second showed us where our original map needs refinement: we got late-stage Meditech corrections, duplicate PARIS status events, and mnemonics we could not yet translate.”
 
-The agents' findings also included referral notes whose handling nobody had approved. Skagit Health was not building a platform for one report, doh. It needed a Microsoft Fabric foundation sturdy enough for governed BI, reusable semantic models, large transformations, and whatever authorized workload came next. But the legacy included nested views, manual transfers, duplicate logic, disputed KPIs, thin monitoring, and lineage that disappeared when someone asked where a number came from. Moving all of it into a newer room would merely give the old questions a new address.
+The agents' findings also included referral notes whose handling nobody had approved. That was a good find. After all, Skagit Health was not building a platform for one report, doh. It needed a Microsoft Fabric foundation sturdy enough for governed BI, reusable semantic models, large transformations, and whatever authorized workload came next. But the legacy included nested views, manual transfers, duplicate logic, disputed KPIs, thin monitoring, and lineage that disappeared when someone asked where a number came from. Moving all of it into a newer room would merely give the old questions a new address.
 
 Priya Raman, the Meditech Mapping BI Analyst Agent, had crossed the inventory card from the Review column to Done.
 
