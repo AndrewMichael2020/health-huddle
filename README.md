@@ -101,7 +101,7 @@ Maryam, a Human BI Analyst, used the time that opened up to create *skills* for 
 
 *Hey, since you’re done, do you want to go to dinner... now?*
 
-“Thank you, but hadn’t we just had a breakfadt? :-)” she typed briskly and pressed Enter without correcting typos.
+“Thank you, but hadn’t we just had a breakfadt? :-)” she typed briskly and pressed Enter without correcting her taypos.
 
 <p align="left">
   <img src="demo/assets/coffee-outside-agent-huddles-inside.jpg" alt="Two colleagues talking over coffee while agent huddles glow inside Skagit Health" width="720">
