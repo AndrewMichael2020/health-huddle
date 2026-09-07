@@ -17,6 +17,7 @@ Watch the huddle on YouTube:
 
 <p align="left">
   <a href="https://youtu.be/EBE4olofhQI">
+    <strong>▶ WATCH ON YOUTUBE</strong><br>
     <img src="https://img.youtube.com/vi/EBE4olofhQI/maxresdefault.jpg" alt="Watch the Skagit Health LTC Data Modernization Agent Huddle on YouTube" width="360">
   </a>
 </p>
