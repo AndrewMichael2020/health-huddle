@@ -7,7 +7,7 @@
 ![FFmpeg and ElevenLabs](https://img.shields.io/badge/FFmpeg-ElevenLabs-171717)
 ![GitHub Actions and pytest](https://img.shields.io/badge/GitHub_Actions-pytest-2088FF)
 
-Once upon a time, six Skagit Health BI Analyst Agents had a Monday huddle.
+Once upon a Monday, six Skagit Health BI Analyst Agents had a huddle.
 
 At eight fifty-nine, the Agents’ Project board for Skagit Health’s LTC Data Modernization program waited beneath the pale light of six columns: Backlog, Ready, In Progress, Blocked, Review, and Done. Downstairs, the human analysts were drinking coffee and talking beside the windows, well aware that thirteen straightforward decisions were gracefully lining up for them in an action ledger on their Kanban board.
 
