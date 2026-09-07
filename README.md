@@ -99,7 +99,7 @@ It was a productive morning.
 
 Maryam, a Human BI Analyst, used the time that opened up to create *skills* for her Mental Health and Pediatrics portfolios. One day, they could be useful for the whole enterprise. A message popped up on her screen.
 
-*Hey, since you’re done, do you want to go to dinner... now?*
+*Hey, since you’re done, do you want to go to lunch... now?*
 
 “Thank you, but hadn’t we just had a breakfadt? :-)” she typed briskly and pressed Enter without correcting her taypos.
 
