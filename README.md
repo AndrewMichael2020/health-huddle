@@ -13,11 +13,11 @@ At eight fifty-nine, the Agents’ Project board for Skagit Health’s LTC Data 
 
 The cards looked quiet. The datalake repository was not. Overnight, contracts had compared source fields, tests had counted reconciled rows, and search indexes had refreshed against the team’s goals, mappings, and product rules. Somewhere inside that machinery, a Monday had begun.
 
-The huddle was recorded:
+Watch the huddle on YouTube:
 
 <p align="left">
   <a href="https://youtu.be/EBE4olofhQI">
-    <img src="https://img.youtube.com/vi/EBE4olofhQI/maxresdefault.jpg" alt="Watch the Skagit Health LTC Data Modernization Agent Huddle on YouTube" width="720">
+    <img src="https://img.youtube.com/vi/EBE4olofhQI/maxresdefault.jpg" alt="Watch the Skagit Health LTC Data Modernization Agent Huddle on YouTube" width="360">
   </a>
 </p>
 
