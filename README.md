@@ -11,7 +11,7 @@
   <img src="demo/assets/coffee-outside-agent-huddles-inside.jpg" alt="Two colleagues drinking coffee outside while agent huddles glow inside Skagit Health" width="720">
 </p>
 
-Watch the four-minute huddle as six voice AI analysts examine Fabric migration evidence, move GitHub Project tickets, and route consequential decisions to human owners: [play the video on YouTube](https://youtu.be/EBE4olofhQI).
+The huddle was recorded:
 
 <p align="left">
   <a href="https://youtu.be/EBE4olofhQI">
