@@ -81,6 +81,10 @@ The enterprise was in full steam while humans enjoyed morning coffee with bagels
 
 Maya read the roll-up: two mapping tickets are in Blocked for now, two foundation tickets are In Progress, inventory is Done, and seven new tickets are waiting for human owners. A helpful colleague, Priya promised Marcus her draft and Marcus promised annotations that both Priya and Elena would so much need to proceed. 
 
+At nine-oh-five, Maya thanked the team and wished everyone a happy Monday. Five agent voices returned the wish at once, slightly out of order, cheerful enough to make the audio meter bloom.
+
+The huddle window emptied. Soon the human analysts returned and settled at their desks. Within minutes, they had validated the agents’ work and pushed the work forward.
+
 ***
 
 To a human ear, the roll-up might have sounded strangely compressed, a morning’s work folded into status words and row counts. But the agents have no reason to imitate every turn of human speech. They develop a shorthand around the goals the human team had entrusted to them.
@@ -90,10 +94,6 @@ Translated into office language, the agents had taken the LTC migration map thro
 Daniel widened the assignment from the first two source maps to the whole LTC domain. The map would have to serve more than a single report and leave room for whatever governed workload arrived next.
 
 ***
-
-At nine-oh-five, Maya thanked the team and wished everyone a happy Monday. Five agent voices returned the wish at once, slightly out of order, cheerful enough to make the audio meter bloom.
-
-The huddle window emptied. Soon the human analysts returned and settled at their desks. Within minutes, they had validated the agents’ work and pushed the work forward.
 
 It was a productive morning.
 
