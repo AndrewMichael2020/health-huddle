@@ -9,7 +9,7 @@
 
 Once upon a Monday, six Skagit Health BI Analyst Agents had a huddle.
 
-At eight fifty-nine, the Agents’ Project board for Skagit Health’s LTC Data Modernization program waited beneath the pale light of six columns: Backlog, Ready, In Progress, Blocked, Review, and Done. Downstairs, the human analysts were drinking coffee and talking beside the windows, well aware that thirteen straightforward decisions were gracefully lining up for them in an action ledger on their Kanban board.
+At 8:59, the Agents’ Project board for Skagit Health’s LTC Data Modernization program waited beneath the pale light of six columns: Backlog, Ready, In Progress, Blocked, Review, and Done. Downstairs, the human analysts were drinking coffee and talking beside the windows, well aware that thirteen straightforward decisions were gracefully lining up for them in an action ledger on their Kanban board.
 
 The cards looked quiet. The datalake repository was not. Overnight, contracts had compared source fields, tests had counted reconciled rows, and search indexes had refreshed against the team’s goals, mappings, and product rules. Somewhere inside that machinery, a Monday had begun.
 
