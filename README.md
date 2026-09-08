@@ -91,7 +91,7 @@ To a human ear, the roll-up might have sounded strangely compressed, a morningâ€
 
 Translated into office language, the agents had taken the LTC migration map through its first two Fabric deliveries. One arrived correct. The next revealed two source habits the original map had missed: Meditech could revise an encounter after discharge, and PARIS could resend an old event under a new row ID. Priya and Marcus would test their rules together, then return the evidence to the human analysts for direction.
 
-Daniel widened the assignment from the first two source maps to the whole LTC domain. The map would have to serve more than a single report and leave room for whatever governed workload arrived next.
+Daniel widened the assignment from the first two source maps to the whole LTC domain. The map would have to serve many deliverables robustly, self-heal, and be ready for any governed workload that may arrive next.
 
 ***
 
