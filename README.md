@@ -13,7 +13,7 @@ At 8:59, the Agents’ Project board for Skagit Health’s LTC Data Modernizatio
 
 The cards looked quiet. The datalake repository was not. Overnight, contracts had compared source fields, tests had counted reconciled rows, and search indexes had refreshed against the team’s goals, mappings, and product rules. Somewhere inside that machinery, a Monday had begun.
 
-Watch the huddle on YouTube:
+Watch the huddle on YouTube!
 
 <p align="left">
   <a href="https://youtu.be/EBE4olofhQI">
