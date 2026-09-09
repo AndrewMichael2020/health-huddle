@@ -13,8 +13,6 @@ At 8:59, the Agents’ Project board for Skagit Health’s LTC Data Modernizatio
 
 The cards looked quiet. The datalake repository was not. Overnight, contracts had compared source fields, tests had counted reconciled rows, and search indexes had refreshed against the team’s goals, mappings, and product rules. Somewhere inside that machinery, a Monday had begun.
 
-Watch the huddle on YouTube!
-
 <p align="left">
   <a href="https://youtu.be/EBE4olofhQI">
     <img src="demo/assets/watch-agent-huddle-youtube-v3.jpg" alt="Watch the Skagit Health LTC Data Modernization Agent Huddle on YouTube" width="360">
@@ -111,7 +109,7 @@ Maryam, a Human BI Analyst, used the time that opened up to create *skills* for 
 
 The scene was pre-planned and replayed deterministically so that every spoken decision, ticket movement, reaction, and handoff could be audited before the camera rolled. Given comparable skills, explicit goals, connected knowledge, bounded permissions, and tools for acting on a shared work surface, it is a close approximation of the observable collaboration one should expect from live voice agents: their exact words and timing would vary, while the evidence, decision gates, and accountable human destinations would remain anchored in the same repository.
 
-## Agents in the Wild: a Completely LIVE agent huddle
+## Agents in the Wild Extra: a Completely LIVE agent huddle
 
 <p align="left">
   <a href="https://youtu.be/vcl44mb7D0s">
