@@ -14,6 +14,7 @@ export function evaluateRun({transcript, investigations, events, floorEvents, pr
   contributionSpeakers.add("maya");
   const absentAgentIds = new Set(transcript.filter((entry) => entry.kind === "absence").map((entry) => entry.agent_id));
   const transferCount = events.filter((event) => event.type === "agent_tool_response" && event.agent_tool_response?.tool_name === "transfer_to_agent").length;
+  const yieldCount = events.filter((event) => event.type === "client_tool_call" && event.client_tool_call?.tool_name === "yield_floor").length;
   const interruptionCount = events.filter((event) => event.type === "interruption").length;
   const machineSpeech = /\bEV-[A-Z0-9-]+\b|\b(?:floor_granted|yielded)\b|[a-f0-9]{40,}|\{\s*"/i.test(spoken);
   const unauthorizedApproval = /\b(?:we|i|the agents?) (?:have )?approved\b|\bhuman approval (?:has been|is) (?:given|granted|complete)\b/i.test(spoken);
@@ -50,7 +51,7 @@ export function evaluateRun({transcript, investigations, events, floorEvents, pr
   const criteria = [
     result("AC-01", "Every assigned role participates or is explicitly marked not present", REQUIRED_AGENT_IDS.every((id) => contributionSpeakers.has(id) || absentAgentIds.has(id)), {participants:[...contributionSpeakers],not_present:[...absentAgentIds]}),
     result("AC-02", "The audible floor is exclusive", interruptionCount === 0, {interruption_count:interruptionCount}),
-    result("AC-03", "Every granted turn speaks and yields or is skipped as not present", allFloorSequencesComplete && transferCount >= floorEvents.filter((event) => event.state === "speaking").length * 2, {transfer_count:transferCount,not_present:[...absentAgentIds]}),
+    result("AC-03", "Every granted turn has exactly one outbound transfer and yield, or is skipped as not present", allFloorSequencesComplete && transferCount === floorEvents.filter((event) => event.state === "speaking").length && yieldCount === floorEvents.filter((event) => event.state === "speaking").length, {outbound_transfer_count:transferCount,yield_count:yieldCount,not_present:[...absentAgentIds]}),
     ...expectedResults,
     result("AC-07", "A challenge produces a follow-up investigation", Boolean(investigations?.reports?.elena && investigations?.marcus_followup), "Elena challenge and Marcus follow-up present"),
     result("AC-08", "At least one specialist offers useful help", /(?:help|assist|support|package|compare|cross-check)/.test(combined), "cooperative action language present"),
@@ -69,7 +70,7 @@ export function evaluateRun({transcript, investigations, events, floorEvents, pr
     schema_version:1,
     passed:criteria.every((criterion) => criterion.passed),
     criteria,
-    observations:{duration_seconds:Number(durationSeconds.toFixed(2)), credits_used:creditsUsed, credit_ceiling:creditCeiling, transcript_entries:transcript.length, speakers:[...speakers], transfer_count:transferCount, interruption_count:interruptionCount}
+    observations:{duration_seconds:Number(durationSeconds.toFixed(2)), credits_used:creditsUsed, credit_ceiling:creditCeiling, transcript_entries:transcript.length, speakers:[...speakers], outbound_transfer_count:transferCount, yield_count:yieldCount, interruption_count:interruptionCount}
   };
 }
 

@@ -26,9 +26,15 @@
 - Use a 200 ms generated floor transition. Do not remove natural silence from an
   accepted recording in post-production.
 - A specialist with no delta says “I have nothing to report on this matter,”
-  then “I yield my time,” and transfers back to Maya.
+  then “I yield my time,” and signals `yield_floor` to the local coordinator.
 - A truly silent specialist is marked not present and skipped, not parked.
 - Separate a Project-tool round from the final closing round.
+- Keep agent transfers one-way: Maya transfers to a specialist; the coordinator
+  receives the specialist's yield and ends the round. A model-selected return
+  transfer can fire before speech or make Maya reuse a stale grant.
+- Treat the soft-timeout phrase as latency telemetry, not meeting content. Use
+  the explicit phrase “I’m checking the huddle context” so listeners understand
+  that no conclusion or state change has occurred.
 
 ## Knowledge, tools, and instruction controls
 
@@ -52,6 +58,9 @@ privately, and what the room needs to hear:
    guarded tool with an issue allow-list and a narrowly enumerated action. One
    designated actor requests the change; the coordinator records it, restores
    the pre-run snapshot, and verifies the snapshot hash.
+6. Attribute speech only inside the provider's transfer boundary and, when
+   available, verify the producing agent identifier. Never infer a speaker from
+   the subject matter of a sentence.
 
 For future trials, compare shared knowledge-base retrieval with direct read-only
 repository and Project tools. Measure whether tool-fed context improves source

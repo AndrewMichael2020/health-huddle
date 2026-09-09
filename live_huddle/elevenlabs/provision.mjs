@@ -9,7 +9,7 @@ function transferTool(transfers) {
   return {
     type:"system",
     name:"transfer_to_agent",
-    description:"Transfer the single speaking floor only when the coordinator says the named agent is ready, or return the floor to Maya after one focused contribution.",
+    description:"Transfer the single speaking floor from Maya to exactly one ready specialist after a fresh coordinator grant. Never reuse an earlier grant.",
     params:{system_tool_type:"transfer_to_agent", transfers}
   };
 }
@@ -23,7 +23,7 @@ function baseConversationConfig({agent, config, knowledgeId, toolIds = [], promp
       turn_eagerness:"eager",
       soft_timeout_config:{
         timeout_seconds:3,
-        message:"I am checking that.",
+        message:"I’m checking the huddle context.",
         use_llm_generated_message:false,
         disable_until_first_user_message:true
       },
@@ -98,7 +98,27 @@ export async function provision({client, config, packet, manifest, runtimePath, 
   });
   const projectToolId = projectTool.id;
   if (!projectToolId) throw new Error("Project tool creation did not return an id");
-  const specialistToolIds = [contextToolId];
+  let yieldTool = listedTools.find((item) => item.tool_config?.name === "yield_floor");
+  if (!yieldTool) yieldTool = await client.createTool({
+    type:"client",
+    name:"yield_floor",
+    description:"Signal the local coordinator only after delivering one audible specialist contribution, or the exact nothing-to-report sentence. This tool does not transfer to another agent.",
+    expects_response:true,
+    response_timeout_secs:10,
+    interruption_mode:"disable_during_tool_and_turn",
+    pre_tool_speech:"off",
+    parameters:{
+      type:"object",
+      properties:{
+        agent_id:{type:"string",description:"Your configured lowercase huddle agent id."},
+        status:{type:"string",description:"Whether you contributed new information or explicitly had nothing to report.",enum:["reported","nothing_to_report"]}
+      },
+      required:["agent_id","status"]
+    }
+  });
+  const yieldToolId = yieldTool.id;
+  if (!yieldToolId) throw new Error("Yield tool creation did not return an id");
+  const specialistToolIds = [contextToolId, yieldToolId];
   const mayaToolIds = [contextToolId, projectToolId];
 
   const targetIds = only ? new Set(only) : new Set(config.agents.map((agent) => agent.id));
@@ -131,7 +151,7 @@ export async function provision({client, config, packet, manifest, runtimePath, 
       firstMessage:"",
       transfers:specialists.map((agent) => ({
         agent_id:agentIds[agent.id],
-        condition:`Only on a fresh coordinator command containing exactly GRANT_FLOOR:${agent.id}.`,
+        condition:`Call only when the latest user message is a fresh coordinator command containing exactly GRANT_FLOOR:${agent.id}, and no later agent message follows that command. Never reuse an earlier grant.`,
         delay_ms:0,
         transfer_message:`${agent.name}, you have the floor.`,
         enable_transferred_agent_first_message:false
@@ -144,23 +164,18 @@ export async function provision({client, config, packet, manifest, runtimePath, 
         knowledgeId,
         toolIds:specialistToolIds,
         prompt:specialistPrompt(agent, mayaId, scenario),
-        firstMessage:"",
-        transfers:[{
-          agent_id:mayaId,
-          condition:"Do not use this tool immediately on arrival. First call read_huddle_context. Deliver one focused role-specific contribution, or say exactly 'I have nothing to report on this matter.' End with the exact spoken sentence 'I yield my time.' Only then immediately return control to Maya Singh in the same turn.",
-          delay_ms:0,
-          transfer_message:"Maya Singh, the floor is yours.",
-          enable_transferred_agent_first_message:false
-        }]
+        firstMessage:""
       })});
     }
   }
 
   const runtime = {
-    schema_version:1,
+    schema_version:2,
+    floor_protocol:"outbound_transfer_with_client_yield",
     provisioned_at:new Date().toISOString(),
     knowledge:{id:knowledgeId, name:knowledgeName, packet_sha256:manifest.packet_sha256},
     context_tool:{id:contextToolId, name:"read_huddle_context"},
+    yield_tool:{id:yieldToolId, name:"yield_floor"},
     project_tool:{id:projectToolId, name:"set_project_status"},
     model_id:config.model_id,
     tts_model_id:config.tts_model_id,

@@ -139,7 +139,7 @@ draft items for our engineering plan so the public repository's Issues remain
 the agents' domain. Initial items:
 
 - Freeze evidence and safety contracts
-- Prove Maya-specialist-Maya live transfer
+- Prove Maya-to-specialist transfer and coordinator-controlled yield
 - Provision and validate six agents
 - Prove Project 13 snapshot and restoration
 - Run text-only rehearsal
@@ -183,16 +183,17 @@ Provision Maya and Marcus only. Prove:
 
 - shared knowledge attachment and retrieval;
 - Marcus background chat investigation and `ready` report;
-- one continuous live voice conversation;
-- Maya-to-Marcus and Marcus-to-Maya transfers;
-- transfer-preserved transcript and coordinator context;
+- one continuous audible huddle assembled without rewriting the provider audio;
+- one Maya-to-Marcus transfer followed by a validated `yield_floor` signal;
+- transfer-preserved transcript and coordinator context without a model-driven
+  return transfer;
 - distinct voices, audio completion, and clean floor ownership; and
 - conversation transcript, version IDs, and actual usage retrieval.
 
-Gate: two repeatable round trips are smooth, correctly grounded, and contain no
-overlap or context loss. After two consecutive non-improving repair attempts,
-stop and revise the architecture. Do not replace the live path with generated
-clips.
+Gate: two repeatable outbound-transfer-and-yield rounds are smooth, correctly
+grounded, call each specialist once, and contain no overlap or context loss.
+After two consecutive non-improving repair attempts, stop and revise the
+architecture. Do not replace the live path with generated clips.
 
 ### Phase 3: six-agent text rehearsal
 
@@ -252,6 +253,7 @@ are handled explicitly by the corrected future-turn contract.
 | RAG omits critical facts | Put the small core contract in full context; test retrieval before live use |
 | Agents talk over each other | Single voice connection, exclusive floor state, audio-complete barrier |
 | Transfer loses private work | Specialist loads its validated report from coordinator state after transfer |
+| Specialist returns silently or Maya repeats a grant | No specialist return-transfer tool; validate one attributable utterance plus `yield_floor`, then close the round |
 | Agent fabricates a ticket action | Schema validation, evidence requirement, item allow-list, current-state precondition |
 | Project is left dirty | Pre-run snapshot, inverse ledger, mutation lock, exact post-reset comparison |
 | Credential leakage | Server-only loading, signed URLs, redaction tests, secret-pattern repository scan |

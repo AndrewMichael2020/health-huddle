@@ -104,11 +104,13 @@ reporting `ready`. The system shall not add artificial delay or grade speed.
 ### BR-04: Controlled audible floor
 
 Maya alone shall grant the floor. At most one agent may own it. Each active
-ElevenLabs round shall transfer to the selected specialist, preserve the
-audible transcript, load the specialist's validated finding and challenge
-context, wait for audio completion, and transfer back to Maya after the spoken
-yield. A fresh round may be used for the next specialist so a stale provider
-socket cannot deadlock the huddle.
+ElevenLabs round shall transfer from Maya to the selected specialist, preserve
+the audible transcript, load the specialist's validated finding and challenge
+context, and wait for a coordinator-controlled `yield_floor` signal after the
+spoken yield. The coordinator shall then close that round and start a fresh
+Maya round for the next specialist. Specialists shall not receive a
+return-transfer tool, preventing a silent premature return or a stale grant
+from calling the same role twice.
 
 ### BR-05: Challenge and assistance
 

@@ -151,12 +151,13 @@ async function transferSpike() {
   const audit = new AuditLog(path.join(runDir, "events.jsonl"));
   const runtime = await readRuntime(runtimePath);
   if (!runtime.agents.maya || !runtime.agents.marcus) throw new Error("provision-spike must run first");
+  if (runtime.floor_protocol !== "outbound_transfer_with_client_yield" || !runtime.yield_tool?.id) throw new Error("runtime uses the obsolete round-trip transfer protocol; run provision-spike before spending conversation credits");
   const marcus = agentsConfig.agents.find((agent) => agent.id === "marcus");
   const project = await projectGuard().snapshot();
-  const briefResult = await createInvestigationBrief({client:new ElevenLabsClient(), agentId:runtime.agents.maya.agent_id, timeoutMs:policy.reasoning_timeout_ms, context:{self:"maya",state:"briefing",project_snapshot_sha256:project.sha256}});
+  const briefResult = await createInvestigationBrief({client:new ElevenLabsClient(), agentId:runtime.agents.maya.agent_id, timeoutMs:policy.reasoning_timeout_ms, context:{self:"maya",state:"briefing",project_snapshot_sha256:project.sha256}, scenario});
   await audit.write("maya_investigation_brief", {conversation_id:briefResult.conversationId,attempt:briefResult.attempt,brief:briefResult.brief});
   await audit.write("agent_state", {agent_id:"marcus",state:"thinking"});
-  const finding = await investigate({client:new ElevenLabsClient(), agent:marcus, remote:runtime.agents.marcus, brief:briefResult.brief, timeoutMs:policy.reasoning_timeout_ms, context:{self:"marcus",state:"thinking",project_snapshot_sha256:project.sha256}});
+  const finding = await investigate({client:new ElevenLabsClient(), agent:marcus, remote:runtime.agents.marcus, brief:briefResult.brief, timeoutMs:policy.reasoning_timeout_ms, context:{self:"marcus",state:"thinking",project_snapshot_sha256:project.sha256}, scenario, allowedEvidenceRefs});
   await audit.write("agent_state", {agent_id:"marcus",state:"ready",conversation_id:finding.conversationId,report:finding.report});
 
   const client = new ElevenLabsClient();
@@ -164,14 +165,19 @@ async function transferSpike() {
   const audio = [];
   const transcript = [];
   const liveContext = {run_id:runId,state:"opening",project_snapshot_sha256:project.sha256,ready_reports:{marcus:finding.report}};
+  let yieldRequest = null;
   const conversation = openConversation({signedUrl:signed.signed_url, timeoutMs:policy.reasoning_timeout_ms, onEvent:(event) => {
     if (event.type === "audio") audio.push(Buffer.from(event.audio_event.audio_base_64, "base64"));
     if (event.type === "agent_response") transcript.push(event.agent_response_event.agent_response);
-    if (isTransferBetween(event, runtime.agents.marcus.agent_id, runtime.agents.maya.agent_id)) {
-      liveContext.state = "yielded";
-      liveContext.current_agent = null;
+  }, clientTools:{
+    read_huddle_context:() => liveContext,
+    yield_floor:(request) => {
+      if (request?.agent_id !== "marcus") throw new Error("only Marcus may yield this spike floor");
+      yieldRequest = request;
+      liveContext.state = "yield_requested";
+      return {accepted:true,agent_id:"marcus"};
     }
-  }, clientTools:{read_huddle_context:() => liveContext}});
+  }});
   try {
     await conversation.opened;
     await conversation.waitFor((event) => event.type === "conversation_initiation_metadata");
@@ -183,11 +189,7 @@ async function transferSpike() {
     let start = conversation.events.length;
     conversation.sendUserMessage("Coordinator command GRANT_FLOOR:marcus. Marcus Reed is ready; grant him the floor now.");
     const outbound = await waitForNew(conversation, start, isTransferResponse);
-    const handoff = await waitForNew(conversation, conversation.events.indexOf(outbound) + 1, isResponseComplete);
-    const contribution = await waitForNew(conversation, conversation.events.indexOf(handoff) + 1, isResponseComplete);
-    const returned = await waitForNew(conversation, conversation.events.indexOf(contribution) + 1, isTransferResponse);
-    const returnCue = await waitForNew(conversation, conversation.events.indexOf(returned) + 1, isResponseComplete);
-    await waitForNew(conversation, conversation.events.indexOf(returnCue) + 1, isResponseComplete);
+    await waitForNew(conversation, conversation.events.indexOf(outbound) + 1, isYieldRequest);
     await waitForAudioPlayback(conversation, start);
   } finally {
     conversation.close();
@@ -197,8 +199,9 @@ async function transferSpike() {
   await writeFile(path.join(runDir, "audio.wav"), pcm16ToWav(Buffer.concat(audio)), {mode:0o600});
   await writeFile(path.join(runDir, "spike.json"), `${JSON.stringify({run_id:runId,conversation_id:conversationId,finding:finding.report,transcript,event_types:conversation.events.map((event) => event.type)}, null, 2)}\n`, {mode:0o600});
   const transferEvents = conversation.events.filter(isTransferResponse).length;
-  if (transferEvents !== 2) throw new Error(`transfer spike required exactly 2 transfer events, observed ${transferEvents}`);
-  console.log(JSON.stringify({run_id:runId,conversation_id:conversationId,artifact:path.join(runDir,"spike.json"),audio_bytes:audio.reduce((sum,part) => sum + part.length,0),agent_responses:transcript.length,transfer_events:transferEvents}, null, 2));
+  if (transferEvents !== 1) throw new Error(`transfer spike required exactly 1 outbound transfer, observed ${transferEvents}`);
+  if (!yieldRequest) throw new Error("transfer spike received no coordinator-controlled yield");
+  console.log(JSON.stringify({run_id:runId,conversation_id:conversationId,artifact:path.join(runDir,"spike.json"),audio_bytes:audio.reduce((sum,part) => sum + part.length,0),agent_responses:transcript.length,transfer_events:transferEvents,yield_requests:1}, null, 2));
 }
 
 function waitForNew(conversation, start, predicate, timeout = policy.reasoning_timeout_ms) {
@@ -207,11 +210,7 @@ function waitForNew(conversation, start, predicate, timeout = policy.reasoning_t
 
 function isResponseComplete(event) { return event.type === "agent_response"; }
 function isTransferResponse(event) { return event.type === "agent_tool_response" && event.agent_tool_response?.tool_name === "transfer_to_agent"; }
-function isTransferBetween(event, fromAgentId, toAgentId) {
-  if (!isTransferResponse(event)) return false;
-  const encoded = JSON.stringify(event);
-  return encoded.includes(`\"from_agent\":\"${fromAgentId}\"`) && encoded.includes(`\"to_agent\":\"${toAgentId}\"`);
-}
+function isYieldRequest(event) { return event.type === "client_tool_call" && event.client_tool_call?.tool_name === "yield_floor"; }
 function responseText(event) { return event.agent_response_event?.agent_response ?? ""; }
 function compactReport(report) {
   return {
@@ -253,6 +252,8 @@ async function waitForConversationDetails(client, conversationId, {maxMs = 30000
 }
 
 async function liveRun({mutateProject = false}) {
+  const runtime = await readRuntime(runtimePath);
+  if (runtime.floor_protocol !== "outbound_transfer_with_client_yield" || !runtime.yield_tool?.id) throw new Error("runtime uses the obsolete round-trip transfer protocol; run provision before spending conversation credits");
   const runId = `live-${randomUUID().slice(0, 8)}`;
   const runDir = path.join(artifacts, "runs", runId);
   await mkdir(runDir, {recursive:true});
@@ -260,7 +261,6 @@ async function liveRun({mutateProject = false}) {
   const guard = projectGuard(audit);
   const before = await guard.snapshot();
   await writeFile(path.join(runDir, "project-before.json"), `${JSON.stringify(before, null, 2)}\n`, {mode:0o600});
-  const runtime = await readRuntime(runtimePath);
   const floor = new FloorCoordinator(agentsConfig.agents.map((agent) => agent.id), {transitionMs:policy.floor_transition_ms});
   const audio = [];
   const transcript = [];
@@ -277,6 +277,14 @@ async function liveRun({mutateProject = false}) {
   let activeSession = null;
   const clientTools = {
     read_huddle_context:() => liveContext,
+    yield_floor:async ({agent_id:agentId,status}) => {
+      if (liveContext.state !== "floor_granted") throw new Error("no specialist currently owns the floor");
+      if (agentId !== liveContext.current_agent) throw new Error(`yield agent ${agentId} does not own the floor`);
+      if (!["reported","nothing_to_report"].includes(status)) throw new Error("invalid yield status");
+      liveContext.state = "yield_requested";
+      await audit.write("floor_yield_requested", {agent_id:agentId,status});
+      return {accepted:true,agent_id:agentId,status};
+    },
     set_project_status:async ({issue_number:issueNumber,status}) => {
       projectAction.requested = true;
       await audit.write("agent_project_request", {agent_id:"maya",issue_number:issueNumber,status,writes_enabled:projectAction.writes_enabled});
@@ -294,12 +302,6 @@ async function liveRun({mutateProject = false}) {
     const conversation = openConversation({signedUrl:signed.signed_url, timeoutMs:policy.reasoning_timeout_ms, onEvent:(event) => {
       sessionEvents.push(event);
       if (event.type === "audio") sessionAudio.push(Buffer.from(event.audio_event.audio_base_64, "base64"));
-      for (const [id, remote] of Object.entries(runtime.agents)) {
-        if (id !== "maya" && isTransferBetween(event, remote.agent_id, runtime.agents.maya.agent_id)) {
-          liveContext.state = "yielded";
-          liveContext.current_agent = null;
-        }
-      }
     }, clientTools});
     const activityTimer = setInterval(() => {
       try { conversation.sendUserActivity(); } catch {}
@@ -356,26 +358,33 @@ async function liveRun({mutateProject = false}) {
       await audit.write("floor", {agent_id:id,state:"floor_granted"});
       let round = null;
       for (let attempt = 1; attempt <= 2 && !round; attempt += 1) {
+        let failureReason = "specialist produced no valid coordinator-controlled yield";
         liveContext.state = "floor_granted";
         liveContext.current_agent = id;
-        session = await startSession();
-        session.conversation.sendContext(`Private wire from Maya for ${runtime.agents[id].name}. Current turn: ${instruction} Use the private ready finding and prior spoken summaries available through read_huddle_context to add only new information. Never read machine structure aloud.`, `ready-${id}-${turnIndex}-${attempt}`);
-        start = session.conversation.events.length;
-        session.conversation.sendUserMessage(`Coordinator command GRANT_FLOOR:${id}. ${runtime.agents[id].name} is ready; grant that specialist the floor now.`);
-        const outbound = await waitForNew(session.conversation, start, isTransferResponse);
-        const returned = await waitForNew(session.conversation, session.conversation.events.indexOf(outbound) + 1, isTransferResponse);
-        const returnCue = await waitForNew(session.conversation, session.conversation.events.indexOf(returned) + 1, isResponseComplete);
-        await waitForNew(session.conversation, session.conversation.events.indexOf(returnCue) + 1, isResponseComplete, 10000).catch(() => null);
-        await waitForAudioPlayback(session.conversation, start, {maxMs:policy.specialist_turn_timeout_ms});
-        const conversationId = closeSession(session);
-        const details = conversationId ? await waitForConversationDetails(client, conversationId) : null;
-        round = parseTransferRound(details, runtime.agents[id].name);
-        if (round) {
-          commitSession(session);
-        } else {
+        const deadline = Date.now() + policy.specialist_turn_timeout_ms;
+        const remainingMs = () => Math.max(500, deadline - Date.now());
+        try {
+          session = await startSession();
+          session.conversation.sendContext(`Private wire from Maya for ${runtime.agents[id].name}. Current turn: ${instruction} Use the private ready finding and prior spoken summaries available through read_huddle_context to add only new information. Never read machine structure aloud.`, `ready-${id}-${turnIndex}-${attempt}`);
+          start = session.conversation.events.length;
+          session.conversation.sendUserMessage(`Coordinator command GRANT_FLOOR:${id}. ${runtime.agents[id].name} is ready; grant that specialist the floor now.`);
+          const outbound = await waitForNew(session.conversation, start, isTransferResponse, remainingMs());
+          const yieldRequest = await waitForNew(session.conversation, session.conversation.events.indexOf(outbound) + 1, isYieldRequest, remainingMs());
+          if (yieldRequest.client_tool_call?.parameters?.agent_id !== id) throw new Error("yield request named the wrong specialist");
+          await waitForAudioPlayback(session.conversation, start, {maxMs:remainingMs()});
+          const conversationId = closeSession(session);
+          const details = conversationId ? await waitForConversationDetails(client, conversationId) : null;
+          round = parseTransferRound(details, {agentName:runtime.agents[id].name,specialistAgentId:runtime.agents[id].agent_id});
+          if (!round) failureReason = "yield arrived without an attributable specialist contribution";
+          else commitSession(session);
+        } catch (error) {
+          failureReason = error.message;
+          if (activeSession === session) closeSession(session);
+        }
+        if (!round) {
           const retrying = attempt < 2;
-          await audit.write(retrying ? "floor_retry" : "floor_no_response", {agent_id:id,attempt,reason:"specialist returned without a substantive contribution"});
-          console.error(`[huddle] ${id}: ${retrying ? "retrying after an empty return" : "no substantive contribution; skipping"}`);
+          await audit.write(retrying ? "floor_retry" : "floor_no_response", {agent_id:id,attempt,reason:failureReason});
+          console.error(`[huddle] ${id}: ${retrying ? "retrying after an invalid or empty turn" : "no substantive contribution; skipping"}`);
         }
       }
       if (!round) {
@@ -408,10 +417,8 @@ async function liveRun({mutateProject = false}) {
       }
       floor.yield(id);
       liveContext.state = "yielded";
+      liveContext.current_agent = null;
       await audit.write("floor", {agent_id:id,state:"yielded"});
-      transcript.push({speaker:id,kind:"yield",text:round.returnCue});
-      const shouldKeepRecap = id === "elena";
-      if (shouldKeepRecap && round.recap) transcript.push({speaker:"maya",kind:"recap",text:round.recap});
       if (!turns.slice(turnIndex + 1).some(([futureId]) => futureId === id)) floor.complete(id);
       await new Promise((resolve) => setTimeout(resolve, policy.floor_transition_ms));
     }

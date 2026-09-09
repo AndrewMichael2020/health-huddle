@@ -45,9 +45,14 @@ the scenario adapter, not the coordinator.
 - This is a huddle, not brainstorming: one small role delta per turn.
 - Target about 25 seconds and cap a specialist at 45 seconds per issue.
 - A speaker with no new information says “I have nothing to report on this
-  matter,” yields, and transfers back.
+  matter,” yields, and calls the coordinator-controlled `yield_floor` tool.
 - A truly silent speaker is marked not present and skipped.
 - Natural pauses and stutters are retained.
+- ElevenLabs transfers the floor outward from Maya only. The local coordinator
+  accepts the specialist's yield, closes that round, and starts the next Maya
+  round; a stale grant therefore cannot call the same specialist twice.
+- The 3-second soft-timeout phrase “I’m checking the huddle context” is only a
+  latency acknowledgement. It is never treated as a finding or floor action.
 - Maya closes in a separate session using the scenario’s exact final phrase.
 
 ## Local verification

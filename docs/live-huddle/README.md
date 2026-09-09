@@ -14,8 +14,9 @@ curated repository evidence to resolve a bounded PARIS duplicate-event and
 lineage question. Five specialists may investigate in silent ElevenLabs chat
 sessions while Maya controls short, single-floor ElevenLabs transfer rounds.
 Maya grants the floor only to an agent that has reported `ready`; a transferred
-specialist speaks in its configured voice, yields the floor, and returns the
-conversation to Maya.
+specialist speaks in its configured voice and signals `yield_floor`. The local
+coordinator closes that round and starts the next Maya round, so the provider
+cannot silently return or reuse a stale grant.
 
 The proof is successful when the team reaches a grounded conclusion, responds
 constructively to a challenge, performs only allowed and reversible Project
@@ -32,7 +33,9 @@ Daniel  Priya  Marcus  Elena  Owen
              ready / floor token
                     v
        short live ElevenLabs transfer rounds
-          Maya <-> transferred agent
+          Maya -> transferred agent
+                    |
+       coordinator-controlled yield
                     |
                     v
        guarded Project 13 tool proxy
@@ -57,8 +60,8 @@ Daniel  Priya  Marcus  Elena  Owen
 - Keep our engineering work in a separate private GitHub Project.
 - Never upload this planning section or evaluator-only acceptance truth to the
   agents' knowledge base.
-- Treat the repository-root `README.md` as frozen until the user explicitly
-  authorizes its final update.
+- Treat the repository-root `README.md` as frozen during provider runs; change
+  it only through an explicitly reviewed publication update.
 - Make every spoken turn understandable to a human listener without requiring
   them to read the repository, Project board, or audit log.
 

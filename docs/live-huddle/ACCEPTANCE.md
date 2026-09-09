@@ -31,9 +31,11 @@ original 16 kHz mono PCM audio without audio transcoding.
 
 ## Recorded limitation and correction
 
-Elena and Owen returned the floor without a reliable substantive specialist
-turn in the provider transfer. The organic audio is preserved as heard. Future
-runs now distinguish three outcomes:
+Elena's turn contained an empty transfer echo. Owen returned the floor before
+speaking; the release-boundary sentence that followed was produced by Maya from
+Owen's prepared private report. The organic audio is preserved as heard, but it
+is not evidence that Owen spoke. Future runs use one outbound transfer and a
+coordinator-controlled yield, and distinguish three outcomes:
 
 1. a useful contribution is accepted even with a stutter or missing formal
    yield phrase;
