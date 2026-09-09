@@ -114,7 +114,7 @@ The scene was pre-planned and replayed deterministically so that every spoken de
 ## Agents in the Wild: LIVE agent huddle
 
 <p align="left">
-  <a href="live-demo/final/Skagit-Health-Live-Knowledge-Grounded-Agent-Huddle-FINAL-v2.mp4">
+  <a href="https://youtu.be/vcl44mb7D0s">
     <img src="demo/assets/watch-agents-in-the-wild-live-youtube.jpg" alt="Human analysts observing the live Skagit Health knowledge-grounded agent huddle" width="360">
   </a>
 </p>
