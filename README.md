@@ -151,7 +151,6 @@ This is the huddle in the wild: orderly without being scripted, imperfect withou
 | `docs/live-huddle/` | The live proof-of-concept’s business requirements, implementation plan, acceptance record, and practical lessons for knowledge delivery, concise turns, guarded actions, graceful recovery, and Human handoffs. |
 | `project/` | The reproducible GitHub Project definition, its status model, seed tickets, huddle-created tickets, and the runtime manifest for Project 13. |
 | `demo/` | The locked huddle script, voice plan, deterministic GitHub action ledger, video plan, opening artwork, and production notes. |
-| `demo/assets/watch-agents-in-the-wild-live-youtube.jpg` | The 1280×720 *Agents in the Wild* marquee, showing the Human analysts around the live Project work surface. |
 | `demo/final/` | The completed four-minute video, ready for playback or sharing. |
 | `live_huddle/` | The controlled-floor ElevenLabs coordinator, six role definitions, bounded GitHub Project guard, reusable scenario loader and templates, evidence builder, acceptance evaluator, and local tests. |
 | `live-demo/` | The operator guide and deterministic audio/video plans for presenting an accepted organic huddle without rewriting its first-take speech. |
