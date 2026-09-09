@@ -1,4 +1,4 @@
-const STATES = new Set(["thinking","ready","parked","floor_granted","speaking","challenged","yielded","complete"]);
+const STATES = new Set(["thinking","ready","parked","skipped","floor_granted","speaking","challenged","yielded","complete"]);
 
 export class FloorCoordinator {
   constructor(agentIds, {transitionMs = 400, clock = () => Date.now()} = {}) {
@@ -51,6 +51,19 @@ export class FloorCoordinator {
     return this.record(agentId, "challenged");
   }
 
-  park(agentId, reason) { return this.record(agentId, "parked", {reason}); }
+  park(agentId, reason) {
+    if (this.floorHolder === agentId) {
+      this.floorHolder = null;
+      this.lastYieldAt = this.clock();
+    }
+    return this.record(agentId, "parked", {reason});
+  }
+  skip(agentId, reason) {
+    if (this.floorHolder === agentId) {
+      this.floorHolder = null;
+      this.lastYieldAt = this.clock();
+    }
+    return this.record(agentId, "skipped", {reason});
+  }
   complete(agentId) { return this.record(agentId, "complete"); }
 }

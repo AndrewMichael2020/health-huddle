@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "source_run": "live-157330ed-completed",
+  "gap_seconds": 0.2,
+  "segments": [
+    {"label": "opening", "file": "01-opening.mp3", "leading_silence_seconds": 1.992},
+    {"label": "marcus", "file": "02-marcus.mp3", "leading_silence_seconds": 2.959},
+    {"label": "elena", "file": "03-elena.mp3", "leading_silence_seconds": 2.587},
+    {"label": "priya", "file": "04-priya.mp3", "leading_silence_seconds": 3.229},
+    {"label": "owen", "file": "05-owen.mp3", "leading_silence_seconds": 3.24},
+    {"label": "daniel", "file": "06-daniel.mp3", "leading_silence_seconds": 2.452},
+    {"label": "project-action", "file": "07-project-action.mp3", "leading_silence_seconds": 3.824},
+    {"label": "closing", "file": "08-closing.wav", "leading_silence_seconds": 0}
+  ]
+}

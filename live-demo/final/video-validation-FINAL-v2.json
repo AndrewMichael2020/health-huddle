@@ -1,0 +1,22 @@
+{
+  "audio_codec": "aac",
+  "blockers": [],
+  "closing_verified": true,
+  "duration_seconds": 193.543,
+  "height": 1080,
+  "lossless_master_audio_codec": "pcm_s16le",
+  "reaction_count": 25,
+  "ready": true,
+  "speaker_order": [
+    "maya",
+    "marcus",
+    "elena",
+    "priya",
+    "owen",
+    "daniel",
+    "maya",
+    "maya"
+  ],
+  "video_codec": "h264",
+  "width": 1920
+}

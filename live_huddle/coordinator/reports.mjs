@@ -1,5 +1,4 @@
 const FORBIDDEN_SPOKEN_PATTERNS = [
-  /\bEV-[A-Z0-9_-]+\b/i,
   /\b(?:thinking|floor_granted|yield_floor)\b/i,
   /\{\s*"(?:status|claim|evidence_refs)"/i,
   /\bBI Analytics (?:must|can|will) (?:approve|confirm|decide|authorize|veto)\b/i
@@ -17,6 +16,8 @@ export function validateReport(value, {minEvidence = 1, allowedEvidenceRefs = nu
   if (typeof value?.human_handoff !== "string" || !value.human_handoff.trim()) errors.push("human_handoff is required");
   if (typeof value?.confidence !== "number" || value.confidence < 0 || value.confidence > 1) errors.push("confidence must be between 0 and 1");
   if (typeof value?.spoken_summary !== "string" || value.spoken_summary.trim().length < 30) errors.push("spoken_summary is required");
+  const spokenWords = value?.spoken_summary?.trim().split(/\s+/).filter(Boolean).length ?? 0;
+  if (spokenWords > 65) errors.push("spoken_summary exceeds 65 words");
   if (FORBIDDEN_SPOKEN_PATTERNS.some((pattern) => pattern.test(value?.spoken_summary ?? ""))) errors.push("spoken_summary contains machine-facing language");
   if (errors.length) throw new Error(errors.join("; "));
   return value;

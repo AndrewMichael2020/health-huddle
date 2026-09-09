@@ -12,5 +12,10 @@ build/
 *.mp4
 !demo/final/
 !demo/final/Skagit-Health-Agent-Huddle.mp4
+live-demo/build/
+live-demo/build-full/
+!live-demo/final/
+!live-demo/final/*.mp4
+!live-demo/final/*.mov
 *.webm
 node_modules/

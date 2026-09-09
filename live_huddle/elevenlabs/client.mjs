@@ -49,6 +49,9 @@ export class ElevenLabsClient {
   textToSpeechMp3(voiceId, text, {modelId = "eleven_turbo_v2"} = {}) {
     return this.requestBytes("POST", `/v1/text-to-speech/${voiceId}`, {query:{output_format:"mp3_44100_128"}, body:{text,model_id:modelId,voice_settings:{stability:0.56,similarity_boost:0.76,speed:1.2}}});
   }
+  textToSpeechPcm(voiceId, text, {modelId = "eleven_turbo_v2"} = {}) {
+    return this.requestBytes("POST", `/v1/text-to-speech/${voiceId}`, {query:{output_format:"pcm_16000"}, body:{text,model_id:modelId,voice_settings:{stability:0.56,similarity_boost:0.76,speed:1.2}}});
+  }
   getSignedUrl(agentId, {includeConversationId = true} = {}) {
     return this.get("/v1/convai/conversation/get-signed-url", {query:{agent_id:agentId, include_conversation_id:includeConversationId}});
   }

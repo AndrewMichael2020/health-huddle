@@ -1,0 +1,697 @@
+{
+  "closing": "The bounded PARIS conclusion is that status events can use referral, status, and event time for repeatable duplicate handling, while unstable row identifiers remain lineage only. Issue eleven was moved to Ready and restored after the test. Human Systems owns lifecycle rules, the Human BI Analyst owns mapping and reconciliation, and Human Privacy and Security owns classification. No Human approval was given. Happy Wednesday, everyone.",
+  "deterministic_segments": [
+    {
+      "duration_seconds": 3.009,
+      "frame": "segment-000.jpg",
+      "kind": "opening",
+      "reaction_count": 1,
+      "speaker": "maya",
+      "start_seconds": 0.0
+    },
+    {
+      "duration_seconds": 3.009,
+      "frame": "segment-001.jpg",
+      "kind": "opening",
+      "reaction_count": 2,
+      "speaker": "maya",
+      "start_seconds": 3.009
+    },
+    {
+      "duration_seconds": 2.909,
+      "frame": "segment-002.jpg",
+      "kind": "opening",
+      "reaction_count": 3,
+      "speaker": "maya",
+      "start_seconds": 6.019
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-01-01.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "marcus",
+      "start_seconds": 8.928
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-01-02.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "marcus",
+      "start_seconds": 8.961
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-01-03.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "marcus",
+      "start_seconds": 8.995
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-01-04.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "marcus",
+      "start_seconds": 9.028
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-01-05.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "marcus",
+      "start_seconds": 9.061
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-01-06.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "marcus",
+      "start_seconds": 9.095
+    },
+    {
+      "duration_seconds": 4.982,
+      "frame": "segment-003.jpg",
+      "kind": "contribution",
+      "reaction_count": 1,
+      "speaker": "marcus",
+      "start_seconds": 9.128
+    },
+    {
+      "duration_seconds": 5.082,
+      "frame": "segment-004.jpg",
+      "kind": "contribution",
+      "reaction_count": 1,
+      "speaker": "marcus",
+      "start_seconds": 14.11
+    },
+    {
+      "duration_seconds": 5.082,
+      "frame": "segment-005.jpg",
+      "kind": "contribution",
+      "reaction_count": 2,
+      "speaker": "marcus",
+      "start_seconds": 19.191
+    },
+    {
+      "duration_seconds": 5.082,
+      "frame": "segment-006.jpg",
+      "kind": "contribution",
+      "reaction_count": 2,
+      "speaker": "marcus",
+      "start_seconds": 24.273
+    },
+    {
+      "duration_seconds": 5.082,
+      "frame": "segment-007.jpg",
+      "kind": "contribution",
+      "reaction_count": 3,
+      "speaker": "marcus",
+      "start_seconds": 29.354
+    },
+    {
+      "duration_seconds": 4.982,
+      "frame": "segment-008.jpg",
+      "kind": "contribution",
+      "reaction_count": 3,
+      "speaker": "marcus",
+      "start_seconds": 34.435
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-02-01.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "elena",
+      "start_seconds": 39.417
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-02-02.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "elena",
+      "start_seconds": 39.45
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-02-03.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "elena",
+      "start_seconds": 39.484
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-02-04.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "elena",
+      "start_seconds": 39.517
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-02-05.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "elena",
+      "start_seconds": 39.55
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-02-06.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "elena",
+      "start_seconds": 39.584
+    },
+    {
+      "duration_seconds": 5.667,
+      "frame": "segment-009.jpg",
+      "kind": "contribution",
+      "reaction_count": 1,
+      "speaker": "elena",
+      "start_seconds": 39.617
+    },
+    {
+      "duration_seconds": 5.767,
+      "frame": "segment-010.jpg",
+      "kind": "contribution",
+      "reaction_count": 1,
+      "speaker": "elena",
+      "start_seconds": 45.284
+    },
+    {
+      "duration_seconds": 5.767,
+      "frame": "segment-011.jpg",
+      "kind": "contribution",
+      "reaction_count": 2,
+      "speaker": "elena",
+      "start_seconds": 51.052
+    },
+    {
+      "duration_seconds": 5.767,
+      "frame": "segment-012.jpg",
+      "kind": "contribution",
+      "reaction_count": 2,
+      "speaker": "elena",
+      "start_seconds": 56.819
+    },
+    {
+      "duration_seconds": 5.767,
+      "frame": "segment-013.jpg",
+      "kind": "contribution",
+      "reaction_count": 3,
+      "speaker": "elena",
+      "start_seconds": 62.587
+    },
+    {
+      "duration_seconds": 5.667,
+      "frame": "segment-014.jpg",
+      "kind": "contribution",
+      "reaction_count": 3,
+      "speaker": "elena",
+      "start_seconds": 68.354
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-03-01.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "priya",
+      "start_seconds": 74.022
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-03-02.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "priya",
+      "start_seconds": 74.055
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-03-03.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "priya",
+      "start_seconds": 74.089
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-03-04.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "priya",
+      "start_seconds": 74.122
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-03-05.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "priya",
+      "start_seconds": 74.155
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-03-06.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "priya",
+      "start_seconds": 74.189
+    },
+    {
+      "duration_seconds": 4.643,
+      "frame": "segment-015.jpg",
+      "kind": "contribution",
+      "reaction_count": 1,
+      "speaker": "priya",
+      "start_seconds": 74.222
+    },
+    {
+      "duration_seconds": 4.742,
+      "frame": "segment-016.jpg",
+      "kind": "contribution",
+      "reaction_count": 1,
+      "speaker": "priya",
+      "start_seconds": 78.864
+    },
+    {
+      "duration_seconds": 4.742,
+      "frame": "segment-017.jpg",
+      "kind": "contribution",
+      "reaction_count": 2,
+      "speaker": "priya",
+      "start_seconds": 83.607
+    },
+    {
+      "duration_seconds": 4.742,
+      "frame": "segment-018.jpg",
+      "kind": "contribution",
+      "reaction_count": 2,
+      "speaker": "priya",
+      "start_seconds": 88.349
+    },
+    {
+      "duration_seconds": 4.742,
+      "frame": "segment-019.jpg",
+      "kind": "contribution",
+      "reaction_count": 3,
+      "speaker": "priya",
+      "start_seconds": 93.092
+    },
+    {
+      "duration_seconds": 4.643,
+      "frame": "segment-020.jpg",
+      "kind": "contribution",
+      "reaction_count": 3,
+      "speaker": "priya",
+      "start_seconds": 97.834
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-04-01.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "owen",
+      "start_seconds": 102.477
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-04-02.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "owen",
+      "start_seconds": 102.51
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-04-03.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "owen",
+      "start_seconds": 102.544
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-04-04.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "owen",
+      "start_seconds": 102.577
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-04-05.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "owen",
+      "start_seconds": 102.61
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-04-06.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "owen",
+      "start_seconds": 102.644
+    },
+    {
+      "duration_seconds": 4.788,
+      "frame": "segment-021.jpg",
+      "kind": "contribution",
+      "reaction_count": 1,
+      "speaker": "owen",
+      "start_seconds": 102.677
+    },
+    {
+      "duration_seconds": 4.888,
+      "frame": "segment-022.jpg",
+      "kind": "contribution",
+      "reaction_count": 2,
+      "speaker": "owen",
+      "start_seconds": 107.465
+    },
+    {
+      "duration_seconds": 4.888,
+      "frame": "segment-023.jpg",
+      "kind": "contribution",
+      "reaction_count": 2,
+      "speaker": "owen",
+      "start_seconds": 112.353
+    },
+    {
+      "duration_seconds": 4.788,
+      "frame": "segment-024.jpg",
+      "kind": "contribution",
+      "reaction_count": 3,
+      "speaker": "owen",
+      "start_seconds": 117.241
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-05-01.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "daniel",
+      "start_seconds": 122.029
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-05-02.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "daniel",
+      "start_seconds": 122.062
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-05-03.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "daniel",
+      "start_seconds": 122.096
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-05-04.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "daniel",
+      "start_seconds": 122.129
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-05-05.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "daniel",
+      "start_seconds": 122.162
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-05-06.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "daniel",
+      "start_seconds": 122.196
+    },
+    {
+      "duration_seconds": 4.811,
+      "frame": "segment-025.jpg",
+      "kind": "contribution",
+      "reaction_count": 1,
+      "speaker": "daniel",
+      "start_seconds": 122.229
+    },
+    {
+      "duration_seconds": 4.911,
+      "frame": "segment-026.jpg",
+      "kind": "contribution",
+      "reaction_count": 1,
+      "speaker": "daniel",
+      "start_seconds": 127.04
+    },
+    {
+      "duration_seconds": 4.911,
+      "frame": "segment-027.jpg",
+      "kind": "contribution",
+      "reaction_count": 2,
+      "speaker": "daniel",
+      "start_seconds": 131.952
+    },
+    {
+      "duration_seconds": 4.911,
+      "frame": "segment-028.jpg",
+      "kind": "contribution",
+      "reaction_count": 2,
+      "speaker": "daniel",
+      "start_seconds": 136.863
+    },
+    {
+      "duration_seconds": 4.911,
+      "frame": "segment-029.jpg",
+      "kind": "contribution",
+      "reaction_count": 2,
+      "speaker": "daniel",
+      "start_seconds": 141.775
+    },
+    {
+      "duration_seconds": 4.911,
+      "frame": "segment-030.jpg",
+      "kind": "contribution",
+      "reaction_count": 3,
+      "speaker": "daniel",
+      "start_seconds": 146.686
+    },
+    {
+      "duration_seconds": 4.811,
+      "frame": "segment-031.jpg",
+      "kind": "contribution",
+      "reaction_count": 3,
+      "speaker": "daniel",
+      "start_seconds": 151.598
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-06-01.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "maya",
+      "start_seconds": 156.409
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-06-02.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "maya",
+      "start_seconds": 156.442
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-06-03.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "maya",
+      "start_seconds": 156.476
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-06-04.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "maya",
+      "start_seconds": 156.509
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-06-05.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "maya",
+      "start_seconds": 156.542
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-06-06.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "maya",
+      "start_seconds": 156.576
+    },
+    {
+      "duration_seconds": 4.336,
+      "frame": "segment-032.jpg",
+      "kind": "project_action",
+      "reaction_count": 1,
+      "speaker": "maya",
+      "start_seconds": 156.609
+    },
+    {
+      "duration_seconds": 4.436,
+      "frame": "segment-033.jpg",
+      "kind": "project_action",
+      "reaction_count": 2,
+      "speaker": "maya",
+      "start_seconds": 160.945
+    },
+    {
+      "duration_seconds": 4.436,
+      "frame": "segment-034.jpg",
+      "kind": "project_action",
+      "reaction_count": 2,
+      "speaker": "maya",
+      "start_seconds": 165.381
+    },
+    {
+      "duration_seconds": 4.336,
+      "frame": "segment-035.jpg",
+      "kind": "project_action",
+      "reaction_count": 3,
+      "speaker": "maya",
+      "start_seconds": 169.817
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-07-01.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "maya",
+      "start_seconds": 174.153
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-07-02.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "maya",
+      "start_seconds": 174.186
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-07-03.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "maya",
+      "start_seconds": 174.22
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-07-04.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "maya",
+      "start_seconds": 174.253
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-07-05.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "maya",
+      "start_seconds": 174.286
+    },
+    {
+      "duration_seconds": 0.033,
+      "frame": "transition-07-06.jpg",
+      "kind": "visual_transition",
+      "reaction_count": 0,
+      "speaker": "maya",
+      "start_seconds": 174.32
+    },
+    {
+      "duration_seconds": 4.722,
+      "frame": "segment-036.jpg",
+      "kind": "closing",
+      "reaction_count": 1,
+      "speaker": "maya",
+      "start_seconds": 174.353
+    },
+    {
+      "duration_seconds": 4.822,
+      "frame": "segment-037.jpg",
+      "kind": "closing",
+      "reaction_count": 2,
+      "speaker": "maya",
+      "start_seconds": 179.075
+    },
+    {
+      "duration_seconds": 4.822,
+      "frame": "segment-038.jpg",
+      "kind": "closing",
+      "reaction_count": 3,
+      "speaker": "maya",
+      "start_seconds": 183.898
+    },
+    {
+      "duration_seconds": 4.822,
+      "frame": "segment-039.jpg",
+      "kind": "closing",
+      "reaction_count": 4,
+      "speaker": "maya",
+      "start_seconds": 188.72
+    }
+  ],
+  "duration_seconds": 193.543,
+  "format": {
+    "audio_codec": "aac",
+    "fps": 30,
+    "height": 1080,
+    "video_codec": "h264",
+    "width": 1920
+  },
+  "lossless_audio_master": "Skagit-Health-Live-Knowledge-Grounded-Agent-Huddle-Lossless-Master-FINAL-v2.mov",
+  "reaction_count": 25,
+  "schema_version": 1,
+  "soundtrack_mode": "retained-first-take-live-agent-audio-with-separate-live-maya-close",
+  "soundtrack_run": "live-157330ed-completed-full-first-takes",
+  "soundtrack_user_acceptance": "approved",
+  "source_assets": [
+    "demo/assets/coffee-outside-agent-huddles-inside.jpg",
+    "demo/assets/huddle-board-reaction.jpg",
+    "demo/assets/identity-crosswalk.png",
+    "demo/assets/paris-referral-status-batch-002.png"
+  ],
+  "source_audio": ".artifacts/live-huddle/runs/live-157330ed-completed/audio-first-takes-complete.wav",
+  "source_audio_duration_seconds": 193.542625,
+  "source_audio_edits": [],
+  "source_audio_sha256": "4e24074b0aa4c4359de3573e5d98cc8d9e0b271e2ae4fc76563a3c5bbedf4b10",
+  "speakers": [
+    "maya",
+    "marcus",
+    "elena",
+    "priya",
+    "owen",
+    "daniel",
+    "maya",
+    "maya"
+  ],
+  "video": "Skagit-Health-Live-Knowledge-Grounded-Agent-Huddle-FINAL-v2.mp4",
+  "visual_transition_seconds": 0.2
+}

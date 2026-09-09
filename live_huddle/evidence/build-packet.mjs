@@ -40,17 +40,24 @@ function sha256(value) {
   return createHash("sha256").update(value).digest("hex");
 }
 
-export async function buildEvidencePacket({outDir = path.join(repoRoot, ".artifacts/live-huddle/evidence"), projectEvidence = ""} = {}) {
+export async function buildEvidencePacket({
+  outDir = path.join(repoRoot, ".artifacts/live-huddle/evidence"),
+  projectEvidence = "",
+  sourceAllowlist = SOURCE_ALLOWLIST,
+  excludedSources = EXCLUDED_SOURCES,
+  projectSourceLabel = "GitHub Project 13 selected tickets"
+} = {}) {
   const sections = [];
   const sources = [];
-  for (const relativePath of SOURCE_ALLOWLIST) {
+  for (const relativePath of sourceAllowlist) {
     const body = await readFile(path.join(repoRoot, relativePath), "utf8");
     sources.push({path: relativePath, sha256: sha256(body), bytes: Buffer.byteLength(body)});
     sections.push(`\n## SOURCE: ${relativePath}\n\n${body.trim()}\n`);
   }
   if (projectEvidence.trim()) {
-    sources.push({path: "github://project-13/issues-3-5-11-12", sha256: sha256(projectEvidence), bytes: Buffer.byteLength(projectEvidence)});
-    sections.push(`\n## SOURCE: GitHub Project 13 selected tickets\n\n${projectEvidence.trim()}\n`);
+    const projectPath = `github://${projectSourceLabel.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
+    sources.push({path: projectPath, sha256: sha256(projectEvidence), bytes: Buffer.byteLength(projectEvidence)});
+    sections.push(`\n## SOURCE: ${projectSourceLabel}\n\n${projectEvidence.trim()}\n`);
   }
   const header = [
     "# Live huddle evidence packet",
@@ -65,7 +72,8 @@ export async function buildEvidencePacket({outDir = path.join(repoRoot, ".artifa
     packet_sha256: sha256(packet),
     source_count: sources.length,
     sources,
-    excluded_sources: EXCLUDED_SOURCES
+    excluded_sources: excludedSources,
+    evidence_refs:[...sourceAllowlist, ...(projectEvidence.trim() ? [projectSourceLabel] : [])]
   };
   await mkdir(outDir, {recursive: true});
   await writeFile(path.join(outDir, "knowledge.md"), packet);

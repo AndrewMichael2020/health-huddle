@@ -87,12 +87,12 @@ speech using the human-legibility contract in the BRD. The coordinator retains
 the exact evidence references while the agent speaks their meaning in ordinary
 language.
 
-Spoken turns should sound like colleagues explaining work, not services
-serializing results. Prompts shall require complete sentences, brief definitions
-for unfamiliar terms, a clear separation between evidence and recommendation,
-and an explicit human handoff where authority is missing. Maya shall summarize
-technical exchanges in plain language before recording a decision or changing
-topic.
+Spoken turns should sound like colleagues exchanging decision summaries, not
+services serializing results or a brainstorming group restating the same fact.
+Prompts require complete sentences, distinct role deltas, references to written
+evidence, and an explicit human handoff where authority is missing. Maya does
+not summarize every specialist. She intervenes only to resolve a challenge,
+park an unproductive point, or pivot toward the decision.
 
 The coordinator rejects malformed or uncited reports and permits one repair
 attempt. The floor state machine is:
@@ -222,11 +222,12 @@ prompts or turn controls only when a measured defect justifies it.
 
 Gate: all criteria pass except the intentionally disabled Project actions.
 
-### Phase 6: accepted huddle artifact — recovered composite complete
+### Phase 6: accepted organic huddle artifact — complete
 
-Run one 8-12 minute huddle with the guarded Project actions enabled. Stop at 15
-minutes or the configured cost ceiling. Restore Project 13 immediately after
-the run and verify snapshot equality.
+Run one bounded huddle with guarded Project actions enabled. Target roughly 25
+seconds and cap each specialist at 45 seconds per issue. Do not stop the whole
+huddle on a global timer while it is still producing useful evidence. Restore
+Project 13 immediately after the run and verify snapshot equality.
 
 Retain:
 
@@ -238,11 +239,10 @@ Retain:
 - actual duration and ElevenLabs usage; and
 - the evaluator report with failures and unresolved questions.
 
-Gate outcome: the recovered composite passed its seven explicit criteria and
-restored Project 13 exactly. Five specialist turns are retained live transfer
-rounds. Owen's real-agent report was voiced through ElevenLabs TTS after two
-empty return-transfer attempts. This is an accepted content, tooling, and
-audio artifact, but it is not evidence of an uninterrupted all-six live run.
+Gate outcome: the accepted full first-take run preserved the organic transfer
+behavior, executed the guarded Issue 11 action, delivered Maya's complete close,
+and restored Project 13 exactly. Empty specialist returns remain visible and
+are handled explicitly by the corrected future-turn contract.
 
 ## 7. Validation matrix
 
@@ -255,10 +255,12 @@ audio artifact, but it is not evidence of an uninterrupted all-six live run.
 | Agent fabricates a ticket action | Schema validation, evidence requirement, item allow-list, current-state precondition |
 | Project is left dirty | Pre-run snapshot, inverse ledger, mutation lock, exact post-reset comparison |
 | Credential leakage | Server-only loading, signed URLs, redaction tests, secret-pattern repository scan |
-| Costs run away | Text-first gates, per-run ceiling, duration ceiling, usage telemetry, operator stop |
+| Costs run away | Text-first gates, per-run credit ceiling, one useful first take, usage telemetry, operator stop |
 | Human authority is blurred | Prompt constraints, tool policy, rubric failures for unauthorized approval claims |
 | Conversation is polished but shallow | One narrow decision, mandatory challenge, evidence and uncertainty scoring |
 | Conversation is technically correct but hard to follow | Separate machine reports from spoken summaries; require plain-language Maya recaps and human transcript review |
+| Agents repeat the same conclusion | Enforce per-turn word ceilings, assign distinct role deltas, expose prior spoken summaries privately, and reject routine Maya recaps |
+| Transcript closes but audio stops early | Require non-empty closing audio and verify the final continuous-media tail before human review |
 
 ## 8. Completion definition
 

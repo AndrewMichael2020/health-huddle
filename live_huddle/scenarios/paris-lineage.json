@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "id": "paris-duplicate-events-lineage",
+  "title": "PARIS duplicate events and lineage",
+  "question": "Do repeated PARIS extracts create duplicate current events, and can every governed row be traced to its source record and load run?",
+  "private_brief": "Compare both PARIS batch extracts at the contract grain: referral, normalized status, and event time. Inspect the grouping and reconciliation logic, then quantify only what the evidence independently supports. Treat the source row identifier as potentially unstable delivery lineage unless an accountable Human source owner confirms otherwise. Separate sample findings from universal claims, state uncertainty, identify useful follow-up evidence, and route consequential decisions to the appropriate Human role.",
+  "method_prompt": "Tell specialists to compare both batch extracts using referral, normalized status, and event time; inspect grouping and reconciliation logic; quantify only what they independently find; separate sample evidence from Human source confirmation; and report uncertainty and help needed. Do not reveal a count, finding, candidate-key conclusion, or recommendation.",
+  "brief_validation": {
+    "min_words": 35,
+    "max_words": 160,
+    "required_term_groups": [["both", "two"], ["batch", "extract"], ["referral"], ["status"], ["event time", "event_at"], ["group", "reconcil", "implementation", "code"]],
+    "forbidden_patterns": ["\\b(?:four|4)\\b", "\\bI (?:find|found|conclude|recommend)\\b"]
+  },
+  "knowledge": {
+    "source_allowlist": [
+      "docs/modernization-goal.md",
+      "docs/current-state.md",
+      "docs/target-state.md",
+      "docs/service-level-objectives.md",
+      "docs/architecture-decisions/ADR-001-source-shaped-bronze.md",
+      "contracts/paris-source-map.csv",
+      "contracts/canonical-entities.yml",
+      "contracts/lifecycle-rules.yml",
+      "contracts/privacy-classification.yml",
+      "contracts/release-gates.yml",
+      "data/generated/batch_001/paris_referral_status.csv",
+      "data/generated/batch_002/paris_referral_status.csv",
+      "src/standardize_records.py",
+      "src/reconcile_load.py"
+    ],
+    "excluded_sources": [
+      "README.md",
+      "docs/huddle-scenario.md",
+      "demo/huddle-script.json",
+      "demo/action-ledger.json",
+      "data/expected-results/scenario_truth.json",
+      "docs/live-huddle/README.md",
+      "docs/live-huddle/BRD.md",
+      "docs/live-huddle/PLAN.md"
+    ],
+    "project_source_label": "GitHub Project 13 selected tickets"
+  },
+  "project": {
+    "owner": "AndrewMichael2020",
+    "repository": "health-huddle",
+    "number": 13,
+    "allowed_issue_numbers": [3, 5, 11, 12],
+    "action": {"issue_number": 11, "status": "Ready"}
+  },
+  "role_lenses": {
+    "daniel": "Keep the fictional organization's modernization goal and Human authority boundary visible. Synthesize whether the findings advance the portfolio goal without overstating readiness.",
+    "priya": "Use the Meditech late-correction pattern as a comparison. State what that analogy helps test and what it cannot prove about PARIS.",
+    "marcus": "Own the row-level PARIS comparison, candidate business-event identity, delivery lineage, and source-semantics questions.",
+    "elena": "Independently reproduce the comparison, challenge collisions and timestamp changes, and propose replay or reconciliation evidence. Include one short, good-natured workplace joke; one fitting text emoji is welcome.",
+    "owen": "Test privacy, lifecycle, release-gate, and audit implications. Name every consequential decision that still belongs to an accountable Human role."
+  },
+  "flow": {
+    "base_investigators": ["daniel", "priya", "marcus", "owen"],
+    "challenge": {"challenger_id": "elena", "subject_id": "marcus"},
+    "audible_turns": [
+      {"agent_id": "marcus", "source": "followup_or_initial", "instruction": "State the row-level finding and answer the private reconciliation challenge. Use at most two exact row-ID pairs. Do not recap the organizational frame."},
+      {"agent_id": "elena", "source": "initial", "instruction": "State only the reconciliation challenge and one useful replay check. Do not restate the full candidate grain."},
+      {"agent_id": "priya", "source": "initial", "instruction": "State only what the Meditech correction analogy helps test and what it cannot prove about PARIS."},
+      {"agent_id": "owen", "source": "initial", "instruction": "State only the release boundary and named Human handoffs. Do not restate the row-level conclusion."},
+      {"agent_id": "daniel", "source": "initial", "instruction": "Synthesize organizational guidance once: the goal, bounded decision, next evidence, and Human authority boundary. Do not repeat the row IDs."}
+    ]
+  },
+  "speech": {
+    "opening_max_words": 35,
+    "specialist_min_words": 35,
+    "specialist_max_words": 55,
+    "director_max_words": 65,
+    "closing": {"min_words": 45, "max_words": 60, "exact_final_phrase": "Happy Wednesday, everyone."}
+  },
+  "evaluation": {
+    "required_findings": [
+      {"label": "The team identifies four repeat deliveries", "patterns": ["(?:four|4)[^\\n.]{0,100}(?:repeat|duplicate)|(?:repeat|duplicate)[^\\n.]{0,100}(?:four|4)"]},
+      {"label": "Business-event identity is separated from delivery lineage", "patterns": ["referral", "status", "(?:event time|timestamp)", "(?:paris_row_id|row id|extract id)", "(?:lineage|delivery trail|delivery history)"]},
+      {"label": "Key uniqueness and timestamp stability remain Human-confirmed uncertainties", "patterns": ["(?:unique|uniqueness)", "(?:timestamp|event time)", "(?:source owner|human)"]}
+    ]
+  }
+}

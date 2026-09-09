@@ -26,3 +26,16 @@ test("challenge requires a completed spoken turn", () => {
   floor.challenge("marcus");
   floor.ready("marcus", {});
 });
+
+test("skipping an absent floor holder releases the floor", () => {
+  let now = 1000;
+  const floor = new FloorCoordinator(["maya", "marcus"], {transitionMs:200, clock:() => now});
+  floor.ready("marcus", {});
+  floor.grant("marcus");
+  floor.skip("marcus", "not present");
+  assert.equal(floor.floorHolder, null);
+  assert.equal(floor.agents.get("marcus").state, "skipped");
+  now += 200;
+  floor.ready("maya", {});
+  assert.doesNotThrow(() => floor.grant("maya"));
+});

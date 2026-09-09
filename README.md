@@ -111,6 +111,30 @@ Maryam, a Human BI Analyst, used the time that opened up to create *skills* for 
 
 The scene was pre-planned and replayed deterministically so that every spoken decision, ticket movement, reaction, and handoff could be audited before the camera rolled. Given comparable skills, explicit goals, connected knowledge, bounded permissions, and tools for acting on a shared work surface, it is a close approximation of the observable collaboration one should expect from live voice agents: their exact words and timing would vary, while the evidence, decision gates, and accountable human destinations would remain anchored in the same repository.
 
+## Agents in the Wild: LIVE agent huddle
+
+<p align="left">
+  <a href="live-demo/final/Skagit-Health-Live-Knowledge-Grounded-Agent-Huddle-FINAL-v2.mp4">
+    <img src="demo/assets/watch-agents-in-the-wild-live-youtube.jpg" alt="Human analysts observing the live Skagit Health knowledge-grounded agent huddle" width="360">
+  </a>
+</p>
+
+The first huddle asked what a carefully composed demonstration could reveal. The live huddle asks a less comfortable question: what happens when six agents enter the room with roles, evidence, and authority boundaries—but without lines to recite?
+
+They do not become human. Nor do they become a committee of chat windows talking over one another. They become something more practical and, in its small way, more interesting: a working institution with a floor.
+
+The assignment is deliberately narrow. The agents examine one knot in the modernization program: PARIS status events that may have returned in a later delivery under unfamiliar extract identifiers. Each specialist can inspect the repository evidence, the governing contracts, and the live Project state through the lens of a different responsibility. Daniel keeps the organizational purpose in view. Marcus studies source meaning and lineage. Elena challenges the arithmetic. Priya looks for a rule that will survive the next source. Owen watches the Human gates around governance and release. Maya keeps a hand on the pulse.
+
+Most of their work is quiet. While one agent speaks, the others can investigate. Readiness, rather than speed, earns the floor. Maya can pass a compact instruction privately—compare the candidate business fields, inspect the grouping rule, answer the unresolved point—without making the room listen to its own machinery. A specialist then has roughly the length of a useful stand-up contribution: enough time for a conclusion, the decisive record identifiers, a proposed action, and the Human owner who must decide what the agents cannot.
+
+This changes the sound of the meeting. There are pauses. A voice may hesitate. Someone may discover that another agent has already said the important thing and report, plainly, that there is nothing more to add. The imperfections are not failures of polish; they are signs that the participants are responding to a shared situation rather than reading six parallel speeches. What matters is whether the next statement advances the issue.
+
+The Project board is not scenery. It is the common work surface and the audit trail. Reads are broad enough for informed judgment; writes are narrow, explicit, reversible, and recorded. An agent may move the allowed issue through the authorized path, but consequential approval remains with named people. Cooperation is visible not because every voice agrees, but because challenge sharpens the evidence, assistance follows the finding, and uncertainty arrives at an accountable Human desk instead of dissolving into confident prose.
+
+The deeper experiment is not about making a meeting faster. It is about making distributed machine attention legible: knowledge arrives through tools, judgment remains role-shaped, speech carries only the useful delta, and Maya closes the loop. One bounded problem, genuinely investigated and responsibly handed off, is a better glimpse of agentic work than a dazzling tour of everything the system might someday do.
+
+This is the huddle in the wild: orderly without being scripted, imperfect without being careless, and always answerable to the people whose work it is meant to serve.
+
 ## Repository structure
 
 | Location | What a person will find there |

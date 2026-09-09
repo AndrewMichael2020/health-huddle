@@ -114,8 +114,9 @@ socket cannot deadlock the huddle.
 
 The huddle shall contain at least one substantive challenge. A challenged agent
 may return to investigation, request specific help, and later amend or defend
-its conclusion with evidence. Unfinished work shall be parked and revisited,
-not forced into a speaking turn.
+its conclusion with evidence. A role with no new information shall say so and
+yield. A role that produces no audible response shall be marked not present and
+skipped rather than parked indefinitely.
 
 ### BR-06: Project tools
 
@@ -151,24 +152,26 @@ The audible huddle shall be understandable to a human listener who has not read
 the repository. Agent prompts shall preserve the root README's approachable,
 narrative communication style without copying its scripted dialogue.
 
-Each substantive spoken turn shall normally contain four elements in natural
-language:
+Across the huddle, the team shall cover four elements in natural language. A
+single speaker should contribute only the role-specific element that advances
+the decision:
 
 1. what the agent found;
 2. what repository evidence supports it;
 3. why it matters to the modernization decision; and
 4. what help, challenge, ticket action, or human decision should follow.
 
-Agents shall not read JSON, tool schemas, evidence identifiers, hashes, raw
-timestamps, internal state names, or long ticket metadata aloud. They may cite
-evidence conversationally, for example, "the second PARIS delivery contains
-four rows whose referral, status, and event time already appeared in the first
-delivery." Exact machine references remain visible in the operator view and
-audit log.
+Agents shall not read JSON, tool schemas, hashes, internal state names, or long
+ticket metadata aloud. They may cite one or two short record IDs or timestamps
+when a concrete example makes the problem easier to understand, then refer to
+the written evidence for the rest. Exact machine references remain visible in
+the operator view and audit log.
 
 On first use, unfamiliar abbreviations and distinctions shall be explained in
-plain language. Maya shall briefly translate or summarize a technical exchange
-before moving to a decision. Concision is useful, but compressed jargon is a
+plain language. Specialist turns should normally be 35-55 words; Daniel may use
+up to 65 words for the organizational frame. Maya shall not recap routine
+turns. She may use one short sentence to resolve a challenge, park a weak
+answer, or pivot. Concision is required, but compressed jargon is still a
 failure if a human cannot follow the reasoning.
 
 ## 6. Non-functional requirements
@@ -187,8 +190,9 @@ failure if a human cannot follow the reasoning.
 - **Comprehensibility:** Spoken findings shall be clear at normal listening
   speed, use complete sentences, and separate evidence from recommendation and
   human authority.
-- **Duration:** Target 8-12 minutes and permit a 15-minute ceiling. Duration is a
-  guardrail, not a success measure.
+- **Duration:** Target roughly 25 seconds and cap each specialist at 45 seconds
+  per issue. Do not impose a global huddle deadline; usefulness and completion
+  of the bounded decision determine when Maya closes.
 - **Maintainability:** Prefer a small scenario-specific coordinator over a
   generic orchestration framework.
 
@@ -218,7 +222,13 @@ An accepted run must satisfy all of the following:
 13. A human reviewer can identify the finding, its significance, the unresolved
     question, and the human owner from the audio without consulting the code or
     Project board.
-14. No agent reads machine-oriented payloads, evidence IDs, hashes, or internal
+14. Specialist contributions are concise role deltas, normally 35-55 words;
+    Daniel may use up to 65 words;
+    Maya provides no more than two recaps of at most 25 words each.
+15. Every assigned specialist contributes, explicitly reports nothing new, or
+    is marked not present and skipped. The audio ends with Maya's audible
+    summary and the exact words "Happy Wednesday, everyone."
+16. No agent reads machine-oriented payloads, evidence IDs, hashes, or internal
     coordinator states aloud.
 
 The expected scenario truth above is evaluator-only and must never be included

@@ -17,11 +17,23 @@ function transferTool(transfers) {
 function baseConversationConfig({agent, config, knowledgeId, toolIds = [], prompt, firstMessage = "", transfers = []}) {
   return {
     asr:{quality:"high", provider:"scribe_realtime", user_input_audio_format:"pcm_16000"},
-    turn:{turn_timeout:30, silence_end_call_timeout:900, mode:"turn"},
+    turn:{
+      turn_timeout:7,
+      silence_end_call_timeout:900,
+      turn_eagerness:"eager",
+      soft_timeout_config:{
+        timeout_seconds:3,
+        message:"I am checking that.",
+        use_llm_generated_message:false,
+        disable_until_first_user_message:true
+      },
+      mode:"turn"
+    },
     tts:{
       model_id:config.tts_model_id,
       voice_id:agent.voice_id,
       agent_output_audio_format:"pcm_16000",
+      optimize_streaming_latency:3,
       stability:0.56,
       similarity_boost:0.76,
       speed:1.2
@@ -33,6 +45,7 @@ function baseConversationConfig({agent, config, knowledgeId, toolIds = [], promp
       prompt:{
         prompt,
         llm:config.model_id,
+        ignore_default_personality:true,
         knowledge_base:[{type:"text", name:"Live huddle evidence", id:knowledgeId, usage_mode:"auto"}],
         tool_ids:toolIds,
         built_in_tools:transfers.length ? {transfer_to_agent:transferTool(transfers)} : {}
@@ -43,7 +56,7 @@ function baseConversationConfig({agent, config, knowledgeId, toolIds = [], promp
 
 function listValues(payload, key) { return payload?.[key] ?? []; }
 
-export async function provision({client, config, packet, manifest, runtimePath, only = null}) {
+export async function provision({client, config, packet, manifest, runtimePath, only = null, scenario = null}) {
   const suffix = manifest.packet_sha256.slice(0, 12);
   const knowledgeName = `${RESOURCE_PREFIX} evidence ${suffix}`;
   const listedKnowledge = listValues(await client.listKnowledge(), "documents");
@@ -98,7 +111,7 @@ export async function provision({client, config, packet, manifest, runtimePath, 
       const created = await client.createAgent({
         name,
         tags:["health-huddle","live-poc"],
-        conversation_config:baseConversationConfig({agent, config, knowledgeId, toolIds:specialistToolIds, prompt:specialistPrompt(agent)})
+        conversation_config:baseConversationConfig({agent, config, knowledgeId, toolIds:specialistToolIds, prompt:specialistPrompt(agent, null, scenario)})
       });
       remote = {agent_id:created.agent_id, name};
     }
@@ -114,12 +127,12 @@ export async function provision({client, config, packet, manifest, runtimePath, 
       config,
       knowledgeId,
       toolIds:mayaToolIds,
-      prompt:mayaPrompt(Object.fromEntries(specialists.map((agent) => [agent.name, agentIds[agent.id]]))),
+      prompt:mayaPrompt(Object.fromEntries(specialists.map((agent) => [agent.name, agentIds[agent.id]])), scenario),
       firstMessage:"",
       transfers:specialists.map((agent) => ({
         agent_id:agentIds[agent.id],
         condition:`Only on a fresh coordinator command containing exactly GRANT_FLOOR:${agent.id}.`,
-        delay_ms:400,
+        delay_ms:0,
         transfer_message:`${agent.name}, you have the floor.`,
         enable_transferred_agent_first_message:false
       }))
@@ -130,12 +143,12 @@ export async function provision({client, config, packet, manifest, runtimePath, 
         config,
         knowledgeId,
         toolIds:specialistToolIds,
-        prompt:specialistPrompt(agent, mayaId),
+        prompt:specialistPrompt(agent, mayaId, scenario),
         firstMessage:"",
         transfers:[{
           agent_id:mayaId,
-          condition:"Do not use this tool immediately on arrival. First call read_huddle_context and deliver one substantive 35-to-55-second contribution ending with the exact spoken sentence 'I yield the floor to Maya.' Only then immediately return control to Maya Singh in the same turn.",
-          delay_ms:400,
+          condition:"Do not use this tool immediately on arrival. First call read_huddle_context. Deliver one focused role-specific contribution, or say exactly 'I have nothing to report on this matter.' End with the exact spoken sentence 'I yield my time.' Only then immediately return control to Maya Singh in the same turn.",
+          delay_ms:0,
           transfer_message:"Maya Singh, the floor is yours.",
           enable_transferred_agent_first_message:false
         }]

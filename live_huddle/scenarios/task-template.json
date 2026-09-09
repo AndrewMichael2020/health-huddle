@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "id": "replace-with-short-task-id",
+  "title": "Replace with the bounded decision title",
+  "question": "State one decision question the huddle can resolve.",
+  "private_brief": "Write a result-free investigation method of at least thirty-five words. Tell agents what sources and candidate fields or concepts to compare, what implementation or operational logic to inspect, how to separate observed evidence from assumptions, and which uncertainty and Human decisions to report. Do not provide the answer.",
+  "method_prompt": "Describe how Maya should generate the same result-free method without supplying the expected answer.",
+  "brief_validation": {
+    "min_words": 35,
+    "max_words": 160,
+    "required_term_groups": [["replace-required-term"]],
+    "forbidden_patterns": ["replace-known-answer-pattern"]
+  },
+  "knowledge": {
+    "source_allowlist": ["path/to/evidence.md"],
+    "excluded_sources": ["path/to/answer-key.md", "README.md"],
+    "project_source_label": "GitHub Project selected tickets"
+  },
+  "project": {
+    "owner": "GITHUB_OWNER",
+    "repository": "GITHUB_REPOSITORY",
+    "number": 1,
+    "allowed_issue_numbers": [1],
+    "action": {"issue_number": 1, "status": "Ready"}
+  },
+  "role_lenses": {
+    "daniel": "Connect the decision to organizational goals and preserve Human authority.",
+    "priya": "Test the decision against a useful comparison or adjacent source.",
+    "marcus": "Own the primary source evidence and candidate decision.",
+    "elena": "Challenge reliability, collisions, and replayability; propose one verification check.",
+    "owen": "Test governance, release, audit, and Human decision boundaries."
+  },
+  "flow": {
+    "base_investigators": ["daniel", "priya", "marcus", "owen"],
+    "challenge": {"challenger_id": "elena", "subject_id": "marcus"},
+    "audible_turns": [
+      {"agent_id": "marcus", "source": "followup_or_initial", "instruction": "Give only the primary evidence and answer the private challenge."},
+      {"agent_id": "elena", "source": "initial", "instruction": "Give only the reliability challenge and one verification check."},
+      {"agent_id": "priya", "source": "initial", "instruction": "Give only the useful comparison and its limit."},
+      {"agent_id": "owen", "source": "initial", "instruction": "Give only the control boundary and Human handoffs."},
+      {"agent_id": "daniel", "source": "initial", "instruction": "Synthesize the decision, next evidence, organizational guidance, and Human authority once."}
+    ]
+  },
+  "speech": {
+    "opening_max_words": 35,
+    "specialist_min_words": 35,
+    "specialist_max_words": 55,
+    "director_max_words": 65,
+    "closing": {"min_words": 45, "max_words": 60, "exact_final_phrase": "Happy Wednesday, everyone."}
+  },
+  "evaluation": {
+    "required_findings": [
+      {"label": "Replace with the first required evidence-backed conclusion", "patterns": ["replace-first-pattern"]},
+      {"label": "Replace with the second required evidence-backed conclusion", "patterns": ["replace-second-pattern"]},
+      {"label": "Replace with the required uncertainty and Human handoff", "patterns": ["replace-third-pattern", "human"]}
+    ]
+  }
+}

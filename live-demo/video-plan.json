@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "format": {"width": 1920, "height": 1080, "fps": 30, "video_codec": "h264", "audio_codec": "aac"},
+  "title": "LIVE KNOWLEDGE-GROUNDED AGENT HUDDLE",
+  "subtitle": "PARIS duplicate events and lineage",
+  "visual_transition_seconds": 0.2,
+  "footer": "SYNTHETIC DATA  •  AGENT-GENERATED RECOMMENDATIONS  •  HUMAN APPROVAL REQUIRED",
+  "reactions": {
+    "maya:opening": ["coffee", "sparkle", "thinking"],
+    "marcus:contribution": ["search", "target", "thumb"],
+    "elena:contribution": ["smile", "check", "coffee"],
+    "priya:contribution": ["repeat", "search", "sparkle"],
+    "owen:contribution": ["shield", "lock", "stop"],
+    "daniel:contribution": ["pin", "target", "thumb"],
+    "maya:project_action": ["pin", "check", "shield"],
+    "maya:closing": ["check", "confetti", "sparkle", "coffee"]
+  }
+}

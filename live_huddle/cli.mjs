@@ -8,15 +8,16 @@ import {fileURLToPath} from "node:url";
 import {AuditLog} from "./audit/logger.mjs";
 import {pcm16ToWav, pcmDurationSeconds} from "./audio/wav.mjs";
 import {FloorCoordinator} from "./coordinator/floor.mjs";
+import {parseTransferRound} from "./coordinator/turns.mjs";
 import {buildEvidencePacket, repoRoot} from "./evidence/build-packet.mjs";
 import {ElevenLabsClient} from "./elevenlabs/client.mjs";
 import {openConversation} from "./elevenlabs/conversation.mjs";
 import {provision, readRuntime} from "./elevenlabs/provision.mjs";
 import {createInvestigationBrief, investigate, oneTextTurn, validateInvestigationBrief} from "./elevenlabs/rehearsal.mjs";
-import {MAYA_PRIVATE_BRIEF} from "./elevenlabs/prompts.mjs";
 import {evaluateRun, evaluateTextRehearsal} from "./evaluation/evaluate.mjs";
 import {ProjectGuard, selectedIssueEvidence, snapshotHash} from "./github/project.mjs";
 import {renderRunReport} from "./operator/report.mjs";
+import {loadScenario} from "./scenario.mjs";
 
 const execFileAsync = promisify(execFile);
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -24,10 +25,12 @@ const artifacts = path.join(repoRoot, ".artifacts/live-huddle");
 const runtimePath = path.join(artifacts, "runtime.json");
 const agentsConfig = JSON.parse(await readFile(path.join(here, "config/agents.json"), "utf8"));
 const policy = JSON.parse(await readFile(path.join(here, "config/policy.json"), "utf8"));
+const {scenario, path:scenarioPath} = await loadScenario();
+const allowedEvidenceRefs = new Set([...scenario.knowledge.source_allowlist, scenario.knowledge.project_source_label]);
 
 async function evidence() {
-  const projectEvidence = await selectedIssueEvidence({owner:"AndrewMichael2020", repository:"health-huddle", issueNumbers:policy.project.allowed_issue_numbers});
-  return buildEvidencePacket({projectEvidence});
+  const projectEvidence = await selectedIssueEvidence({owner:scenario.project.owner, repository:scenario.project.repository, issueNumbers:scenario.project.allowed_issue_numbers});
+  return buildEvidencePacket({projectEvidence, sourceAllowlist:scenario.knowledge.source_allowlist, excludedSources:scenario.knowledge.excluded_sources, projectSourceLabel:scenario.knowledge.project_source_label});
 }
 
 async function preflight() {
@@ -50,18 +53,18 @@ async function buildEvidence() {
 
 async function provisionAgents(only = null) {
   const built = await evidence();
-  const runtime = await provision({client:new ElevenLabsClient(), config:agentsConfig, packet:built.packet, manifest:built.manifest, runtimePath, only});
-  console.log(JSON.stringify({knowledge:runtime.knowledge, agents:Object.fromEntries(Object.entries(runtime.agents).map(([id, value]) => [id, {agent_id:value.agent_id, name:value.name, voice_id:value.voice_id}]))}, null, 2));
+  const runtime = await provision({client:new ElevenLabsClient(), config:agentsConfig, packet:built.packet, manifest:built.manifest, runtimePath, only, scenario});
+  console.log(JSON.stringify({scenario:scenario.id, knowledge:runtime.knowledge, agents:Object.fromEntries(Object.entries(runtime.agents).map(([id, value]) => [id, {agent_id:value.agent_id, name:value.name, voice_id:value.voice_id}]))}, null, 2));
 }
 
 function projectGuard(audit = null) {
-  return new ProjectGuard({owner:policy.project.owner, number:policy.project.number, allowedIssueNumbers:policy.project.allowed_issue_numbers, audit});
+  return new ProjectGuard({owner:scenario.project.owner, number:scenario.project.number, allowedIssueNumbers:scenario.project.allowed_issue_numbers, audit});
 }
 
 async function snapshotProject() {
   const captured = await projectGuard().snapshot();
   await mkdir(path.join(artifacts, "project"), {recursive:true});
-  const target = path.join(artifacts, "project", "project-13-snapshot.json");
+  const target = path.join(artifacts, "project", `project-${scenario.project.number}-snapshot.json`);
   await writeFile(target, `${JSON.stringify(captured, null, 2)}\n`, {mode:0o600});
   console.log(JSON.stringify({path:target, sha256:captured.sha256, items:captured.snapshot.items.totalCount ?? captured.snapshot.items.items?.length}, null, 2));
 }
@@ -71,20 +74,20 @@ async function runInvestigations({audit, briefOverride = null}) {
   const byId = Object.fromEntries(agentsConfig.agents.map((agent) => [agent.id, agent]));
   const project = await projectGuard().snapshot();
   const projectItems = (project.snapshot.items.items ?? [])
-    .filter((item) => policy.project.allowed_issue_numbers.includes(Number(item.content?.number)))
+    .filter((item) => scenario.project.allowed_issue_numbers.includes(Number(item.content?.number)))
     .map((item) => ({issue_number:item.content.number,title:item.title ?? item.content.title,status:item.status}));
   console.error("[huddle] maya: directing the result-free investigation method");
   const briefResult = briefOverride
-    ? {brief:validateInvestigationBrief(briefOverride),conversationId:null,attempt:0}
-    : await createInvestigationBrief({client:new ElevenLabsClient(), agentId:runtime.agents.maya.agent_id, timeoutMs:policy.reasoning_timeout_ms, context:{self:"maya",state:"briefing",project_items:projectItems}});
+    ? {brief:validateInvestigationBrief(briefOverride, scenario),conversationId:null,attempt:0}
+    : await createInvestigationBrief({client:new ElevenLabsClient(), agentId:runtime.agents.maya.agent_id, timeoutMs:policy.reasoning_timeout_ms, context:{self:"maya",state:"briefing",project_items:projectItems}, scenario});
   await audit.write("maya_investigation_brief", {conversation_id:briefResult.conversationId,attempt:briefResult.attempt,brief:briefResult.brief});
   console.error("[huddle] maya: investigation brief ready");
-  const baseIds = ["daniel","priya","marcus","owen"];
+  const baseIds = scenario.flow.base_investigators;
   const initial = Object.fromEntries(await Promise.all(baseIds.map(async (id) => {
     console.error(`[huddle] ${id}: thinking`);
     await audit.write("agent_state", {agent_id:id,state:"thinking"});
     try {
-      const result = await investigate({client:new ElevenLabsClient(), agent:byId[id], remote:runtime.agents[id], brief:briefResult.brief, timeoutMs:policy.reasoning_timeout_ms, context:{self:id,state:"thinking",project_items:projectItems,ready_teammates:[]}});
+      const result = await investigate({client:new ElevenLabsClient(), agent:byId[id], remote:runtime.agents[id], brief:briefResult.brief, timeoutMs:policy.reasoning_timeout_ms, context:{self:id,state:"thinking",project_items:projectItems,ready_teammates:[]}, scenario, allowedEvidenceRefs});
       await audit.write("agent_state", {agent_id:id,state:"ready",attempt:result.attempt,conversation_id:result.conversationId,report:result.report});
       console.error(`[huddle] ${id}: ready`);
       return [id,result.report];
@@ -99,7 +102,7 @@ async function runInvestigations({audit, briefOverride = null}) {
   console.error("[huddle] elena: thinking about Marcus's finding");
   let elena = null;
   try {
-    elena = await investigate({client:new ElevenLabsClient(), agent:byId.elena, remote:runtime.agents.elena, brief:briefResult.brief, challenge:initial.marcus.spoken_summary, timeoutMs:policy.reasoning_timeout_ms, context:{self:"elena",state:"thinking",project_items:projectItems,ready_teammates:[{agent:"marcus",finding:initial.marcus}]}});
+    elena = await investigate({client:new ElevenLabsClient(), agent:byId.elena, remote:runtime.agents.elena, brief:briefResult.brief, challenge:initial.marcus.spoken_summary, timeoutMs:policy.reasoning_timeout_ms, context:{self:"elena",state:"thinking",project_items:projectItems,ready_teammates:[{agent:"marcus",finding:initial.marcus}]}, scenario, allowedEvidenceRefs});
     initial.elena = elena.report;
     await audit.write("agent_state", {agent_id:"elena",state:"ready",conversation_id:elena.conversationId,report:elena.report});
     console.error("[huddle] elena: ready with a challenge");
@@ -111,7 +114,7 @@ async function runInvestigations({audit, briefOverride = null}) {
   let marcusFollowup = null;
   if (elena) {
     try {
-      const result = await investigate({client:new ElevenLabsClient(), agent:byId.marcus, remote:runtime.agents.marcus, brief:briefResult.brief, challenge:elena.report.spoken_summary, timeoutMs:policy.reasoning_timeout_ms, context:{self:"marcus",state:"challenged",project_items:projectItems,ready_teammates:[{agent:"elena",finding:elena.report}]}});
+      const result = await investigate({client:new ElevenLabsClient(), agent:byId.marcus, remote:runtime.agents.marcus, brief:briefResult.brief, challenge:elena.report.spoken_summary, timeoutMs:policy.reasoning_timeout_ms, context:{self:"marcus",state:"challenged",project_items:projectItems,ready_teammates:[{agent:"elena",finding:elena.report}]}, scenario, allowedEvidenceRefs});
       marcusFollowup = result.report;
       await audit.write("agent_state", {agent_id:"marcus",state:"ready",trigger:"challenge follow-up",conversation_id:result.conversationId,report:result.report});
       console.error("[huddle] marcus: ready after follow-up investigation");
@@ -133,7 +136,7 @@ async function textRehearsal() {
   const maya = await oneTextTurn({client:new ElevenLabsClient(), agentId:runtime.agents.maya.agent_id, prompt:mayaPrompt, timeoutMs:policy.reasoning_timeout_ms, waitForInitial:true});
   await audit.write("maya_rehearsal", {conversation_id:maya.conversationId, response:maya.text});
   const output = {run_id:runId, ...result, maya:maya.text};
-  const evaluation = evaluateTextRehearsal(output);
+  const evaluation = evaluateTextRehearsal(output, scenario);
   await mkdir(runDir, {recursive:true});
   await writeFile(path.join(runDir, "text-rehearsal.json"), `${JSON.stringify(output, null, 2)}\n`, {mode:0o600});
   await writeFile(path.join(runDir, "text-acceptance.json"), `${JSON.stringify(evaluation, null, 2)}\n`, {mode:0o600});
@@ -250,7 +253,6 @@ async function waitForConversationDetails(client, conversationId, {maxMs = 30000
 }
 
 async function liveRun({mutateProject = false}) {
-  const runStartedAt = Date.now();
   const runId = `live-${randomUUID().slice(0, 8)}`;
   const runDir = path.join(artifacts, "runs", runId);
   await mkdir(runDir, {recursive:true});
@@ -266,9 +268,10 @@ async function liveRun({mutateProject = false}) {
   const conversationIds = [];
   const client = new ElevenLabsClient();
   const projectItems = (before.snapshot.items.items ?? [])
-    .filter((item) => policy.project.allowed_issue_numbers.includes(Number(item.content?.number)))
+    .filter((item) => scenario.project.allowed_issue_numbers.includes(Number(item.content?.number)))
     .map((item) => ({issue_number:item.content.number,title:item.title ?? item.content.title,status:item.status}));
   const liveContext = {run_id:runId,state:"opening",project_snapshot_sha256:before.sha256,project_items:projectItems,maya_brief:null,current_report:null,prior_spoken_findings:[]};
+  const absentAgents = [];
   const projectAction = {writes_enabled:false,requested:false,result:null};
   let investigations = null;
   let activeSession = null;
@@ -322,18 +325,6 @@ async function liveRun({mutateProject = false}) {
     if (addGap) audio.push(Buffer.alloc(Math.round(16000 * 2 * policy.floor_transition_ms / 1000)));
   }
 
-  function parseTransferRound(details, agentName) {
-    const messages = (details?.transcript ?? [])
-      .filter((entry) => entry.role === "agent" && typeof entry.message === "string" && entry.message.trim())
-      .map((entry) => entry.message.trim());
-    const contribution = messages.find((message) => /I yield (?:the floor|my time) to Maya/i.test(message) && message.split(/\s+/).length >= 25);
-    if (!contribution) return null;
-    const handoff = messages.find((message) => message.includes(agentName) && /you have the floor/i.test(message)) ?? `${agentName}, you have the floor.`;
-    const returnCue = messages.find((message) => /^Maya Singh,? (?:the )?floor is yours/i.test(message)) ?? "Maya Singh, the floor is yours.";
-    const recap = [...messages].reverse().find((message) => message !== contribution && message !== handoff && message !== returnCue && !/you have the floor/i.test(message));
-    return {handoff,contribution,returnCue,recap};
-  }
-
   let restored = false;
   const stopConversation = () => activeSession?.conversation.close();
   process.once("SIGINT", stopConversation);
@@ -341,25 +332,20 @@ async function liveRun({mutateProject = false}) {
   try {
     let session = await startSession();
     let start = session.conversation.events.length;
-    session.conversation.sendUserMessage("Maya, open this Wednesday huddle naturally and briefly. Name the bounded PARIS duplicate-event and lineage question, and say the specialists are thinking quietly. Do not recite the private method.");
+    session.conversation.sendUserMessage(`Maya, open this Wednesday huddle naturally and briefly. Name this bounded question: ${scenario.question} Say the specialists are thinking quietly. Do not recite the private method.`);
     const opening = await waitForNew(session.conversation, start, isResponseComplete);
     transcript.push({speaker:"maya",kind:"opening",text:responseText(opening)});
-    await waitForAudioPlayback(session.conversation, start, {maxMs:180000});
+    await waitForAudioPlayback(session.conversation, start, {maxMs:policy.facilitator_turn_timeout_ms});
     closeSession(session);
     commitSession(session);
-    liveContext.maya_brief = validateInvestigationBrief(MAYA_PRIVATE_BRIEF);
-    const investigationPromise = runInvestigations({audit,briefOverride:liveContext.maya_brief});
-    investigations = await investigationPromise;
-    const turns = [
-      ["daniel", investigations.reports.daniel, "Announce the fictional organization's modernization context and goals, frame today's decision, and identify the human authority boundary."],
-      ["marcus", investigations.reports.marcus, "Present the initial PARIS finding."],
-      ["elena", investigations.reports.elena, "Challenge or strengthen the PARIS finding from a reconciliation perspective, and offer useful help."],
-      ["marcus", investigations.marcus_followup, "Respond to Elena's challenge with the follow-up investigation."],
-      ["priya", investigations.reports.priya, "Compare the proposed lineage treatment with correction handling and offer useful help."],
-      ["owen", investigations.reports.owen, "State the governance boundary, release implication, and human handoff."]
-    ].filter(([, report]) => report);
+    liveContext.maya_brief = validateInvestigationBrief(scenario.private_brief, scenario);
+    investigations = await runInvestigations({audit,briefOverride:liveContext.maya_brief});
+    const turns = scenario.flow.audible_turns.map((turn) => [
+      turn.agent_id,
+      turn.source === "followup_or_initial" ? investigations.marcus_followup ?? investigations.reports[turn.agent_id] : investigations.reports[turn.agent_id],
+      turn.instruction
+    ]).filter(([, report]) => report);
     for (const [turnIndex, [id, report, instruction]] of turns.entries()) {
-      if (Date.now() - runStartedAt > policy.run_timeout_ms) throw new Error("live huddle exceeded the authorized duration ceiling");
       console.error(`[huddle] Maya grants the floor to ${id}`);
       if (floor.agents.get(id).state === "yielded") floor.challenge(id);
       floor.ready(id, report);
@@ -373,35 +359,59 @@ async function liveRun({mutateProject = false}) {
         liveContext.state = "floor_granted";
         liveContext.current_agent = id;
         session = await startSession();
-        session.conversation.sendContext(`Private wire from Maya for ${runtime.agents[id].name}. Current turn: ${instruction} Use the private ready finding available through read_huddle_context. Explain its meaning naturally; never read its structure aloud.`, `ready-${id}-${turnIndex}-${attempt}`);
+        session.conversation.sendContext(`Private wire from Maya for ${runtime.agents[id].name}. Current turn: ${instruction} Use the private ready finding and prior spoken summaries available through read_huddle_context to add only new information. Never read machine structure aloud.`, `ready-${id}-${turnIndex}-${attempt}`);
         start = session.conversation.events.length;
         session.conversation.sendUserMessage(`Coordinator command GRANT_FLOOR:${id}. ${runtime.agents[id].name} is ready; grant that specialist the floor now.`);
         const outbound = await waitForNew(session.conversation, start, isTransferResponse);
         const returned = await waitForNew(session.conversation, session.conversation.events.indexOf(outbound) + 1, isTransferResponse);
         const returnCue = await waitForNew(session.conversation, session.conversation.events.indexOf(returned) + 1, isResponseComplete);
         await waitForNew(session.conversation, session.conversation.events.indexOf(returnCue) + 1, isResponseComplete, 10000).catch(() => null);
-        await waitForAudioPlayback(session.conversation, start, {maxMs:180000});
+        await waitForAudioPlayback(session.conversation, start, {maxMs:policy.specialist_turn_timeout_ms});
         const conversationId = closeSession(session);
         const details = conversationId ? await waitForConversationDetails(client, conversationId) : null;
         round = parseTransferRound(details, runtime.agents[id].name);
         if (round) {
           commitSession(session);
         } else {
-          await audit.write("floor_retry", {agent_id:id,attempt,reason:"specialist returned without a substantive spoken yield"});
-          console.error(`[huddle] ${id}: retrying the same floor turn after an empty return`);
+          const retrying = attempt < 2;
+          await audit.write(retrying ? "floor_retry" : "floor_no_response", {agent_id:id,attempt,reason:"specialist returned without a substantive contribution"});
+          console.error(`[huddle] ${id}: ${retrying ? "retrying after an empty return" : "no substantive contribution; skipping"}`);
         }
       }
-      if (!round) throw new Error(`${runtime.agents[id].name} returned twice without a substantive contribution`);
+      if (!round) {
+        const name = runtime.agents[id].name;
+        floor.skip(id, "no substantive transfer response");
+        absentAgents.push(id);
+        liveContext.state = "skipped";
+        liveContext.current_agent = null;
+        await audit.write("agent_absence", {agent_id:id,reason:"no substantive transfer response",action:"skipped_and_continued"});
+        session = await startSession();
+        start = session.conversation.events.length;
+        session.conversation.sendUserMessage(`Maya, say exactly: ${name} is not present. I am skipping that role and moving on.`);
+        const absence = await waitForNew(session.conversation, start, isResponseComplete);
+        transcript.push({speaker:"maya",kind:"absence",agent_id:id,text:responseText(absence)});
+        await waitForAudioPlayback(session.conversation, start, {maxMs:30000});
+        closeSession(session);
+        commitSession(session);
+        await new Promise((resolve) => setTimeout(resolve, policy.floor_transition_ms));
+        continue;
+      }
       transcript.push({speaker:"maya",kind:"handoff",text:round.handoff});
       floor.speaking(id);
       await audit.write("floor", {agent_id:id,state:"speaking"});
-      transcript.push({speaker:id,kind:"contribution",text:round.contribution});
-      liveContext.prior_spoken_findings.push({agent_id:id,summary:round.contribution});
+      transcript.push({speaker:id,kind:round.noReport ? "no_report" : "contribution",text:round.contribution});
+      if (round.noReport) {
+        await audit.write("floor_no_report", {agent_id:id,completed:true});
+      } else {
+        if (!round.formalYield) await audit.write("floor_yield_inferred", {agent_id:id,reason:"substantive contribution returned without the formal yield phrase"});
+        liveContext.prior_spoken_findings.push({agent_id:id,summary:round.contribution});
+      }
       floor.yield(id);
       liveContext.state = "yielded";
       await audit.write("floor", {agent_id:id,state:"yielded"});
       transcript.push({speaker:id,kind:"yield",text:round.returnCue});
-      if (round.recap) transcript.push({speaker:"maya",kind:"recap",text:round.recap});
+      const shouldKeepRecap = id === "elena";
+      if (shouldKeepRecap && round.recap) transcript.push({speaker:"maya",kind:"recap",text:round.recap});
       if (!turns.slice(turnIndex + 1).some(([futureId]) => futureId === id)) floor.complete(id);
       await new Promise((resolve) => setTimeout(resolve, policy.floor_transition_ms));
     }
@@ -410,28 +420,42 @@ async function liveRun({mutateProject = false}) {
       projectAction.writes_enabled = true;
       session = await startSession();
       const actionStart = session.conversation.events.length;
-      session.conversation.sendUserMessage("Coordinator command RECORD_DECISION. Maya, use the private huddle context. If the evidence supports investigation by the Human owners, call set_project_status for issue 11 with status Ready. Explain briefly that this is an agent-recorded workflow move, not Human approval.");
+      session.conversation.sendUserMessage(`Coordinator command RECORD_DECISION. Maya, use the private huddle context. If the evidence supports investigation by the Human owners, call set_project_status for issue ${scenario.project.action.issue_number} with status ${scenario.project.action.status}. Explain briefly that this is an agent-recorded workflow move, not Human approval.`);
       await waitForNew(session.conversation, actionStart, (event) => event.type === "client_tool_call" && event.client_tool_call.tool_name === "set_project_status");
       const actionResponse = await waitForNew(session.conversation, actionStart, isResponseComplete);
       transcript.push({speaker:"maya",kind:"project_action",text:responseText(actionResponse)});
-      await waitForAudioPlayback(session.conversation, actionStart, {maxMs:180000});
+      await waitForAudioPlayback(session.conversation, actionStart, {maxMs:policy.facilitator_turn_timeout_ms});
+      if (!projectAction.result) throw new Error("Maya requested no successful guarded Project move");
       closeSession(session);
       commitSession(session);
-      if (!projectAction.result) throw new Error("Maya requested no successful guarded Project move");
       projectAction.writes_enabled = false;
       guard.disableMutations();
+      liveContext.state = "closing";
+      liveContext.current_agent = "maya";
+      liveContext.current_report = null;
+      session = await startSession();
+      start = session.conversation.events.length;
+      session.conversation.sendUserMessage(`Coordinator to Maya: close this huddle in ${scenario.speech.closing.min_words} to ${scenario.speech.closing.max_words} words. Summarize the bounded conclusion once, record that Issue ${scenario.project.action.issue_number} was moved to ${scenario.project.action.status} and will be restored after the test, name the accountable Human owners, and say no Human approval was given. ${absentAgents.length ? `Also name these roles as not present: ${absentAgents.join(", ")}.` : ""} Your final audible words must be exactly: ${scenario.speech.closing.exact_final_phrase}`);
+      const closing = await waitForNew(session.conversation, start, isResponseComplete);
+      transcript.push({speaker:"maya",kind:"closing",text:responseText(closing)});
+      await waitForAudioPlayback(session.conversation, start, {maxMs:policy.facilitator_turn_timeout_ms});
+      if (!session.sessionAudio.length) throw new Error("Maya closing produced no audible audio");
+      closeSession(session);
+      commitSession(session, {addGap:false});
+    } else {
+      liveContext.state = "closing";
+      liveContext.current_agent = "maya";
+      liveContext.current_report = null;
+      session = await startSession();
+      start = session.conversation.events.length;
+      session.conversation.sendUserMessage(`Coordinator to Maya: close this huddle in ${scenario.speech.closing.min_words} to ${scenario.speech.closing.max_words} words. Summarize the bounded conclusion once, name the accountable Human owners, and say no Human approval was given. ${absentAgents.length ? `Also name these roles as not present: ${absentAgents.join(", ")}.` : ""} Your final audible words must be exactly: ${scenario.speech.closing.exact_final_phrase}`);
+      const closing = await waitForNew(session.conversation, start, isResponseComplete);
+      transcript.push({speaker:"maya",kind:"closing",text:responseText(closing)});
+      await waitForAudioPlayback(session.conversation, start, {maxMs:policy.facilitator_turn_timeout_ms});
+      if (!session.sessionAudio.length) throw new Error("Maya closing produced no audible audio");
+      closeSession(session);
+      commitSession(session, {addGap:false});
     }
-    liveContext.state = "closing";
-    liveContext.current_agent = "maya";
-    liveContext.current_report = null;
-    session = await startSession();
-    start = session.conversation.events.length;
-    session.conversation.sendUserMessage("Coordinator to Maya: use the private huddle context and close briefly with the bounded conclusion, the ticket action, the Human owner, and the fact that no Human approval has yet been given. End with exactly: Happy Wednesday, everyone.");
-    const closing = await waitForNew(session.conversation, start, isResponseComplete);
-    transcript.push({speaker:"maya",kind:"closing",text:responseText(closing)});
-    await waitForAudioPlayback(session.conversation, start, {maxMs:180000});
-    closeSession(session);
-    commitSession(session, {addGap:false});
   } finally {
     process.removeListener("SIGINT", stopConversation);
     process.removeListener("SIGTERM", stopConversation);
@@ -451,11 +475,11 @@ async function liveRun({mutateProject = false}) {
   const auditText = await readFile(path.join(runDir, "events.jsonl"), "utf8");
   const durationSeconds = pcmDurationSeconds(pcm.length);
   const creditsUsed = details.reduce((sum, item) => sum + Number(item?.metadata?.cost ?? 0), 0);
-  const evaluation = evaluateRun({transcript, investigations, events:allEvents, floorEvents:floor.events, projectAction, projectRestored:restored, auditText, durationSeconds, creditsUsed, creditCeiling:policy.credit_ceiling, mutationRequired:mutateProject});
+  const evaluation = evaluateRun({transcript, investigations, events:allEvents, floorEvents:floor.events, projectAction, projectRestored:restored, auditText, durationSeconds, creditsUsed, creditCeiling:policy.credit_ceiling, mutationRequired:mutateProject, scenario});
   await writeFile(path.join(runDir, "acceptance.json"), `${JSON.stringify(evaluation, null, 2)}\n`, {mode:0o600});
   await writeFile(path.join(runDir, "report.html"), renderRunReport({runId,evaluation,transcript,conversationId:conversationIds.join(", ")}), {mode:0o600});
   console.log(JSON.stringify({run_id:runId, conversation_ids:conversationIds, artifact_dir:runDir, accepted:evaluation.passed, failed_criteria:evaluation.criteria.filter((criterion) => !criterion.passed).map((criterion) => criterion.id), project_mutation:mutateProject, agent_project_request:projectAction.requested, project_restored:restored, audio_bytes:pcm.length, duration_seconds:evaluation.observations.duration_seconds, credits_used:creditsUsed, turns:transcript.length}, null, 2));
-  if (!restored) throw new Error("Project 13 did not restore exactly");
+  if (!restored) throw new Error(`Project ${scenario.project.number} did not restore exactly`);
   if (!evaluation.passed) throw new Error(`run did not pass acceptance: ${evaluation.criteria.filter((criterion) => !criterion.passed).map((criterion) => criterion.id).join(", ")}`);
 }
 
@@ -467,7 +491,7 @@ async function projectMutationProof() {
   const before = await guard.snapshot();
   try {
     guard.enableMutations();
-    await guard.setStatus({snapshot:before.snapshot, issueNumber:11, status:"Ready"});
+    await guard.setStatus({snapshot:before.snapshot, issueNumber:scenario.project.action.issue_number, status:scenario.project.action.status});
     await guard.addRunDraft({runId, title:"Reset proof only", body:"Temporary draft item created solely to prove exact restoration."});
   } finally {
     if (guard.ledger.length) await guard.restore();
@@ -477,7 +501,7 @@ async function projectMutationProof() {
   await mkdir(runDir, {recursive:true});
   await writeFile(path.join(runDir, "reset-proof.json"), `${JSON.stringify({run_id:runId,before_sha256:before.sha256,after_sha256:after.sha256,restored}, null, 2)}\n`, {mode:0o600});
   console.log(JSON.stringify({run_id:runId,restored,before_sha256:before.sha256,after_sha256:after.sha256}, null, 2));
-  if (!restored) throw new Error("Project 13 restoration proof failed");
+  if (!restored) throw new Error(`Project ${scenario.project.number} restoration proof failed`);
 }
 
 const command = process.argv[2];
@@ -497,6 +521,6 @@ if (!commands[command]) {
   console.error(`Usage: node cli.mjs ${Object.keys(commands).join("|")}`);
   process.exitCode = 2;
 } else {
-  try { await commands[command](); }
+  try { console.error(`[huddle] scenario ${scenario.id} (${scenarioPath})`); await commands[command](); }
   catch (error) { console.error(error.stack ?? error.message); process.exitCode = 1; }
 }
