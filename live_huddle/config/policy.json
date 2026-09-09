@@ -1,0 +1,11 @@
+{
+  "project": {"owner":"AndrewMichael2020","number":13,"allowed_issue_numbers":[3,5,11,12]},
+  "floor_transition_ms": 400,
+  "reasoning_timeout_ms": 45000,
+  "run_timeout_ms": 900000,
+  "credit_ceiling": 60000,
+  "allowed_project_actions": ["set_status","add_run_draft"],
+  "forbidden_project_actions": ["edit_issue","comment_issue","close_issue","delete_issue","change_repository"],
+  "required_evidence_refs": 1,
+  "root_readme_frozen": true
+}
