@@ -148,9 +148,14 @@ This is the huddle in the wild: orderly without being scripted, imperfect withou
 | `data/reference/` | Synthetic facility, identity, and program crosswalks used to standardize the two source perspectives. |
 | `data/expected-results/` | The scenario truth used to verify counts and prevent a polished demonstration from drifting away from its own evidence. |
 | `docs/` | Portfolio context, current and target states, service objectives, architecture decisions, the huddle scenario, and demonstration provenance. |
+| `docs/live-huddle/` | The live proof-of-concept’s business requirements, implementation plan, acceptance record, and practical lessons for knowledge delivery, concise turns, guarded actions, graceful recovery, and Human handoffs. |
 | `project/` | The reproducible GitHub Project definition, its status model, seed tickets, huddle-created tickets, and the runtime manifest for Project 13. |
 | `demo/` | The locked huddle script, voice plan, deterministic GitHub action ledger, video plan, opening artwork, and production notes. |
+| `demo/assets/watch-agents-in-the-wild-live-youtube.jpg` | The 1280×720 *Agents in the Wild* marquee, showing the Human analysts around the live Project work surface. |
 | `demo/final/` | The completed four-minute video, ready for playback or sharing. |
+| `live_huddle/` | The controlled-floor ElevenLabs coordinator, six role definitions, bounded GitHub Project guard, reusable scenario loader and templates, evidence builder, acceptance evaluator, and local tests. |
+| `live-demo/` | The operator guide and deterministic audio/video plans for presenting an accepted organic huddle without rewriting its first-take speech. |
+| `live-demo/final/` | The compatible 1080p MP4, lossless-audio MOV master, exact timeline and manifest, and machine-readable validation record for the accepted live run. |
 | `src/` | Small Python modules that generate the data, simulate Bronze ingestion, standardize source records, reconcile deliveries, validate meaning, compose modular audio, and render the deterministic video. Pillow draws the visual layer; FFmpeg composes and encodes the media. |
 | `tests/` | Tests for scenario truth, privacy-safe repository contents, source mapping, release meaning, Project configuration, agent identities, human handoffs, action timing, and media contracts. |
 | `pyproject.toml` | The minimal Python package and dependency definition for the reproducible environment. |
