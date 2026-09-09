@@ -111,7 +111,7 @@ Maryam, a Human BI Analyst, used the time that opened up to create *skills* for 
 
 The scene was pre-planned and replayed deterministically so that every spoken decision, ticket movement, reaction, and handoff could be audited before the camera rolled. Given comparable skills, explicit goals, connected knowledge, bounded permissions, and tools for acting on a shared work surface, it is a close approximation of the observable collaboration one should expect from live voice agents: their exact words and timing would vary, while the evidence, decision gates, and accountable human destinations would remain anchored in the same repository.
 
-## Agents in the Wild: LIVE agent huddle
+## Agents in the Wild: a Completely LIVE agent huddle
 
 <p align="left">
   <a href="https://youtu.be/vcl44mb7D0s">
