@@ -119,23 +119,7 @@ The scene was pre-planned and replayed deterministically so that every spoken de
   </a>
 </p>
 
-The first huddle asked what a carefully composed demonstration could reveal. The live huddle asks a less comfortable question: what happens when six agents enter the room with roles, evidence, and authority boundaries—but without lines to recite?
-
-They do not become human. Nor do they become a committee of chat windows talking over one another. They become something more practical and, in its small way, more interesting: a working institution with a floor.
-
-They can also be wrong. A specialist may follow a weak clue, miss a distinction, or return without anything useful to add. The promise is not infallibility; it is graceful recovery. Another agent can challenge the finding, Maya can ask one short clarifying question, and the huddle can correct course—or acknowledge uncertainty and send the decision to a Human owner—without losing its shape.
-
-The assignment is deliberately narrow. The agents examine one knot in the modernization program: PARIS status events that may have returned in a later delivery under unfamiliar extract identifiers. Each specialist can inspect the repository evidence, the governing contracts, and the live Project state through the lens of a different responsibility. Daniel keeps the organizational purpose in view. Marcus studies source meaning and lineage. Elena challenges the arithmetic. Priya looks for a rule that will survive the next source. Owen watches the Human gates around governance and release. Maya keeps a hand on the pulse.
-
-Most of their work is quiet. While one agent speaks, the others can investigate. Readiness, rather than speed, earns the floor. Maya can pass a compact instruction privately—compare the candidate business fields, inspect the grouping rule, answer the unresolved point—without making the room listen to its own machinery. A specialist then has roughly the length of a useful stand-up contribution: enough time for a conclusion, the decisive record identifiers, a proposed action, and the Human owner who must decide what the agents cannot.
-
-This changes the sound of the meeting. There are pauses. A voice may hesitate. Someone may discover that another agent has already said the important thing and report, plainly, that there is nothing more to add. The imperfections are not failures of polish; they are signs that the participants are responding to a shared situation rather than reading six parallel speeches. What matters is whether the next statement advances the issue.
-
-The Project board is not scenery. It is the common work surface and the audit trail. Reads are broad enough for informed judgment; writes are narrow, explicit, reversible, and recorded. An agent may move the allowed issue through the authorized path, but consequential approval remains with named people. Cooperation is visible not because every voice agrees, but because challenge sharpens the evidence, assistance follows the finding, and uncertainty arrives at an accountable Human desk instead of dissolving into confident prose.
-
-The deeper experiment is not about making a meeting faster. It is about making distributed machine attention legible: knowledge arrives through tools, judgment remains role-shaped, speech carries only the useful delta, and Maya closes the loop. One bounded problem, genuinely investigated and responsibly handed off, is a better glimpse of agentic work than a dazzling tour of everything the system might someday do.
-
-This is the huddle in the wild: orderly without being scripted, imperfect without being careless, and always answerable to the people whose work it is meant to serve.
+Six agents walk into a live huddle—no script, one shared evidence base, and, mercifully, only one microphone. They can make mistakes, but the design lets them recover gracefully: challenge a weak finding, admit uncertainty, or send a consequential decision to the right Human owner. While the others investigate quietly, Maya grants short turns to specialists who are ready, keeping the conversation useful instead of turning it into six chatbots auditioning for a podcast. Together they examine a bounded PARIS lineage problem, consult the repository and Project board, and record only narrow, reversible actions. It is cheerful proof that agentic teamwork need not be flawless to be valuable; it needs evidence, manners, and someone who knows when to yield the floor.
 
 ## Repository structure
 
